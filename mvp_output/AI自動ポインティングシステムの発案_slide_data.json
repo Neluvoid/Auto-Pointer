@@ -1,0 +1,688 @@
+{
+  "file": "AI自動ポインティングシステムの発案.pptx",
+  "slide_width_pt": 960.0,
+  "slide_height_pt": 540.0,
+  "slides": [
+    {
+      "slide_index": 0,
+      "slide_number": 1,
+      "elements": [
+        {
+          "id": "s0_e0",
+          "type": "text",
+          "content": "AI自動ポインティングに関する調べものとプロトタイプ構想",
+          "bbox_pt": [
+            74.88,
+            106.51,
+            778.53,
+            233.04
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.1972,
+            0.811,
+            0.4316
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s0_e1",
+          "type": "text",
+          "content": "M1　　白木陽",
+          "bbox_pt": [
+            74.88,
+            348.13,
+            588.16,
+            76.28
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.6447,
+            0.6127,
+            0.1413
+          ],
+          "shape_name": "字幕 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_001.png"
+    },
+    {
+      "slide_index": 1,
+      "slide_number": 2,
+      "elements": [
+        {
+          "id": "s1_e0",
+          "type": "text",
+          "content": "自動ポインティングの前例",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s1_e1",
+          "type": "text",
+          "content": "説明音声から資料中の該当箇所をリアルタイムに推定する技術（富士通, 2015）",
+          "bbox_pt": [
+            46.52,
+            180.31,
+            433.48,
+            109.05
+          ],
+          "bbox_ratio": [
+            0.0485,
+            0.3339,
+            0.4515,
+            0.202
+          ],
+          "shape_name": "テキスト ボックス 5"
+        },
+        {
+          "id": "s1_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            529.01,
+            119.83,
+            400.0,
+            230.0
+          ],
+          "bbox_ratio": [
+            0.5511,
+            0.2219,
+            0.4167,
+            0.4259
+          ],
+          "shape_name": "図 7",
+          "vlm_description": null
+        },
+        {
+          "id": "s1_e3",
+          "type": "text",
+          "content": "https://info.archives.global.fujitsu/jp/news/2015/04/1-1.html",
+          "bbox_pt": [
+            536.83,
+            350.4,
+            480.42,
+            24.23
+          ],
+          "bbox_ratio": [
+            0.5592,
+            0.6489,
+            0.5004,
+            0.0449
+          ],
+          "shape_name": "テキスト ボックス 11"
+        },
+        {
+          "id": "s1_e4",
+          "type": "text",
+          "content": "主にテキストのキーワードマッチングに依存\n図表内の特定の要素や、抽象的な表現を用いた説明には対応が困難",
+          "bbox_pt": [
+            99.62,
+            418.59,
+            760.76,
+            72.0
+          ],
+          "bbox_ratio": [
+            0.1038,
+            0.7752,
+            0.7925,
+            0.1333
+          ],
+          "shape_name": "四角形: 角を丸くする 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_002.png"
+    },
+    {
+      "slide_index": 2,
+      "slide_number": 3,
+      "elements": [
+        {
+          "id": "s2_e0",
+          "type": "text",
+          "content": "オブジェクト認識",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s2_e1",
+          "type": "text",
+          "content": "Grounded SAM 2 ：画像や動画内の任意のオブジェクトを検出",
+          "bbox_pt": [
+            65.11,
+            107.14,
+            829.78,
+            41.2
+          ],
+          "bbox_ratio": [
+            0.0678,
+            0.1984,
+            0.8644,
+            0.0763
+          ],
+          "shape_name": "テキスト ボックス 2"
+        },
+        {
+          "id": "s2_e2",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            457.59,
+            319.2,
+            63.48,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.4767,
+            0.5911,
+            0.0661,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 13"
+        },
+        {
+          "id": "s2_e3",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            40.46,
+            206.08,
+            396.11,
+            264.4
+          ],
+          "bbox_ratio": [
+            0.0421,
+            0.3816,
+            0.4126,
+            0.4896
+          ],
+          "shape_name": "Picture 2",
+          "vlm_description": null
+        },
+        {
+          "id": "s2_e4",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            542.09,
+            206.08,
+            396.11,
+            264.4
+          ],
+          "bbox_ratio": [
+            0.5647,
+            0.3816,
+            0.4126,
+            0.4896
+          ],
+          "shape_name": "Picture 4",
+          "vlm_description": null
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_003.png"
+    },
+    {
+      "slide_index": 3,
+      "slide_number": 4,
+      "elements": [
+        {
+          "id": "s3_e0",
+          "type": "text",
+          "content": "グラフ構造の理解",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            42.71
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0791
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s3_e1",
+          "type": "text",
+          "content": "ChartVLM ：チャート（グラフ）を推論",
+          "bbox_pt": [
+            205.69,
+            107.93,
+            548.61,
+            41.2
+          ],
+          "bbox_ratio": [
+            0.2143,
+            0.1999,
+            0.5715,
+            0.0763
+          ],
+          "shape_name": "テキスト ボックス 3"
+        },
+        {
+          "id": "s3_e2",
+          "type": "text",
+          "content": "チャートを単なる画像としてではなく、\nデータ構造として理解することで推論の根拠を明確にしている",
+          "bbox_pt": [
+            90.61,
+            449.08,
+            778.76,
+            82.8
+          ],
+          "bbox_ratio": [
+            0.0944,
+            0.8316,
+            0.8112,
+            0.1533
+          ],
+          "shape_name": "四角形: 角を丸くする 7"
+        },
+        {
+          "id": "s3_e3",
+          "type": "text",
+          "content": "'who has the largest value?'",
+          "bbox_pt": [
+            256.61,
+            262.98,
+            216.0,
+            55.74
+          ],
+          "bbox_ratio": [
+            0.2673,
+            0.487,
+            0.225,
+            0.1032
+          ],
+          "shape_name": "テキスト ボックス 2"
+        },
+        {
+          "id": "s3_e4",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            57.32,
+            148.29,
+            179.57,
+            259.72
+          ],
+          "bbox_ratio": [
+            0.0597,
+            0.2746,
+            0.187,
+            0.481
+          ],
+          "shape_name": "図 5",
+          "vlm_description": null
+        },
+        {
+          "id": "s3_e5",
+          "type": "text",
+          "content": "Ford F150 (Regular Cab)",
+          "bbox_pt": [
+            629.44,
+            273.05,
+            479.88,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.6557,
+            0.5057,
+            0.4999,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 8"
+        },
+        {
+          "id": "s3_e6",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            503.57,
+            269.72,
+            77.04,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.5246,
+            0.4995,
+            0.0803,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 9"
+        },
+        {
+          "id": "s3_e7",
+          "type": "text",
+          "content": "入力：画像 ＆ テキスト",
+          "bbox_pt": [
+            169.86,
+            407.73,
+            252.35,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.1769,
+            0.7551,
+            0.2629,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 10"
+        },
+        {
+          "id": "s3_e8",
+          "type": "text",
+          "content": "出力：テキスト or CSV",
+          "bbox_pt": [
+            629.44,
+            407.73,
+            252.35,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.6557,
+            0.7551,
+            0.2629,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 11"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_004.png"
+    },
+    {
+      "slide_index": 4,
+      "slide_number": 5,
+      "elements": [
+        {
+          "id": "s4_e0",
+          "type": "text",
+          "content": "技術的課題",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s4_e1",
+          "type": "smartart",
+          "content": [
+            "意味的理解の表現",
+            "単純な単語の一致ではなく、発表者の発話の意図や文脈を理解し、スライド上のどの要素を指しているかを推論する",
+            "図表の構造解析",
+            "スライド内のテキストだけでなく、グラフの線や棒、円グラフのセグメント、図解の特定のノードなど、非言語的な視覚要素を個別のオブジェクトとして認識し、座標を特定する"
+          ],
+          "bbox_pt": [
+            74.88,
+            101.12,
+            820.36,
+            399.18
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.1873,
+            0.8545,
+            0.7392
+          ],
+          "shape_name": "図表 2",
+          "smartart_node_count": 4,
+          "vlm_description": null
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_005.png"
+    },
+    {
+      "slide_index": 5,
+      "slide_number": 6,
+      "elements": [
+        {
+          "id": "s5_e0",
+          "type": "text",
+          "content": "プロトタイプ構想",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            50.55
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0936
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s5_e1",
+          "type": "smartart",
+          "content": [
+            "スライド解析モジュール",
+            "ポインティング制御モジュール",
+            "音声・意味理解モジュール"
+          ],
+          "bbox_pt": [
+            89.55,
+            160.78,
+            780.9,
+            304.38
+          ],
+          "bbox_ratio": [
+            0.0933,
+            0.2977,
+            0.8134,
+            0.5637
+          ],
+          "shape_name": "図表 2",
+          "smartart_node_count": 3,
+          "vlm_description": null
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_006.png"
+    },
+    {
+      "slide_index": 6,
+      "slide_number": 7,
+      "elements": [
+        {
+          "id": "s6_e0",
+          "type": "text",
+          "content": "入力されたスライドを解析し、含まれるすべての要素のメタデータと画面上の座標を抽出\nVLM（ Moondream など）を活用し、スライド画像を解析させる\nGrounded SAM 2 や ChartVLM のような専用モデルによる構造抽出を検討",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            279.03
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.5167
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s6_e1",
+          "type": "text",
+          "content": "スライド解析モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_007.png"
+    },
+    {
+      "slide_index": 7,
+      "slide_number": 8,
+      "elements": [
+        {
+          "id": "s7_e0",
+          "type": "text",
+          "content": "発表中の音声をマイクからリアルタイムに取得し、OpenAIの Whisper などの高性能な音声認識（ASR）モデルを用いてテキスト化\nスライド解析モジュールから得られたスライド要素をマルチモーダルLLM（Llama3など）に入力し、発話内容と最も意味的に関連するスライド要素の座標を推論させる",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            305.88
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.5665
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s7_e1",
+          "type": "text",
+          "content": "音声・意味理解モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_008.png"
+    },
+    {
+      "slide_index": 8,
+      "slide_number": 9,
+      "elements": [
+        {
+          "id": "s8_e0",
+          "type": "text",
+          "content": "スライド画像の上にポインティング用の層を重畳表示\nLLMが特定した要素の座標位置にレーザーポインター風のエフェクトを描画\n要素間の移動時には、視覚的に滑らかな軌跡を描くことで、人間の自然なポインティング動作を模倣する",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            219.69
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.4068
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s8_e1",
+          "type": "text",
+          "content": "ポインティング制御モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_009.png"
+    },
+    {
+      "slide_index": 9,
+      "slide_number": 10,
+      "elements": [
+        {
+          "id": "s9_e0",
+          "type": "text",
+          "content": "VLMによる図表解析のプロンプト設計と検証を行い、Grounded SAM 2 や ChartVLM の有用性を確かめる\nスライド解析モジュールのスクリプトを作成する\nOpenAI Whisperによる声のリアルタイムテキスト化をテストする",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            219.69
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.4068
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s9_e1",
+          "type": "text",
+          "content": "今後",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\wtaki\\GitHub\\Auto-Pointer\\mvp_output\\AI自動ポインティングシステムの発案_images\\slide_010.png"
+    }
+  ]
+}

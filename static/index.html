@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-Pointing Presentation</title>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<style>
+/* =====================================================
+   CSS変数・リセット
+===================================================== */
+:root {
+  --bg:          #0d0f14;
+  --surface:     #161922;
+  --surface2:    #1e2330;
+  --border:      #2a3040;
+  --accent:      #4f9eff;
+  --accent2:     #ff4f6a;
+  --text:        #e8ecf4;
+  --text-muted:  #6b7a94;
+  --laser:       #ff3a3a;
+  --laser-glow:  rgba(255, 58, 58, 0.35);
+  --highlight:   rgba(255, 220, 40, 0.22);
+  --border-clr:  rgba(255, 58, 58, 0.85);
+  --radius:      10px;
+  --font-mono:   'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-ui:     'Noto Sans JP', 'Hiragino Sans', sans-serif;
+  --transition:  0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 48px 1fr 52px;
+  grid-template-columns: 1fr 320px;
+  grid-template-areas:
+    "header header"
+    "stage  panel"
+    "footer footer";
+  overflow: hidden;
+}
+
+/* =====================================================
+   ヘッダー
+===================================================== */
+header {
+  grid-area: header;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.logo span { color: var(--accent2); }
+
+#conn-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.conn-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #444;
+  transition: background var(--transition);
+}
+.conn-dot.connected { background: #3ddc84; box-shadow: 0 0 6px #3ddc84; }
+.conn-dot.error     { background: var(--accent2); }
+
+/* =====================================================
+   ステージ（スライド表示エリア）
+===================================================== */
+#stage {
+  grid-area: stage;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090b10;
+  padding: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+#slide-container {
+  position: relative;
+  /* サイズはJSで動的設定 */
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+}
+
+#slide-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* SVGオーバーレイ（ポインター描画用） */
+#pointer-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* レーザーポインター */
+.laser-core {
+  fill: var(--laser);
+  opacity: 0.92;
+  filter: drop-shadow(0 0 6px var(--laser));
+}
+.laser-mid {
+  fill: var(--laser);
+  opacity: 0.35;
+}
+.laser-outer {
+  fill: var(--laser);
+  opacity: 0.12;
+}
+
+/* ハイライト矩形 */
+.highlight-rect {
+  fill: var(--highlight);
+  rx: 4;
+}
+
+/* ボーダー矩形 */
+.border-rect {
+  fill: none;
+  stroke: var(--border-clr);
+  stroke-width: 3;
+  rx: 4;
+  filter: drop-shadow(0 0 4px rgba(255,58,58,0.5));
+}
+
+/* ポインターアニメーション */
+#pointer-group {
+  transition: transform var(--transition);
+}
+
+.pointer-appear {
+  animation: pointerAppear 0.3s ease-out;
+}
+
+@keyframes pointerAppear {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ラベル */
+.pointer-label {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  fill: white;
+}
+.pointer-label-bg {
+  fill: var(--laser);
+  opacity: 0.88;
+  rx: 3;
+}
+
+/* スライドなし状態 */
+#no-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+#no-slide svg { opacity: 0.3; }
+
+/* =====================================================
+   サイドパネル
+===================================================== */
+#panel {
+  grid-area: panel;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-section {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+}
+
+/* スライドナビゲーション */
+.slide-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-size: 14px;
+}
+.nav-btn:hover { background: var(--accent); border-color: var(--accent); }
+.nav-btn:active { transform: scale(0.95); }
+
+#slide-indicator {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+#slide-indicator strong { color: var(--text); font-size: 15px; }
+
+/* ASR入力エリア */
+.asr-input-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+#asr-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 12px;
+  padding: 8px 12px;
+  font-family: var(--font-ui);
+  outline: none;
+  transition: border-color var(--transition);
+  resize: none;
+  height: 64px;
+}
+#asr-input:focus { border-color: var(--accent); }
+#asr-input::placeholder { color: var(--text-muted); }
+
+.send-btn {
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  align-self: flex-end;
+  height: 32px;
+}
+.send-btn:hover  { background: #3a8ef0; transform: translateY(-1px); }
+.send-btn:active { transform: scale(0.97); }
+.send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* ステータス */
+#status-bar {
+  font-size: 12px;
+  padding: 8px 0 4px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  min-height: 28px;
+  transition: color var(--transition);
+}
+#status-bar.error { color: var(--accent2); }
+
+/* ログ */
+#log-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+#log-list::-webkit-scrollbar { width: 4px; }
+#log-list::-webkit-scrollbar-track { background: transparent; }
+#log-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.log-entry {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  animation: slideIn 0.2s ease-out;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.log-entry.none { border-color: #2a3040; opacity: 0.6; }
+.log-entry.high { border-left: 3px solid #3ddc84; }
+.log-entry.medium { border-left: 3px solid #ffd740; }
+.log-entry.low { border-left: 3px solid #ff9800; }
+
+.log-text  { color: var(--text-muted); font-size: 10px; margin-bottom: 2px; }
+.log-result { color: var(--text); font-family: var(--font-mono); }
+.log-reason { color: var(--text-muted); font-size: 10px; margin-top: 3px; font-style: italic; }
+
+.conf-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-left: 4px;
+}
+.conf-high   { background: #3ddc8422; color: #3ddc84; }
+.conf-medium { background: #ffd74022; color: #ffd740; }
+.conf-low    { background: #ff980022; color: #ff9800; }
+.conf-none   { background: #44444422; color: #888; }
+
+/* =====================================================
+   フッター
+===================================================== */
+footer {
+  grid-area: footer;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.kbd {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+#timing-info { margin-left: auto; font-family: var(--font-mono); }
+
+/* =====================================================
+   ローディング
+===================================================== */
+.pulse {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%       { opacity: 1; transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="logo">Auto<span>·</span>Pointer</div>
+  <div id="conn-status">
+    <div class="conn-dot" id="conn-dot"></div>
+    <span id="conn-label">接続中...</span>
+  </div>
+</header>
+
+<!-- スライドステージ -->
+<main id="stage">
+  <div id="no-slide">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+    </svg>
+    <span>スライドを読み込んでいます...</span>
+  </div>
+
+  <div id="slide-container" style="display:none">
+    <img id="slide-img" alt="スライド" draggable="false">
+    <svg id="pointer-overlay" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- ポインター要素はJSで動的生成 -->
+    </svg>
+  </div>
+</main>
+
+<!-- サイドパネル -->
+<aside id="panel">
+
+  <!-- スライドナビ -->
+  <div class="panel-section">
+    <div class="panel-label">スライド</div>
+    <div class="slide-nav">
+      <button class="nav-btn" id="btn-prev" title="前のスライド (←)">‹</button>
+      <div id="slide-indicator">
+        <strong id="cur-slide">-</strong> / <span id="total-slides">-</span>
+      </div>
+      <button class="nav-btn" id="btn-next" title="次のスライド (→)">›</button>
+    </div>
+  </div>
+
+  <!-- ASR手動入力 -->
+  <div class="panel-section">
+    <div class="panel-label">発話テキスト入力（テスト用）</div>
+    <div class="asr-input-wrap">
+      <textarea id="asr-input" placeholder="発話テキストを入力して送信&#10;（Enter で送信）"></textarea>
+      <button class="send-btn" id="btn-send">送信</button>
+    </div>
+    <div id="status-bar">待機中</div>
+  </div>
+
+  <!-- ログ -->
+  <div class="panel-label" style="padding: 12px 16px 4px; font-size:10px; color:var(--text-muted);">
+    POINTING LOG
+  </div>
+  <div id="log-list"></div>
+
+</aside>
+
+<!-- フッター -->
+<footer>
+  <span><span class="kbd">←</span><span class="kbd">→</span> スライド切替</span>
+  <span><span class="kbd">Enter</span> テキスト送信</span>
+  <span id="timing-info"></span>
+</footer>
+
+<script>
+// =====================================================
+// 定数・状態
+// =====================================================
+const SERVER_URL   = window.location.origin;
+const MAX_LOG      = 30;
+
+let socket;
+let currentSlide   = 1;
+let totalSlides    = 1;
+let slideWidthPt   = 720;
+let slideHeightPt  = 540;
+let isProcessing   = false;
+
+// ポインターの「現在位置」（比率、スムーズ移動用）
+let pointerTarget  = null;  // { cx, cy, rx, ry, rw, rh } (ピクセル)
+let pointerCurrent = null;
+let rafId          = null;
+let LERP           = 0.12;  // 追従速度（0〜1, 小さいほど滑らか）
+
+// =====================================================
+// DOM参照
+// =====================================================
+const stageEl      = document.getElementById('stage');
+const containerEl  = document.getElementById('slide-container');
+const imgEl        = document.getElementById('slide-img');
+const overlayEl    = document.getElementById('pointer-overlay');
+const noSlideEl    = document.getElementById('no-slide');
+const logListEl    = document.getElementById('log-list');
+const statusEl     = document.getElementById('status-bar');
+const asrInputEl   = document.getElementById('asr-input');
+const btnSend      = document.getElementById('btn-send');
+const btnPrev      = document.getElementById('btn-prev');
+const btnNext      = document.getElementById('btn-next');
+const curSlideEl   = document.getElementById('cur-slide');
+const totalEl      = document.getElementById('total-slides');
+const timingEl     = document.getElementById('timing-info');
+const connDot      = document.getElementById('conn-dot');
+const connLabel    = document.getElementById('conn-label');
+
+// =====================================================
+// Socket.IO 接続
+// =====================================================
+function connectSocket() {
+  socket = io(SERVER_URL, {
+    path: '/ws/socket.io',
+    transports: ['websocket', 'polling'],
+  });
+
+  socket.on('connect', () => {
+    connDot.className   = 'conn-dot connected';
+    connLabel.textContent = 'サーバー接続済み';
+    console.log('[WS] 接続完了:', socket.id);
+  });
+
+  socket.on('disconnect', () => {
+    connDot.className   = 'conn-dot error';
+    connLabel.textContent = '切断（再接続中...）';
+  });
+
+  socket.on('slide_changed', (data) => {
+    currentSlide = data.slide_num;
+    curSlideEl.textContent = currentSlide;
+    loadSlideImage(currentSlide);
+    clearPointer();
+  });
+
+  socket.on('pointing_result', (data) => {
+    const t0 = performance.now();
+    isProcessing = false;
+    updateSendBtn();
+    handlePointingResult(data);
+    const elapsed = performance.now() - t0;
+    timingEl.textContent = `描画: ${elapsed.toFixed(1)}ms`;
+  });
+
+  socket.on('status', (data) => {
+    setStatus(data.message, false);
+  });
+
+  socket.on('error', (data) => {
+    isProcessing = false;
+    updateSendBtn();
+    setStatus('⚠ ' + data.message, true);
+  });
+}
+
+// =====================================================
+// スライド読み込み
+// =====================================================
+async function loadSlideList() {
+  try {
+    const res = await fetch('/api/slides');
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    totalSlides   = data.total;
+    slideWidthPt  = data.slide_width_pt  || 720;
+    slideHeightPt = data.slide_height_pt || 540;
+    totalEl.textContent = totalSlides;
+    console.log(`[INFO] スライド数: ${totalSlides}, サイズ: ${slideWidthPt}×${slideHeightPt}pt`);
+  } catch (e) {
+    console.error('[ERROR] スライド一覧取得失敗:', e);
+  }
+}
+
+function loadSlideImage(n) {
+  const url = `/api/slide/${n}/image?t=${Date.now()}`;
+  imgEl.onload = () => {
+    noSlideEl.style.display   = 'none';
+    containerEl.style.display = 'block';
+    fitContainer();
+  };
+  imgEl.onerror = () => {
+    setStatus(`⚠ スライド${n}の画像が見つかりません`, true);
+  };
+  imgEl.src = url;
+  curSlideEl.textContent = n;
+}
+
+// =====================================================
+// コンテナサイズ調整（アスペクト比維持）
+// =====================================================
+function fitContainer() {
+  const asp = slideWidthPt / slideHeightPt;
+  const avW = stageEl.clientWidth  - 48;
+  const avH = stageEl.clientHeight - 48;
+  let w = avW, h = avW / asp;
+  if (h > avH) { h = avH; w = avH * asp; }
+  containerEl.style.width  = `${w}px`;
+  containerEl.style.height = `${h}px`;
+  overlayEl.setAttribute('width',  w);
+  overlayEl.setAttribute('height', h);
+  overlayEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  // ポインターが表示中なら再描画
+  if (pointerTarget) drawPointerSVG(pointerTarget, false);
+}
+
+window.addEventListener('resize', fitContainer);
+
+// =====================================================
+// ポインター描画
+// =====================================================
+
+/**
+ * SVGオーバーレイにポインター要素を描画する。
+ * @param {object} target - { cx, cy, rx, ry, rw, rh } (ピクセル座標)
+ * @param {boolean} animate - アニメーション付きか
+ */
+function drawPointerSVG(target, animate = true) {
+  const W = parseFloat(overlayEl.getAttribute('width')  || containerEl.clientWidth);
+  const H = parseFloat(overlayEl.getAttribute('height') || containerEl.clientHeight);
+
+  const { cx, cy, rx, ry, rw, rh, confidence, label } = target;
+
+  // ピクセル変換
+  const pcx = cx * W, pcy = cy * H;
+  const prx = rx * W, pry = ry * H;
+  const prw = rw * W, prh = rh * H;
+  const laserR  = W * 0.022;
+  const midR    = W * 0.040;
+  const outerR  = W * 0.060;
+
+  // 既存を削除
+  const old = overlayEl.getElementById('pointer-group');
+  if (old) old.remove();
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.id = 'pointer-group';
+  if (animate) g.classList.add('pointer-appear');
+
+  // --- ハイライト矩形 ---
+  const hi = mkEl('rect', {
+    x: prx, y: pry, width: prw, height: prh,
+    rx: 5, ry: 5,
+    class: 'highlight-rect',
+  });
+  g.appendChild(hi);
+
+  // --- ボーダー矩形 ---
+  const bd = mkEl('rect', {
+    x: prx + 1.5, y: pry + 1.5,
+    width: prw - 3, height: prh - 3,
+    rx: 4, ry: 4,
+    class: 'border-rect',
+  });
+  g.appendChild(bd);
+
+  // --- レーザー（外→内） ---
+  g.appendChild(mkEl('circle', { cx: pcx, cy: pcy, r: outerR, class: 'laser-outer' }));
+  g.appendChild(mkEl('circle', { cx: pcx, cy: pcy, r: midR,   class: 'laser-mid' }));
+  g.appendChild(mkEl('circle', { cx: pcx, cy: pcy, r: laserR, class: 'laser-core', filter: 'url(#glow)' }));
+
+  // --- ラベル ---
+  if (label) {
+    const FONT = 11, PAD = 4;
+    const lblW = label.length * FONT * 0.56 + PAD * 2;
+    const lblH = FONT + PAD * 2;
+    const lblX = Math.min(prx, W - lblW - 4);
+    const lblY = Math.max(0, pry - lblH - 3);
+    g.appendChild(mkEl('rect', {
+      x: lblX, y: lblY, width: lblW, height: lblH, rx: 3,
+      class: 'pointer-label-bg',
+    }));
+    const txt = mkEl('text', {
+      x: lblX + PAD, y: lblY + FONT + PAD - 2,
+      class: 'pointer-label',
+    });
+    txt.textContent = label;
+    g.appendChild(txt);
+  }
+
+  overlayEl.appendChild(g);
+}
+
+function clearPointer() {
+  const g = overlayEl.getElementById('pointer-group');
+  if (g) g.remove();
+  pointerTarget  = null;
+  pointerCurrent = null;
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+}
+
+function mkEl(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  return el;
+}
+
+// =====================================================
+// ポインティング結果処理
+// =====================================================
+function handlePointingResult(data) {
+  const conf    = data.confidence || 'none';
+  const bboxR   = data.smartart_node_bbox_ratio || data.bbox_ratio;
+  const text    = data.asr_text || '';
+  const preview = data.content_preview || '';
+  const reason  = data.reason || '';
+  const elemId  = data.element_id || '-';
+  const t1 = Date.now();
+
+  addLogEntry({ text, conf, preview, reason, elemId });
+
+  if (conf === 'none' || !bboxR) {
+    clearPointer();
+    return;
+  }
+
+  const [rx, ry, rw, rh] = bboxR;
+  const cx = rx + rw / 2;
+  const cy = ry + rh / 2;
+
+  const shortLabel = (preview.length > 20 ? preview.slice(0, 20) + '…' : preview) + ` [${conf}]`;
+
+  const target = { cx, cy, rx, ry, rw, rh, confidence: conf, label: shortLabel };
+
+  // 滑らかな移動: 前のポインターから補間
+  if (pointerCurrent) {
+    animatePointer(pointerCurrent, target);
+  } else {
+    pointerTarget  = target;
+    pointerCurrent = { ...target };
+    drawPointerSVG(target, true);
+  }
+}
+
+/** lerp補間でポインターを滑らかに移動させる */
+function animatePointer(from, to) {
+  if (rafId) cancelAnimationFrame(rafId);
+
+  let cur = { ...from };
+
+  function step() {
+    cur.cx += (to.cx - cur.cx) * LERP;
+    cur.cy += (to.cy - cur.cy) * LERP;
+    cur.rx += (to.rx - cur.rx) * LERP;
+    cur.ry += (to.ry - cur.ry) * LERP;
+    cur.rw += (to.rw - cur.rw) * LERP;
+    cur.rh += (to.rh - cur.rh) * LERP;
+    cur.label = to.label;
+    cur.confidence = to.confidence;
+
+    drawPointerSVG(cur, false);
+    pointerCurrent = { ...cur };
+
+    const dist = Math.abs(to.cx - cur.cx) + Math.abs(to.cy - cur.cy);
+    if (dist > 0.0005) {
+      rafId = requestAnimationFrame(step);
+    } else {
+      pointerTarget  = { ...to };
+      pointerCurrent = { ...to };
+      rafId = null;
+    }
+  }
+  rafId = requestAnimationFrame(step);
+}
+
+// =====================================================
+// ログエントリ追加
+// =====================================================
+function addLogEntry({ text, conf, preview, reason, elemId }) {
+  const entry = document.createElement('div');
+  entry.className = `log-entry ${conf}`;
+
+  const badge = `<span class="conf-badge conf-${conf}">${conf}</span>`;
+  const previewTxt = preview
+    ? `<div class="log-result">${escHtml(preview.slice(0, 40))} ${badge}</div>`
+    : `<div class="log-result">— ${badge}</div>`;
+  const reasonTxt = reason
+    ? `<div class="log-reason">${escHtml(reason.slice(0, 80))}</div>`
+    : '';
+
+  entry.innerHTML = `
+    <div class="log-text">${escHtml(text.slice(0, 50))}</div>
+    ${previewTxt}
+    ${reasonTxt}
+  `;
+
+  logListEl.insertBefore(entry, logListEl.firstChild);
+
+  // 上限を超えたら古いエントリを削除
+  while (logListEl.children.length > MAX_LOG) {
+    logListEl.removeChild(logListEl.lastChild);
+  }
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// =====================================================
+// ステータス表示
+// =====================================================
+function setStatus(msg, isErr = false) {
+  statusEl.textContent = msg;
+  statusEl.className   = isErr ? 'error' : '';
+}
+
+function updateSendBtn() {
+  btnSend.disabled     = isProcessing;
+  btnSend.textContent  = isProcessing ? '…' : '送信';
+}
+
+// =====================================================
+// テキスト送信
+// =====================================================
+function sendASRText() {
+  const text = asrInputEl.value.trim();
+  if (!text || isProcessing || !socket?.connected) return;
+
+  const t0 = performance.now();
+  isProcessing = true;
+  updateSendBtn();
+  setStatus('🤔 送信中...');
+
+  socket.emit('asr_text', { text, slide_num: currentSlide });
+
+  // タイムスタンプ計測用
+  socket.once('pointing_result', () => {
+    const elapsed = performance.now() - t0;
+    timingEl.textContent = `RTT: ${(elapsed/1000).toFixed(2)}s`;
+  });
+}
+
+// =====================================================
+// スライド切り替え
+// =====================================================
+function goToSlide(n) {
+  n = Math.max(1, Math.min(totalSlides || 1, n));
+  if (n === currentSlide) return;
+  socket?.emit('change_slide', { slide_num: n });
+}
+
+// =====================================================
+// イベントリスナー
+// =====================================================
+
+btnSend.addEventListener('click', sendASRText);
+
+asrInputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendASRText();
+  }
+});
+
+btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+document.addEventListener('keydown', (e) => {
+  if (e.target === asrInputEl) return;
+  if (e.key === 'ArrowLeft')  goToSlide(currentSlide - 1);
+  if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+});
+
+// =====================================================
+// 初期化
+// =====================================================
+(async () => {
+  await loadSlideList();
+  connectSocket();
+})();
+</script>
+</body>
+</html>
