@@ -93,9 +93,9 @@ def build_user_prompt(asr_text: str, elements: list[dict]) -> str:
             # SmartArtには必ずnode_indexを選ぶよう明示的に指示を追加
             content_str += f"  ※ MUST return smartart_node_index (0 to {len(content)-1})"
         elif content:
-            content_str = content[:60]  # 長すぎる場合は切り詰め
+            content_str = content[:120]  # 長すぎる場合は切り詰め
         elif vlm_desc:
-            content_str = f"[image] {vlm_desc[:60]}"
+            content_str = f"[image] {vlm_desc[:120]}"
         else:
             content_str = "(no text content)"
 

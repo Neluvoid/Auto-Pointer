@@ -408,13 +408,27 @@ def _asr_worker():
     """
     global _asr_running
 
-    # --- 設定（asr_demo.py と同じ値） ---
-    FORMAT         = None   # pyaudio.paInt16 は動的に設定
+    # --- 設定 ---
     CHANNELS       = 1
     RATE           = 16000
     CHUNK          = 1024
     RECORD_SECONDS = 3      # 3秒ごとに文字起こし
-    LOG_PROB_THRESHOLD = -1.0  # 信頼度フィルタ
+
+    # --- フィルタ設定 ---
+    LOG_PROB_THRESHOLD   = -1.0   # avg_logprobの閾値（これ以下は破棄）
+    NO_SPEECH_THRESHOLD  = 0.5    # no_speech_probの閾値（0.6→0.5に厳しく）
+
+    # 幻聴・フィラーブラックリスト
+    import re as _re
+    _HALLUCINATION_PATTERNS = _re.compile(
+        # YouTube系幻聴
+        r"ご視聴|チャンネル登録|高評価|字幕|ありがとうございました|お願いいたします"
+        r"|subscribe|please like|thank you for watching"
+        r"|ご清聴|拍手|BGM|♪|…+"
+        # 相槌・フィラー（単独で出た場合のみ弾く）
+        r"|^(はい|いいえ|うん|えー+|あー+|えっと|そうですね|なるほど|わかりました)[。、]*$",
+        _re.IGNORECASE,
+    )
 
     try:
         import pyaudio
@@ -486,17 +500,30 @@ def _asr_worker():
             asr_elapsed = time.time() - t_asr_start
 
             for seg in segments:
-                text = seg.text.strip()
+                text    = seg.text.strip()
                 logprob = seg.avg_logprob
+                no_speech_prob = getattr(seg, "no_speech_prob", 0.0)
 
-                # 信頼度フィルタ（asr_demo.py と同じロジック）
+                # フィルタA: avg_logprob（信頼度）
                 if logprob <= LOG_PROB_THRESHOLD:
                     continue
+
+                # フィルタB: no_speech_prob（Whisperが「無音」と判定した確率）
+                if no_speech_prob >= NO_SPEECH_THRESHOLD:
+                    print(f"[ASR] 無音判定スキップ: {text[:30]}  (no_speech={no_speech_prob:.2f})")
+                    continue
+
+                # フィルタC: 幻聴ブラックリスト（YouTube系定型句）
+                if _HALLUCINATION_PATTERNS.search(text):
+                    print(f"[ASR] 幻聴スキップ: {text[:40]}")
+                    continue
+
+                # 短すぎるテキストフィルタ
                 is_kanji = any('\u4e00' <= c <= '\u9faf' for c in text)
                 if len(text) <= 1 and not (len(text) == 1 and is_kanji):
                     continue
 
-                print(f"[ASR] {text}  (logprob={logprob:.2f}, asr={asr_elapsed:.2f}s)")
+                print(f"[ASR] {text}  (logprob={logprob:.2f}, no_speech={no_speech_prob:.2f}, asr={asr_elapsed:.2f}s)")
 
                 # 字幕表示用にフロントへ送信
                 _emit_from_thread("asr_transcript", {
