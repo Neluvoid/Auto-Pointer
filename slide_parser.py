@@ -488,6 +488,126 @@ def parse_pptx(pptx_path: str, use_vlm: bool = True) -> dict:
 
 
 # ============================================================
+# ASR initial_prompt 生成（LLMによる要約）
+# ============================================================
+
+_ASR_PROMPT_SYSTEM = """You are a helpful assistant for a speech recognition system.
+Your task is to generate a short Japanese passage (2-3 sentences, max 200 characters)
+that contains the key technical terms, proper nouns, and keywords from a presentation slide.
+This passage will be used as an "initial_prompt" for the Whisper speech recognition model
+to improve its accuracy for domain-specific vocabulary.
+
+Rules:
+- Write in natural Japanese (not a list)
+- Include ALL technical terms, proper nouns, acronyms, and numbers from the slide
+- Keep it concise: 2-3 sentences, under 200 characters
+- Do NOT explain the slide content, just naturally weave the terms into sentences
+- Respond ONLY with the Japanese passage, no preamble or explanation
+"""
+
+def generate_asr_prompts(
+    slide_data: dict,
+    model: str = "llama3",
+    force: bool = False,
+) -> dict:
+    """
+    slide_data の各スライドに asr_prompt フィールドを生成・追加する。
+
+    Parameters
+    ----------
+    slide_data : dict
+        parse_pptx() の返り値
+    model : str
+        使用するOllamaモデル名
+    force : bool
+        True の場合、既存の asr_prompt を上書きする
+
+    Returns
+    -------
+    dict
+        asr_prompt フィールドが追加された slide_data（インプレース変更）
+    """
+    if not OLLAMA_AVAILABLE:
+        print("[ASR_PROMPT] ollama が利用できないためスキップします。")
+        return slide_data
+
+    total = len(slide_data.get("slides", []))
+    print(f"[ASR_PROMPT] {total}スライド分の initial_prompt を生成中...")
+
+    for slide in slide_data["slides"]:
+        slide_num = slide["slide_number"]
+
+        # 既に生成済みでforceでなければスキップ
+        if "asr_prompt" in slide and not force:
+            print(f"  スライド {slide_num:2d}: スキップ（既存）")
+            continue
+
+        # スライドの全テキストを収集
+        texts = []
+        for e in slide.get("elements", []):
+            content = e.get("content")
+            vlm_desc = e.get("vlm_description")
+            # タイトル要素を優先して先頭に
+            is_title = ("タイトル" in e.get("shape_name", "") or
+                        "Title" in e.get("shape_name", ""))
+            if isinstance(content, list):
+                entry = " ".join(content)
+            elif isinstance(content, str) and content.strip():
+                entry = content.strip()
+            elif vlm_desc:
+                entry = f"[図表] {vlm_desc[:80]}"
+            else:
+                continue
+
+            if is_title:
+                texts.insert(0, entry)
+            else:
+                texts.append(entry)
+
+        if not texts:
+            slide["asr_prompt"] = "プレゼンテーション スライド 発表"
+            print(f"  スライド {slide_num:2d}: テキストなし → デフォルト")
+            continue
+
+        # LLMへの入力（テキストが長すぎる場合は切り詰め）
+        slide_text = "\n".join(texts)
+        if len(slide_text) > 800:
+            slide_text = slide_text[:800] + "..."
+
+        user_prompt = f"""以下はプレゼンテーションのスライド{slide_num}の内容です。
+このスライドに登場する専門用語・固有名詞・キーワードをすべて含む
+自然な日本語の文章（2〜3文、200文字以内）を生成してください。
+
+--- スライド内容 ---
+{slide_text}
+---
+"""
+        try:
+            response = _ollama.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": _ASR_PROMPT_SYSTEM},
+                    {"role": "user",   "content": user_prompt},
+                ],
+                options={"num_predict": 150, "temperature": 0.3},
+            )
+            prompt = response["message"]["content"].strip()
+            # 200文字（≒100トークン程度）に収める
+            if len(prompt) > 200:
+                prompt = prompt[:200]
+            slide["asr_prompt"] = prompt
+            print(f"  スライド {slide_num:2d}: {prompt[:60]}...")
+        except Exception as e:
+            # エラー時はフォールバック
+            fallback = "プレゼンテーション スライド 発表 " + " ".join(texts[:3])
+            slide["asr_prompt"] = fallback[:200]
+            print(f"  スライド {slide_num:2d}: LLMエラー({e}) → フォールバック")
+
+    print("[ASR_PROMPT] 生成完了")
+    return slide_data
+
+
+# ============================================================
 # CLIエントリポイント
 # ============================================================
 
@@ -528,6 +648,21 @@ def main():
         default=1920,
         help="出力画像の横幅px（デフォルト: 1920）"
     )
+    parser.add_argument(
+        "--gen-asr-prompts",
+        action="store_true",
+        help="LLMでスライドごとのASR initial_prompt を生成してJSONに保存する"
+    )
+    parser.add_argument(
+        "--asr-prompt-model",
+        default="llama3",
+        help="ASR prompt生成に使うOllamaモデル名（デフォルト: llama3）"
+    )
+    parser.add_argument(
+        "--force-asr-prompts",
+        action="store_true",
+        help="既存のasr_promptを上書きして再生成する"
+    )
     args = parser.parse_args()
 
     pptx_path = args.pptx_file
@@ -543,6 +678,18 @@ def main():
     print(f"[INFO] VLM解析: {'有効 (Moondream2)' if use_vlm else '無効'}")
 
     data = parse_pptx(pptx_path, use_vlm=use_vlm)
+
+    # ASR initial_prompt の生成（オプション）
+    if args.gen_asr_prompts:
+        if not OLLAMA_AVAILABLE:
+            print("[WARNING] ollama が利用できないため --gen-asr-prompts をスキップします。")
+        else:
+            print(f"[INFO] ASR prompt生成モデル: {args.asr_prompt_model}")
+            generate_asr_prompts(
+                data,
+                model=args.asr_prompt_model,
+                force=args.force_asr_prompts,
+            )
 
     # 出力パス決定
     if args.output:

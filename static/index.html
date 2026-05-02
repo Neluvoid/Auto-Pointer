@@ -293,6 +293,61 @@ header {
 .send-btn:active { transform: scale(0.97); }
 .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
+/* マイクボタン */
+.mic-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#btn-mic {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 14px;
+  height: 34px;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+#btn-mic:hover { border-color: var(--accent); color: var(--accent); }
+#btn-mic.active {
+  background: rgba(255, 58, 58, 0.12);
+  border-color: var(--laser);
+  color: var(--laser);
+  animation: micPulse 1.4s ease-in-out infinite;
+}
+#btn-mic.disabled { opacity: 0.3; cursor: not-allowed; }
+
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 58, 58, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(255, 58, 58, 0.2); }
+}
+
+.mic-icon { font-size: 14px; }
+
+/* 字幕エリア */
+#transcript-box {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  padding: 4px 0 0;
+  min-height: 18px;
+  transition: color var(--transition);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#transcript-box.fresh { color: var(--accent); }
+
 /* ステータス */
 #status-bar {
   font-size: 12px;
@@ -454,6 +509,15 @@ footer {
       <button class="send-btn" id="btn-send">送信</button>
     </div>
     <div id="status-bar">待機中</div>
+
+    <!-- マイクASRコントロール -->
+    <div class="mic-row">
+      <button id="btn-mic" class="disabled" title="マイクASR ON/OFF（--asr フラグが必要）">
+        <span class="mic-icon">🎤</span>
+        <span id="mic-label">ASR 無効</span>
+      </button>
+    </div>
+    <div id="transcript-box">—</div>
   </div>
 
   <!-- ログ -->
@@ -510,13 +574,21 @@ const totalEl      = document.getElementById('total-slides');
 const timingEl     = document.getElementById('timing-info');
 const connDot      = document.getElementById('conn-dot');
 const connLabel    = document.getElementById('conn-label');
+const btnMic       = document.getElementById('btn-mic');
+const micLabel     = document.getElementById('mic-label');
+const transcriptEl = document.getElementById('transcript-box');
+
+// --- ASR状態 ---
+let micEnabled  = false;   // サーバーが --asr で起動しているか
+let micActive   = false;   // 現在マイク収録中か
+let transcriptTimer = null;
 
 // =====================================================
 // Socket.IO 接続
 // =====================================================
 function connectSocket() {
   socket = io(SERVER_URL, {
-    path: '/ws/socket.io',
+    path: '/socket.io',
     transports: ['websocket', 'polling'],
   });
 
@@ -524,6 +596,8 @@ function connectSocket() {
     connDot.className   = 'conn-dot connected';
     connLabel.textContent = 'サーバー接続済み';
     console.log('[WS] 接続完了:', socket.id);
+    // ASRサーバーの状態を確認してマイクボタンを初期化
+    checkAsrStatus();
   });
 
   socket.on('disconnect', () => {
@@ -555,6 +629,23 @@ function connectSocket() {
     isProcessing = false;
     updateSendBtn();
     setStatus('⚠ ' + data.message, true);
+  });
+
+  // ASR字幕
+  socket.on('asr_transcript', (data) => {
+    showTranscript(data.text);
+  });
+
+  // ASR稼働状態
+  socket.on('asr_status', (data) => {
+    micActive = data.running;
+    updateMicBtn();
+  });
+
+  // タイミング計測結果
+  socket.on('timing', (data) => {
+    timingEl.textContent =
+      `ASR:${data.asr_sec}s | LLM:${data.llm_sec}s | Total:${data.total_sec}s`;
   });
 }
 
@@ -814,6 +905,60 @@ function updateSendBtn() {
 }
 
 // =====================================================
+// マイクASR制御
+// =====================================================
+
+async function checkAsrStatus() {
+  try {
+    const res  = await fetch('/api/asr/status');
+    const data = await res.json();
+    micEnabled = data.enabled;
+    micActive  = data.running;
+    updateMicBtn();
+  } catch (e) {
+    console.warn('[ASR] ステータス取得失敗:', e);
+  }
+}
+
+function updateMicBtn() {
+  if (!micEnabled) {
+    btnMic.className = 'disabled';
+    micLabel.textContent = 'ASR 無効';
+    btnMic.title = '起動時に --asr フラグが必要です';
+    return;
+  }
+  if (micActive) {
+    btnMic.className = 'active';
+    micLabel.textContent = '録音中 ■';
+    btnMic.title = 'クリックでマイク停止';
+  } else {
+    btnMic.className = '';
+    micLabel.textContent = 'マイク開始 ▶';
+    btnMic.title = 'クリックでマイク開始';
+  }
+}
+
+function toggleMic() {
+  if (!micEnabled) return;
+  if (micActive) {
+    socket?.emit('asr_control', { action: 'stop' });
+  } else {
+    socket?.emit('asr_control', { action: 'start' });
+  }
+}
+
+function showTranscript(text) {
+  transcriptEl.textContent = `🎤 ${text}`;
+  transcriptEl.classList.add('fresh');
+  // 5秒後にフェードアウト
+  clearTimeout(transcriptTimer);
+  transcriptTimer = setTimeout(() => {
+    transcriptEl.classList.remove('fresh');
+    transcriptEl.textContent = '—';
+  }, 5000);
+}
+
+// =====================================================
 // テキスト送信
 // =====================================================
 function sendASRText() {
@@ -826,12 +971,6 @@ function sendASRText() {
   setStatus('🤔 送信中...');
 
   socket.emit('asr_text', { text, slide_num: currentSlide });
-
-  // タイムスタンプ計測用
-  socket.once('pointing_result', () => {
-    const elapsed = performance.now() - t0;
-    timingEl.textContent = `RTT: ${(elapsed/1000).toFixed(2)}s`;
-  });
 }
 
 // =====================================================
@@ -846,6 +985,8 @@ function goToSlide(n) {
 // =====================================================
 // イベントリスナー
 // =====================================================
+
+btnMic.addEventListener('click', toggleMic);
 
 btnSend.addEventListener('click', sendASRText);
 
