@@ -119,59 +119,6 @@ header {
   border-radius: 6px;
 }
 
-/* ASRプロンプト生成待機オーバーレイ（stage全体を覆う） */
-#asr-wait-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(13, 15, 20, 0.88);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  z-index: 20;
-  backdrop-filter: blur(4px);
-  transition: opacity 0.5s ease;
-  pointer-events: all;
-}
-#asr-wait-overlay.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.wait-spinner {
-  width: 40px; height: 40px;
-  border: 3px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.wait-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  font-family: var(--font-mono);
-}
-.wait-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-.wait-progress-bar {
-  width: 200px;
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.wait-progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  width: 0%;
-  transition: width 0.4s ease;
-}
-
 /* SVGオーバーレイ（ポインター描画用） */
 #pointer-overlay {
   position: absolute;
@@ -180,76 +127,48 @@ header {
   overflow: visible;
 }
 
-/* レーザーポインター — 信頼度クラスで色を切り替え */
+/* レーザーポインター */
 .laser-core {
-  fill: var(--ptr-color, var(--laser));
+  fill: var(--laser);
   opacity: 0.92;
-  filter: drop-shadow(0 0 6px var(--ptr-color, var(--laser)));
+  filter: drop-shadow(0 0 6px var(--laser));
 }
 .laser-mid {
-  fill: var(--ptr-color, var(--laser));
+  fill: var(--laser);
   opacity: 0.35;
 }
 .laser-outer {
-  fill: var(--ptr-color, var(--laser));
+  fill: var(--laser);
   opacity: 0.12;
 }
 
 /* ハイライト矩形 */
 .highlight-rect {
-  fill: var(--ptr-highlight, var(--highlight));
+  fill: var(--highlight);
   rx: 4;
 }
 
 /* ボーダー矩形 */
 .border-rect {
   fill: none;
-  stroke: var(--ptr-color, var(--border-clr));
+  stroke: var(--border-clr);
   stroke-width: 3;
   rx: 4;
-  filter: drop-shadow(0 0 4px var(--ptr-shadow, rgba(255,58,58,0.5)));
+  filter: drop-shadow(0 0 4px rgba(255,58,58,0.5));
 }
 
 /* ポインターアニメーション */
 #pointer-group {
-  transition: opacity 0.2s ease;
+  transition: transform var(--transition);
 }
 
-/* 出現: スケールイン + フェードイン（transform-origin はSVG中心でなく要素中心にしたいため
-   JS側で transform-box を使用） */
 .pointer-appear {
-  animation: pointerAppear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: pointerAppear 0.3s ease-out;
 }
 
 @keyframes pointerAppear {
-  from { opacity: 0; transform: scale(0.5); }
+  from { opacity: 0; transform: scale(0.6); }
   to   { opacity: 1; transform: scale(1); }
-}
-
-/* フェードアウト: clearPointer() でクラスを付与 */
-.pointer-fadeout {
-  animation: pointerFadeout 0.3s ease-out forwards;
-}
-
-@keyframes pointerFadeout {
-  from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(0.8); }
-}
-
-/* 到達後パルス（止まったときに点滅） */
-.pointer-pulse .laser-core {
-  animation: laserPulse 1.8s ease-in-out infinite;
-}
-.pointer-pulse .laser-mid {
-  animation: laserPulse 1.8s ease-in-out infinite 0.1s;
-}
-.pointer-pulse .laser-outer {
-  animation: laserPulse 1.8s ease-in-out infinite 0.2s;
-}
-
-@keyframes laserPulse {
-  0%, 100% { opacity: 0.92; transform: scale(1); }
-  50%       { opacity: 0.5;  transform: scale(0.85); }
 }
 
 /* ラベル */
@@ -259,7 +178,7 @@ header {
   fill: white;
 }
 .pointer-label-bg {
-  fill: var(--ptr-color, var(--laser));
+  fill: var(--laser);
   opacity: 0.88;
   rx: 3;
 }
@@ -491,130 +410,6 @@ header {
 .conf-low    { background: #ff980022; color: #ff9800; }
 .conf-none   { background: #44444422; color: #888; }
 
-/* 精度評価ボタン */
-.eval-row {
-  display: flex;
-  gap: 5px;
-  margin-top: 5px;
-}
-.eval-btn {
-  flex: 1;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 0;
-  border-radius: 4px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--font-mono);
-  letter-spacing: 0.04em;
-}
-.eval-btn:hover { transform: translateY(-1px); }
-.eval-btn.correct {
-  background: #3ddc8422;
-  border-color: #3ddc84;
-  color: #3ddc84;
-}
-.eval-btn.wrong {
-  background: #ff4f6a22;
-  border-color: #ff4f6a;
-  color: #ff4f6a;
-}
-.eval-btn.selected-correct {
-  background: #3ddc84;
-  border-color: #3ddc84;
-  color: #000;
-}
-.eval-btn.selected-wrong {
-  background: #ff4f6a;
-  border-color: #ff4f6a;
-  color: #fff;
-}
-
-/* 精度サマリー */
-#accuracy-bar {
-  padding: 8px 16px;
-  font-size: 11px;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-#accuracy-score {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.acc-detail { font-size: 10px; }
-
-/* =====================================================
-   PPTXアップロードパネル
-===================================================== */
-#pptx-upload-panel {
-  padding: 16px;
-  border-bottom: 2px solid var(--accent);
-  display: block;
-  background: rgba(79, 158, 255, 0.05);
-}
-#pptx-upload-panel.hidden { display: none; }
-
-.upload-zone {
-  border: 2px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 20px 12px;
-  text-align: center;
-  cursor: pointer;
-  transition: all var(--transition);
-  position: relative;
-}
-.upload-zone:hover,
-.upload-zone.dragover {
-  border-color: var(--accent);
-  background: rgba(79, 158, 255, 0.06);
-}
-.upload-zone input[type="file"] {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-}
-.upload-icon { font-size: 28px; margin-bottom: 6px; }
-.upload-label {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-.upload-label strong { color: var(--accent); }
-
-#upload-progress {
-  margin-top: 10px;
-  font-size: 11px;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-}
-.progress-bar {
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
-  margin-top: 6px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  width: 0%;
-  transition: width 0.3s ease;
-}
-.progress-fill.error { background: var(--accent2); }
-.progress-fill.done  { background: #3ddc84; }
-
 /* =====================================================
    フッター
 ===================================================== */
@@ -640,19 +435,6 @@ footer {
 }
 
 #timing-info { margin-left: auto; font-family: var(--font-mono); }
-
-/* =====================================================
-   フォーカスモード（パネル非表示・スライド全幅）
-===================================================== */
-body.focus-mode {
-  grid-template-columns: 1fr 0;
-}
-body.focus-mode #panel {
-  display: none;
-}
-body.focus-mode #btn-focus span.icon-expand { display: none; }
-body.focus-mode #btn-focus span.icon-collapse { display: inline; }
-#btn-focus span.icon-collapse { display: none; }
 
 /* =====================================================
    ローディング
@@ -690,16 +472,6 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
     <span>スライドを読み込んでいます...</span>
   </div>
 
-  <!-- ASRプロンプト生成待機オーバーレイ（stage直下） -->
-  <div id="asr-wait-overlay" class="hidden">
-    <div class="wait-spinner"></div>
-    <div class="wait-title">ASR認識準備中...</div>
-    <div class="wait-progress-bar">
-      <div class="wait-progress-fill" id="wait-progress-fill"></div>
-    </div>
-    <div class="wait-sub" id="wait-progress-text">スライドの専門用語を学習しています</div>
-  </div>
-
   <div id="slide-container" style="display:none">
     <img id="slide-img" alt="スライド" draggable="false">
     <svg id="pointer-overlay" xmlns="http://www.w3.org/2000/svg">
@@ -716,25 +488,6 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
 
 <!-- サイドパネル -->
 <aside id="panel">
-
-  <!-- PPTXアップロード -->
-  <div id="pptx-upload-panel">
-    <div class="panel-label">プレゼンテーションファイル</div>
-    <div class="upload-zone" id="upload-zone">
-      <input type="file" id="pptx-file-input" accept=".pptx">
-      <div class="upload-icon">📂</div>
-      <div class="upload-label">
-        <strong>クリック</strong>またはドラッグ&ドロップ<br>
-        .pptx ファイルを選択
-      </div>
-    </div>
-    <div id="upload-progress" style="display:none">
-      <span id="upload-message">処理中...</span>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- スライドナビ -->
   <div class="panel-section">
@@ -767,12 +520,6 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
     <div id="transcript-box">—</div>
   </div>
 
-  <!-- 精度サマリー -->
-  <div id="accuracy-bar">
-    <span id="accuracy-score">—</span>
-    <span class="acc-detail" id="accuracy-detail">評価待ち（✓/✗ で記録）</span>
-  </div>
-
   <!-- ログ -->
   <div class="panel-label" style="padding: 12px 16px 4px; font-size:10px; color:var(--text-muted);">
     POINTING LOG
@@ -785,18 +532,7 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
 <footer>
   <span><span class="kbd">←</span><span class="kbd">→</span> スライド切替</span>
   <span><span class="kbd">Enter</span> テキスト送信</span>
-  <span><span class="kbd">F</span> 全画面</span>
   <span id="timing-info"></span>
-  <button id="btn-fullscreen" style="background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); border-radius:6px; padding:4px 12px; font-size:11px; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
-    ⛶ 全画面
-  </button>
-  <button id="btn-focus" title="スライド全幅表示 (F)" style="background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); border-radius:6px; padding:4px 12px; font-size:11px; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
-    <span class="icon-expand">⛶ 全幅表示</span>
-    <span class="icon-collapse">✕ 元に戻す</span>
-  </button>
-  <button id="btn-export-csv" style="margin-left:auto; background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); border-radius:6px; padding:4px 12px; font-size:11px; font-family:var(--font-mono); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
-    ⬇ 精度CSV
-  </button>
 </footer>
 
 <script>
@@ -806,12 +542,6 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
 const SERVER_URL   = window.location.origin;
 const MAX_LOG      = 30;
 
-// =====================================================
-// 精度評価データ
-// =====================================================
-let evalRecords = [];   // { id, text, elemId, preview, conf, slide, correct, timestamp }
-let evalCounter = 0;
-
 let socket;
 let currentSlide   = 1;
 let totalSlides    = 1;
@@ -820,23 +550,10 @@ let slideHeightPt  = 540;
 let isProcessing   = false;
 
 // ポインターの「現在位置」（比率、スムーズ移動用）
-let pointerTarget  = null;  // { cx, cy, rx, ry, rw, rh } (比率)
+let pointerTarget  = null;  // { cx, cy, rx, ry, rw, rh } (ピクセル)
 let pointerCurrent = null;
 let rafId          = null;
-let pulseTimerId   = null;  // 到達後パルス開始タイマー
-let fadeTimerId    = null;  // フェードアウトタイマー
-
-// lerp速度: 距離が大きいと速く、小さいと遅い（自然な人間の動きに近い）
-const LERP_MIN  = 0.08;   // 近距離（滑らか）
-const LERP_MAX  = 0.22;   // 遠距離（素早く追従）
-const DIST_FAR  = 0.30;   // この距離以上ならLERP_MAX
-
-// 信頼度 → 色マッピング
-const CONF_COLOR = {
-  high:   { laser: '#ff3a3a', highlight: 'rgba(255,220,40,0.22)', shadow: 'rgba(255,58,58,0.5)' },
-  medium: { laser: '#ff8c00', highlight: 'rgba(255,160,0,0.18)',  shadow: 'rgba(255,140,0,0.45)' },
-  low:    { laser: '#ffd700', highlight: 'rgba(255,215,0,0.15)',  shadow: 'rgba(255,215,0,0.4)' },
-};
+let LERP           = 0.12;  // 追従速度（0〜1, 小さいほど滑らか）
 
 // =====================================================
 // DOM参照
@@ -859,16 +576,7 @@ const connDot      = document.getElementById('conn-dot');
 const connLabel    = document.getElementById('conn-label');
 const btnMic       = document.getElementById('btn-mic');
 const micLabel     = document.getElementById('mic-label');
-const transcriptEl  = document.getElementById('transcript-box');
-const uploadPanel   = document.getElementById('pptx-upload-panel');
-const uploadZone    = document.getElementById('upload-zone');
-const fileInput     = document.getElementById('pptx-file-input');
-const uploadProgress = document.getElementById('upload-progress');
-const uploadMessage = document.getElementById('upload-message');
-const progressFill  = document.getElementById('progress-fill');
-const asrWaitOverlay  = document.getElementById('asr-wait-overlay');
-const waitProgressFill = document.getElementById('wait-progress-fill');
-const waitProgressText = document.getElementById('wait-progress-text');
+const transcriptEl = document.getElementById('transcript-box');
 
 // --- ASR状態 ---
 let micEnabled  = false;   // サーバーが --asr で起動しているか
@@ -897,55 +605,11 @@ function connectSocket() {
     connLabel.textContent = '切断（再接続中...）';
   });
 
-  // ASRプロンプト生成進捗
-  socket.on('asr_prompt_progress', (data) => {
-    const pct = Math.round(data.done / data.total * 100);
-    if (waitProgressFill) waitProgressFill.style.width = `${pct}%`;
-    if (waitProgressText) waitProgressText.textContent =
-      `スライドの専門用語を学習中... ${data.done}/${data.total}`;
-  });
-
-  // ASRプロンプト生成完了 → オーバーレイを消して入力を有効化
-  socket.on('asr_prompt_ready', (data) => {
-    if (asrWaitOverlay) {
-      asrWaitOverlay.classList.add('hidden');
-    }
-    setInputEnabled(true);
-    setStatus('✅ ASR準備完了 - 発話を開始してください');
-  });
-
-  socket.on('pptx_progress', (data) => {
-    showUploadProgress(data.state, data.message, data.progress);
-  });
-
-  socket.on('slides_loaded', (data) => {
-    totalSlides   = data.total;
-    slideWidthPt  = data.slide_width_pt  || 720;
-    slideHeightPt = data.slide_height_pt || 540;
-    totalEl.textContent = totalSlides;
-    // スライド1を表示してからパネルを閉じる
-    loadSlideImage(1);
-    clearPointer(true);
-    setTimeout(() => {
-      uploadPanel.classList.add('hidden');
-    }, 1500);
-    // ASRプロンプト生成中はオーバーレイを表示して入力を無効化
-    if (asrWaitOverlay) {
-      asrWaitOverlay.classList.remove('hidden');
-      if (waitProgressFill) waitProgressFill.style.width = '0%';
-      if (waitProgressText) waitProgressText.textContent = 'スライドの専門用語を学習しています...';
-    }
-    setInputEnabled(false);
-  });
-
   socket.on('slide_changed', (data) => {
     currentSlide = data.slide_num;
     curSlideEl.textContent = currentSlide;
-    // スライド未ロード状態では画像取得しない
-    if (totalSlides > 0) {
-      loadSlideImage(currentSlide);
-      clearPointer(true);
-    }
+    loadSlideImage(currentSlide);
+    clearPointer();
   });
 
   socket.on('pointing_result', (data) => {
@@ -998,17 +662,8 @@ async function loadSlideList() {
     slideHeightPt = data.slide_height_pt || 540;
     totalEl.textContent = totalSlides;
     console.log(`[INFO] スライド数: ${totalSlides}, サイズ: ${slideWidthPt}×${slideHeightPt}pt`);
-    // スライドが既にロード済みならアップロードパネルを非表示に
-    if (totalSlides > 0) {
-      uploadPanel.classList.add('hidden');
-      loadSlideImage(1);
-      // --pptx起動時はプロンプト生成完了イベントが来ないのでそのまま有効
-      setInputEnabled(true);
-    }
   } catch (e) {
-    // スライード未ロード状態（--pptxなし起動）→ アップロードパネルを表示
-    uploadPanel.classList.remove('hidden');
-    console.log('[INFO] スライド未ロード → アップロードパネルを表示');
+    console.error('[ERROR] スライド一覧取得失敗:', e);
   }
 }
 
@@ -1052,45 +707,30 @@ window.addEventListener('resize', fitContainer);
 
 /**
  * SVGオーバーレイにポインター要素を描画する。
- * @param {object} target - { cx, cy, rx, ry, rw, rh, confidence, label } (比率座標)
- * @param {boolean} animate - 出現アニメーション付きか
- * @param {boolean} pulse   - 到達後パルスアニメーション付きか
+ * @param {object} target - { cx, cy, rx, ry, rw, rh } (ピクセル座標)
+ * @param {boolean} animate - アニメーション付きか
  */
-function drawPointerSVG(target, animate = true, pulse = false) {
+function drawPointerSVG(target, animate = true) {
   const W = parseFloat(overlayEl.getAttribute('width')  || containerEl.clientWidth);
   const H = parseFloat(overlayEl.getAttribute('height') || containerEl.clientHeight);
 
   const { cx, cy, rx, ry, rw, rh, confidence, label } = target;
 
-  // 信頼度に応じた色を取得
-  const col = CONF_COLOR[confidence] || CONF_COLOR.high;
-
   // ピクセル変換
+  const pcx = cx * W, pcy = cy * H;
   const prx = rx * W, pry = ry * H;
   const prw = rw * W, prh = rh * H;
-  // レーザー点: 水平は左端から10%（行頭の•付近）、垂直は中央
-  const pcx = prx + prw * 0.10;
-  const pcy = pry + prh * 0.50;
-  const laserR  = W * 0.006;   // コア（実際のレーザー点）
-  const midR    = W * 0.012;   // 中間グロー
-  const outerR  = W * 0.022;   // 外側グロー
+  const laserR  = W * 0.022;
+  const midR    = W * 0.040;
+  const outerR  = W * 0.060;
 
-  // 既存を削除（フェードアウト中のものも即時消去）
+  // 既存を削除
   const old = overlayEl.getElementById('pointer-group');
   if (old) old.remove();
 
   const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   g.id = 'pointer-group';
-  // CSS変数で色を注入
-  g.style.setProperty('--ptr-color',     col.laser);
-  g.style.setProperty('--ptr-highlight', col.highlight);
-  g.style.setProperty('--ptr-shadow',    col.shadow);
-  // transform-originをポインター中心に設定（出現アニメ用）
-  g.style.transformOrigin = `${pcx}px ${pcy}px`;
-  g.style.transformBox = 'fill-box';
-
   if (animate) g.classList.add('pointer-appear');
-  if (pulse)   g.classList.add('pointer-pulse');
 
   // --- ハイライト矩形 ---
   const hi = mkEl('rect', {
@@ -1136,34 +776,12 @@ function drawPointerSVG(target, animate = true, pulse = false) {
   overlayEl.appendChild(g);
 }
 
-/**
- * ポインターをフェードアウトして消す。
- * @param {boolean} instant - trueなら即時消去（スライド切り替え時など）
- */
-function clearPointer(instant = false) {
-  if (rafId)        { cancelAnimationFrame(rafId); rafId = null; }
-  if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
-  if (fadeTimerId)  { clearTimeout(fadeTimerId);  fadeTimerId  = null; }
-
+function clearPointer() {
   const g = overlayEl.getElementById('pointer-group');
-  if (!g) {
-    pointerTarget  = null;
-    pointerCurrent = null;
-    return;
-  }
-
+  if (g) g.remove();
   pointerTarget  = null;
   pointerCurrent = null;
-
-  if (instant) {
-    g.remove();
-    return;
-  }
-
-  // フェードアウトアニメーション後に削除
-  g.classList.remove('pointer-appear', 'pointer-pulse');
-  g.classList.add('pointer-fadeout');
-  fadeTimerId = setTimeout(() => { g.remove(); fadeTimerId = null; }, 320);
+  if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
 }
 
 function mkEl(tag, attrs) {
@@ -1187,7 +805,7 @@ function handlePointingResult(data) {
   addLogEntry({ text, conf, preview, reason, elemId });
 
   if (conf === 'none' || !bboxR) {
-    clearPointer();   // フェードアウトで消す
+    clearPointer();
     return;
   }
 
@@ -1201,74 +819,40 @@ function handlePointingResult(data) {
 
   // 滑らかな移動: 前のポインターから補間
   if (pointerCurrent) {
-    // 既存パルスを止めてから移動開始
-    if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
-    const g = overlayEl.getElementById('pointer-group');
-    if (g) g.classList.remove('pointer-pulse', 'pointer-fadeout');
     animatePointer(pointerCurrent, target);
   } else {
     pointerTarget  = target;
     pointerCurrent = { ...target };
-    drawPointerSVG(target, true, false);
-    // 初回出現後もパルスを予約
-    pulseTimerId = setTimeout(() => {
-      const g = overlayEl.getElementById('pointer-group');
-      if (g) g.classList.add('pointer-pulse');
-      pulseTimerId = null;
-    }, 700);
+    drawPointerSVG(target, true);
   }
-}
-
-/** 距離に応じてLERP速度を計算する */
-function calcLerp(cur, to) {
-  const dist = Math.sqrt(
-    Math.pow(to.cx - cur.cx, 2) + Math.pow(to.cy - cur.cy, 2)
-  );
-  // dist が DIST_FAR 以上なら LERP_MAX、0に近づくほど LERP_MIN に近づく
-  const t = Math.min(dist / DIST_FAR, 1.0);
-  return LERP_MIN + (LERP_MAX - LERP_MIN) * t;
 }
 
 /** lerp補間でポインターを滑らかに移動させる */
 function animatePointer(from, to) {
-  if (rafId)        { cancelAnimationFrame(rafId); rafId = null; }
-  if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
+  if (rafId) cancelAnimationFrame(rafId);
 
   let cur = { ...from };
 
   function step() {
-    const lerp = calcLerp(cur, to);
-
-    cur.cx += (to.cx - cur.cx) * lerp;
-    cur.cy += (to.cy - cur.cy) * lerp;
-    cur.rx += (to.rx - cur.rx) * lerp;
-    cur.ry += (to.ry - cur.ry) * lerp;
-    cur.rw += (to.rw - cur.rw) * lerp;
-    cur.rh += (to.rh - cur.rh) * lerp;
-    cur.label      = to.label;
+    cur.cx += (to.cx - cur.cx) * LERP;
+    cur.cy += (to.cy - cur.cy) * LERP;
+    cur.rx += (to.rx - cur.rx) * LERP;
+    cur.ry += (to.ry - cur.ry) * LERP;
+    cur.rw += (to.rw - cur.rw) * LERP;
+    cur.rh += (to.rh - cur.rh) * LERP;
+    cur.label = to.label;
     cur.confidence = to.confidence;
 
-    drawPointerSVG(cur, false, false);
+    drawPointerSVG(cur, false);
     pointerCurrent = { ...cur };
 
-    const dist = Math.sqrt(
-      Math.pow(to.cx - cur.cx, 2) + Math.pow(to.cy - cur.cy, 2)
-    );
-
-    if (dist > 0.001) {
+    const dist = Math.abs(to.cx - cur.cx) + Math.abs(to.cy - cur.cy);
+    if (dist > 0.0005) {
       rafId = requestAnimationFrame(step);
     } else {
-      // 到達: 最終位置に確定してパルス開始
       pointerTarget  = { ...to };
       pointerCurrent = { ...to };
       rafId = null;
-      drawPointerSVG(to, false, false);
-      // 0.5秒後にパルスアニメーション開始
-      pulseTimerId = setTimeout(() => {
-        const g = overlayEl.getElementById('pointer-group');
-        if (g) g.classList.add('pointer-pulse');
-        pulseTimerId = null;
-      }, 500);
     }
   }
   rafId = requestAnimationFrame(step);
@@ -1278,10 +862,8 @@ function animatePointer(from, to) {
 // ログエントリ追加
 // =====================================================
 function addLogEntry({ text, conf, preview, reason, elemId }) {
-  const recId = ++evalCounter;
   const entry = document.createElement('div');
   entry.className = `log-entry ${conf}`;
-  entry.dataset.recId = recId;
 
   const badge = `<span class="conf-badge conf-${conf}">${conf}</span>`;
   const previewTxt = preview
@@ -1291,122 +873,18 @@ function addLogEntry({ text, conf, preview, reason, elemId }) {
     ? `<div class="log-reason">${escHtml(reason.slice(0, 80))}</div>`
     : '';
 
-  // confidence が none 以外の場合のみ評価ボタンを表示
-  const evalBtns = conf !== 'none' ? `
-    <div class="eval-row">
-      <button class="eval-btn correct" onclick="recordEval(${recId}, true, this)">✓ 正解</button>
-      <button class="eval-btn wrong"   onclick="recordEval(${recId}, false, this)">✗ 不正解</button>
-    </div>` : '';
-
   entry.innerHTML = `
     <div class="log-text">${escHtml(text.slice(0, 50))}</div>
     ${previewTxt}
     ${reasonTxt}
-    ${evalBtns}
   `;
-
-  // 評価レコードを追加（初期値: 未評価）
-  if (conf !== 'none') {
-    evalRecords.push({
-      id: recId,
-      timestamp: new Date().toISOString(),
-      slide: currentSlide,
-      text: text.slice(0, 100),
-      elemId: elemId || '-',
-      preview: (preview || '').slice(0, 60),
-      conf,
-      correct: null,   // null=未評価, true=正解, false=不正解
-    });
-  }
 
   logListEl.insertBefore(entry, logListEl.firstChild);
 
+  // 上限を超えたら古いエントリを削除
   while (logListEl.children.length > MAX_LOG) {
     logListEl.removeChild(logListEl.lastChild);
   }
-}
-
-/** 評価ボタンが押されたときの処理 */
-function recordEval(recId, isCorrect, btnEl) {
-  const rec = evalRecords.find(r => r.id === recId);
-  if (!rec) return;
-
-  rec.correct = isCorrect;
-
-  // ボタンのスタイル更新
-  const row = btnEl.closest('.eval-row');
-  row.querySelectorAll('.eval-btn').forEach(b => {
-    b.classList.remove('selected-correct', 'selected-wrong');
-  });
-  btnEl.classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
-
-  updateAccuracyBar();
-}
-
-/** 精度サマリーを更新 */
-/** 入力UI全体の有効/無効を切り替える */
-function setInputEnabled(enabled) {
-  asrInputEl.disabled   = !enabled;
-  btnSend.disabled      = !enabled || isProcessing;
-  // マイクボタンはASR有効フラグに従う（enabled時のみ状態を反映）
-  if (enabled) {
-    updateMicBtn();
-  } else {
-    btnMic.className = 'disabled';
-    micLabel.textContent = '準備中...';
-  }
-  // テキストエリアのplaceholderも変更
-  asrInputEl.placeholder = enabled
-    ? '発話テキストを入力して送信\n（Enter で送信）'
-    : 'ASR準備中... しばらくお待ちください';
-  // キーボードショートカットも無効化するためフラグ管理
-  window._inputEnabled = enabled;
-}
-
-function updateAccuracyBar() {
-  const evaluated = evalRecords.filter(r => r.correct !== null);
-  const correct   = evaluated.filter(r => r.correct === true);
-  const total     = evalRecords.length;
-
-  const scoreEl  = document.getElementById('accuracy-score');
-  const detailEl = document.getElementById('accuracy-detail');
-
-  if (evaluated.length === 0) {
-    scoreEl.textContent  = '—';
-    detailEl.textContent = `評価待ち（${total}件ポインティング済み）`;
-    return;
-  }
-
-  const pct = Math.round(correct.length / evaluated.length * 100);
-  scoreEl.textContent  = `${pct}%`;
-  scoreEl.style.color  = pct >= 80 ? '#3ddc84' : pct >= 60 ? '#ffd740' : '#ff4f6a';
-  detailEl.textContent = `正解 ${correct.length}/${evaluated.length}件（未評価: ${total - evaluated.length}件）`;
-}
-
-/** 精度データをCSVでダウンロード */
-function exportEvalCSV() {
-  if (evalRecords.length === 0) {
-    alert('まだ評価データがありません');
-    return;
-  }
-  const header = 'id,timestamp,slide,text,element_id,preview,confidence,correct';
-  const rows = evalRecords.map(r =>
-    [r.id, r.timestamp, r.slide,
-     `"${r.text.replace(/"/g,'""')}"`,
-     r.elemId,
-     `"${r.preview.replace(/"/g,'""')}"`,
-     r.conf,
-     r.correct === null ? 'unevaluated' : r.correct ? 'correct' : 'wrong'
-    ].join(',')
-  );
-  const csv  = [header, ...rows].join('\n');
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = `pointing_eval_${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
 }
 
 function escHtml(s) {
@@ -1486,7 +964,6 @@ function showTranscript(text) {
 function sendASRText() {
   const text = asrInputEl.value.trim();
   if (!text || isProcessing || !socket?.connected) return;
-  if (!window._inputEnabled) return;
 
   const t0 = performance.now();
   isProcessing = true;
@@ -1511,115 +988,6 @@ function goToSlide(n) {
 
 btnMic.addEventListener('click', toggleMic);
 
-// =====================================================
-// PPTXアップロード
-// =====================================================
-
-function showUploadProgress(state, message, progress) {
-  uploadProgress.style.display = 'block';
-  uploadMessage.textContent    = message;
-  progressFill.style.width     = `${progress}%`;
-  progressFill.className       = 'progress-fill';
-  if (state === 'error') progressFill.classList.add('error');
-  if (state === 'done')  progressFill.classList.add('done');
-}
-
-async function uploadPptxFile(file) {
-  if (!file || !file.name.toLowerCase().endsWith('.pptx')) {
-    alert('.pptx ファイルを選択してください');
-    return;
-  }
-
-  showUploadProgress('processing', `📤 アップロード中: ${file.name}`, 5);
-
-  const formData = new FormData();
-  formData.append('file', file);
-
-  try {
-    const res = await fetch('/api/upload/pptx', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      showUploadProgress('error', `❌ ${data.error || 'アップロード失敗'}`, 0);
-      return;
-    }
-
-    showUploadProgress('processing', `⚙️ セットアップ中... (しばらくお待ちください)`, 15);
-    setStatus('⚙️ PPTXを処理中...');
-
-  } catch (e) {
-    showUploadProgress('error', `❌ 通信エラー: ${e.message}`, 0);
-  }
-}
-
-// ファイル選択
-fileInput.addEventListener('change', (e) => {
-  if (e.target.files[0]) uploadPptxFile(e.target.files[0]);
-});
-
-// ドラッグ&ドロップ
-uploadZone.addEventListener('dragover',  (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-uploadZone.addEventListener('dragleave', ()  => uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop',      (e) => {
-  e.preventDefault();
-  uploadZone.classList.remove('dragover');
-  const file = e.dataTransfer.files[0];
-  if (file) uploadPptxFile(file);
-});
-
-document.getElementById('btn-export-csv').addEventListener('click', exportEvalCSV);
-
-// フォーカスモード切り替え
-const btnFocus = document.getElementById('btn-focus');
-btnFocus.addEventListener('click', toggleFocusMode);
-document.addEventListener('keydown', (e) => {
-  if (e.target === asrInputEl) return;
-  if (e.key === 'f' || e.key === 'F') toggleFocusMode();
-});
-
-function toggleFocusMode() {
-  document.body.classList.toggle('focus-mode');
-  // リサイズしてスライドを再フィット
-  setTimeout(fitContainer, 50);
-}
-
-// =====================================================
-// 全画面表示
-// =====================================================
-const btnFullscreen = document.getElementById('btn-fullscreen');
-
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    // stageエリアを全画面に
-    stageEl.requestFullscreen().catch(e => console.warn('fullscreen error:', e));
-  } else {
-    document.exitFullscreen();
-  }
-}
-
-btnFullscreen.addEventListener('click', toggleFullscreen);
-
-// Fキーでも全画面切り替え
-document.addEventListener('keydown', (e) => {
-  if (e.target === asrInputEl) return;
-  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
-});
-
-// 全画面切り替え時にボタンテキストを更新
-document.addEventListener('fullscreenchange', () => {
-  if (document.fullscreenElement) {
-    btnFullscreen.textContent = '✕ 全画面解除';
-    // 全画面中はstageがウィンドウ全体になるので背景色を設定
-    stageEl.style.background = '#000';
-  } else {
-    btnFullscreen.textContent = '⛶ 全画面';
-    stageEl.style.background = '';
-  }
-});
-
 btnSend.addEventListener('click', sendASRText);
 
 asrInputEl.addEventListener('keydown', (e) => {
@@ -1637,9 +1005,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowLeft')  goToSlide(currentSlide - 1);
   if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
 });
-
-// 初期状態は入力有効（--pptx起動時はプロンプト生成なしですぐ使える）
-window._inputEnabled = true;
 
 // =====================================================
 // 初期化

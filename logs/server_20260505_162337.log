@@ -1,0 +1,40 @@
+2026-05-05 16:23:37 [INFO    ] autopointer: ログ出力先: C:\Users\wtaki\GitHub\Auto-Pointer\logs\server_20260505_162337.log
+2026-05-05 16:23:37 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-05 16:23:37 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-05 16:23:37 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-05 16:23:38 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-05 16:23:38 [INFO    ] autopointer: [INFO] マイクASRを自動起動します...
+2026-05-05 16:23:38 [INFO    ] autopointer: [ASR] ワーカースレッド起動
+2026-05-05 16:23:38 [INFO    ] autopointer: [ASR] モデルロード中: small / cuda / float16
+2026-05-05 16:23:40 [INFO    ] autopointer: [ASR] モデルロード完了。マイク入力開始...
+2026-05-05 16:23:54 [INFO    ] autopointer: [WS] クライアント接続: OUGvBsA3dSaMcHpVAAAB
+2026-05-05 16:24:51 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: ①仕事を指示するとき・受けるときに共有すべきことVer.2.3.pptx (53KB)
+2026-05-05 16:24:51 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-05 16:24:53 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-05 16:24:53 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (1スライド)
+2026-05-05 16:24:53 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (1スライド / モデル: llama3)
+2026-05-05 16:24:53 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (1スライド)
+2026-05-05 16:24:53 [INFO    ] autopointer: [PPTX_SETUP] 完了: 1スライド
+2026-05-05 16:26:20 [INFO    ] autopointer: [ASR] おり  (logprob=-0.64, no_speech=0.27, asr=0.08s)
+2026-05-05 16:26:28 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: 仕事指示では、背景と目的を共有し、目標や達成時期を設定する必要があります。担当者は役割分担を行い、企...
+2026-05-05 16:26:28 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (1/1)
+2026-05-05 16:26:37 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-05-05 16:26:37 [INFO    ] autopointer: [TIMING] ASR=0.08s | LLM=17.36s | Total=17.45s | slide=1
+2026-05-05 16:31:45 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.80)
+2026-05-05 16:31:48 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.52)
+2026-05-05 16:32:00 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.81)
+2026-05-05 16:32:03 [INFO    ] autopointer: [ASR] 無音判定スキップ: マニュアルなどの場合と目的。  (no_speech=0.52)
+2026-05-05 16:32:12 [INFO    ] autopointer: [ASR] アウトプットイメージ  (logprob=-0.25, no_speech=0.43, asr=0.03s)
+2026-05-05 16:32:15 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.71)
+2026-05-05 16:32:29 [INFO    ] autopointer: [POINT] id=s0_e1, conf=high
+2026-05-05 16:32:29 [INFO    ] autopointer: [TIMING] ASR=0.03s | LLM=16.46s | Total=16.49s | slide=1
+2026-05-05 16:42:54 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.77)
+2026-05-05 16:43:03 [INFO    ] autopointer: [ASR] 無音判定スキップ: ご視聴ありがとうございました。  (no_speech=0.72)
+2026-05-05 16:43:49 [INFO    ] autopointer: [ASR] では、そっちで引っ越すれば、障がいたのです。  (logprob=-0.95, no_speech=0.11, asr=0.03s)
+2026-05-05 16:43:51 [INFO    ] autopointer: [ASR] 幻聴スキップ: ご視聴ありがとうございました。
+2026-05-05 16:43:54 [INFO    ] autopointer: [ASR] 幻聴スキップ: ご視聴ありがとうございました。
+2026-05-05 16:44:03 [INFO    ] autopointer: [POINT] id=s0_e1, conf=high
+2026-05-05 16:44:03 [INFO    ] autopointer: [TIMING] ASR=0.03s | LLM=14.81s | Total=14.84s | slide=1
+2026-05-05 16:45:06 [INFO    ] autopointer: [WS] クライアント切断: OUGvBsA3dSaMcHpVAAAB

@@ -1,0 +1,9 @@
+2026-05-03 15:01:32 [INFO    ] autopointer: ログ出力先: C:\Users\wtaki\GitHub\Auto-Pointer\logs\server_20260503_150132.log
+2026-05-03 15:01:32 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-03 15:01:32 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-03 15:01:32 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-03 15:01:32 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-03 15:01:41 [INFO    ] autopointer: [WS] クライアント接続: YojAVa_SrayJ8MMTAAAB
+2026-05-03 15:04:25 [INFO    ] autopointer: [WS] クライアント切断: YojAVa_SrayJ8MMTAAAB
