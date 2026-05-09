@@ -1,0 +1,271 @@
+2026-05-08 22:02:57 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260508_220257.log
+2026-05-08 22:02:57 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-08 22:02:57 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-08 22:02:57 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-08 22:02:57 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-08 22:06:28 [INFO    ] autopointer: [WS] クライアント接続: AYxtNjCo2mM1wjpXAAAB
+2026-05-08 22:06:40 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI自動ポインティングシステムの発案.pptx (1283KB)
+2026-05-08 22:06:40 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-08 22:06:42 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-08 22:06:42 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (10スライド)
+2026-05-08 22:06:42 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (10スライド / モデル: gemma3:12b)
+2026-05-08 22:06:42 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (10スライド)
+2026-05-08 22:06:42 [INFO    ] autopointer: [PPTX_SETUP] 完了: 10スライド
+2026-05-08 22:06:44 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティング技術を開発中のM1白木陽のプロトタイプに基づいて、AI自動ポインティングを実現...
+2026-05-08 22:06:46 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 富士通の自動ポインティング技術は、2015年に発表された説明音声を基盤に、資料中の該当箇所をリアルタ...
+2026-05-08 22:06:46 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: Grounded SAM 2 を使って画像や動画内のオブジェクト認識を行うことができます。これにより...
+2026-05-08 22:06:47 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: グラフ構造の理解は ChartVLM が果たすチャートの推論において重要な役割を果たしています。Fo...
+2026-05-08 22:06:49 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 技術的課題に対処するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を理解し、スライド上の...
+2026-05-08 22:06:49 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールを組み合わせることで、...
+2026-05-08 22:06:50 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: スライド7では、スライド解析モジュールが Moondream などの VLM を活用し、スライド画像...
+2026-05-08 22:06:52 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 音声認識モジュールは、マイクからリアルタイムに音声を取得し、Whisperなどの高性能ASRモデルを...
+2026-05-08 22:06:53 [INFO    ] autopointer: [ASR_PROMPT]  スライド 9 完了: LLM技術を活用し、スライド画像の上にポインティング制御モジュールを重畳表示することで、レーザーポイ...
+2026-05-08 22:06:54 [INFO    ] autopointer: [ASR_PROMPT]  スライド10 完了: 今後、VLMによる図表解析のプロンプト設計と検証を行うため、Grounded SAM 2 や Cha...
+2026-05-08 22:06:54 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (10/10)
+2026-05-08 22:07:02 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: small
+2026-05-08 22:07:02 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-08 22:07:02 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:02 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:05 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:05 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:08 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:08 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:14 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:14 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:17 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:17 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:20 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:20 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:23 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.1s, max=0.0000, mean=0.0000
+2026-05-08 22:07:23 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:24 [INFO    ] autopointer: [WS] クライアント切断: AYxtNjCo2mM1wjpXAAAB
+2026-05-08 22:07:24 [INFO    ] autopointer: [WS] クライアント接続: dVv7lDnF7OyAxmpJAAAD
+2026-05-08 22:07:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.1s, max=0.0000, mean=0.0000
+2026-05-08 22:07:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:07:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:07:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.1s, max=0.0000, mean=0.0000
+2026-05-08 22:08:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:07 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:07 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:13 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:13 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:16 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:16 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:19 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:19 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:22 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:22 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:25 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:25 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:28 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.8s, max=0.0000, mean=0.0000
+2026-05-08 22:08:28 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:08:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:08:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:08:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:07 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:07 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:13 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:13 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:16 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:16 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:19 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:19 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:22 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:22 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:25 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:25 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:28 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:28 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:09:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:09:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:09:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:07 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:07 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:13 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:13 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:16 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:16 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:19 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:19 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:22 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:22 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:25 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:25 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:28 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:28 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:10:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:10:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:10:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:07 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:07 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:13 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:13 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:16 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:16 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:19 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:19 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:22 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:22 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:25 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:25 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:28 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:28 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 1.9s, max=0.0000, mean=0.0000
+2026-05-08 22:11:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.1s, max=0.0000, mean=0.0000
+2026-05-08 22:11:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.1s, max=0.0000, mean=0.0000
+2026-05-08 22:11:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:11:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:11:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.9s, max=0.0000, mean=0.0000
+2026-05-08 22:12:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:07 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.1s, max=0.0000, mean=0.0000
+2026-05-08 22:12:07 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:10 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:10 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:13 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:13 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:16 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:16 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:19 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:19 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:22 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:22 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:25 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:25 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:28 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:28 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:31 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.1s, max=0.0000, mean=0.0000
+2026-05-08 22:12:31 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:34 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:34 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:37 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:37 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:40 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:40 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:43 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:43 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:46 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:46 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:49 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:49 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:52 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:52 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:55 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:55 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:12:58 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:12:58 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:13:01 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 3.0s, max=0.0000, mean=0.0000
+2026-05-08 22:13:01 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:13:04 [DEBUG   ] autopointer: [BROWSER_ASR] 音声長: 2.9s, max=0.0000, mean=0.0000
+2026-05-08 22:13:04 [DEBUG   ] autopointer: [BROWSER_ASR] 無音チャンクのためスキップ
+2026-05-08 22:13:06 [INFO    ] autopointer: [WS] クライアント切断: dVv7lDnF7OyAxmpJAAAD

@@ -759,7 +759,7 @@ body.focus-mode #btn-focus span.icon-collapse { display: inline; }
 
     <!-- マイクASRコントロール -->
     <div class="mic-row">
-      <button id="btn-mic" class="disabled" title="マイクASR ON/OFF（--asr フラグが必要）">
+      <button id="btn-mic" title="マイクASR ON/OFF">
         <span class="mic-icon">🎤</span>
         <span id="mic-label">ASR 無効</span>
       </button>
@@ -874,6 +874,15 @@ const waitProgressText = document.getElementById('wait-progress-text');
 let micEnabled  = false;   // サーバーが --asr で起動しているか
 let micActive   = false;   // 現在マイク収録中か
 let transcriptTimer = null;
+
+// --- ブラウザASR（音声ストリーミング）---
+let browserAudioCtx    = null;
+let browserMediaStream = null;
+let browserProcessor   = null;
+let browserMicActive   = false;
+const BROWSER_ASR_CHUNK_SEC = 3;   // 何秒ごとにサーバーに送るか
+let browserAudioBuffer = [];       // Float32Arrayのチャンクを蓄積
+let browserChunkTimer  = null;
 
 // =====================================================
 // Socket.IO 接続
@@ -1348,18 +1357,26 @@ function recordEval(recId, isCorrect, btnEl) {
 function setInputEnabled(enabled) {
   asrInputEl.disabled   = !enabled;
   btnSend.disabled      = !enabled || isProcessing;
-  // マイクボタンはASR有効フラグに従う（enabled時のみ状態を反映）
+  // マイクボタンは常にブラウザASRとして使えるのでdisabledにしない
+  // 待機中はラベルだけ変更
   if (enabled) {
     updateMicBtn();
   } else {
-    btnMic.className = 'disabled';
     micLabel.textContent = '準備中...';
+    btnMic.className = '';
+    btnMic.disabled = true;
+    btnMic.style.opacity = '0.4';
   }
   // テキストエリアのplaceholderも変更
   asrInputEl.placeholder = enabled
     ? '発話テキストを入力して送信\n（Enter で送信）'
     : 'ASR準備中... しばらくお待ちください';
   // キーボードショートカットも無効化するためフラグ管理
+  // マイクボタンのdisabled/opacityをリセット
+  if (enabled) {
+    btnMic.disabled = false;
+    btnMic.style.opacity = '';
+  }
   window._inputEnabled = enabled;
 }
 
@@ -1436,6 +1453,8 @@ async function checkAsrStatus() {
     const data = await res.json();
     micEnabled = data.enabled;
     micActive  = data.running;
+    // サーバー側ASRが無効でもブラウザASRは使えるのでボタンを有効化
+    btnMic.classList.remove('disabled');
     updateMicBtn();
   } catch (e) {
     console.warn('[ASR] ステータス取得失敗:', e);
@@ -1443,30 +1462,152 @@ async function checkAsrStatus() {
 }
 
 function updateMicBtn() {
-  if (!micEnabled) {
-    btnMic.className = 'disabled';
-    micLabel.textContent = 'ASR 無効';
-    btnMic.title = '起動時に --asr フラグが必要です';
+  // サーバー側マイク（--asr）が有効な場合
+  if (micEnabled) {
+    if (micActive) {
+      btnMic.className = 'active';
+      micLabel.textContent = '録音中 ■';
+      btnMic.title = 'クリックでマイク停止（サーバー側）';
+    } else {
+      btnMic.className = '';
+      micLabel.textContent = 'マイク開始 ▶';
+      btnMic.title = 'クリックでマイク開始（サーバー側）';
+    }
     return;
   }
-  if (micActive) {
+  // ブラウザASRモード（ネットワーク越し）
+  if (browserMicActive) {
     btnMic.className = 'active';
     micLabel.textContent = '録音中 ■';
-    btnMic.title = 'クリックでマイク停止';
+    btnMic.title = 'クリックでマイク停止（ブラウザ）';
   } else {
     btnMic.className = '';
     micLabel.textContent = 'マイク開始 ▶';
-    btnMic.title = 'クリックでマイク開始';
+    btnMic.title = 'クリックでマイク開始（ブラウザ）';
   }
 }
 
 function toggleMic() {
-  if (!micEnabled) return;
   if (micActive) {
+    // サーバー側マイクOFF
     socket?.emit('asr_control', { action: 'stop' });
-  } else {
+  } else if (micEnabled) {
+    // サーバー側マイクON
     socket?.emit('asr_control', { action: 'start' });
+  } else {
+    // ブラウザASRのトグル
+    if (browserMicActive) {
+      stopBrowserASR();
+    } else {
+      startBrowserASR();
+    }
   }
+}
+
+// =====================================================
+// ブラウザASR（音声をサーバーのWhisperに送信）
+// =====================================================
+
+async function startBrowserASR() {
+  if (browserMicActive) return;
+  if (!window._inputEnabled) return;
+
+  try {
+    browserMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    // ネイティブのサンプルレートで取得（ブラウザが16kHzを無視することがある）
+    browserAudioCtx    = new AudioContext();
+    const actualRate   = browserAudioCtx.sampleRate;
+    console.log(`[BROWSER_ASR] AudioContext sampleRate: ${actualRate}Hz`);
+
+    const source       = browserAudioCtx.createMediaStreamSource(browserMediaStream);
+
+    // ScriptProcessorNodeで音声データを取得
+    browserProcessor = browserAudioCtx.createScriptProcessor(4096, 1, 1);
+    browserProcessor.onaudioprocess = (e) => {
+      const chunk = e.inputBuffer.getChannelData(0);
+
+      // 16kHzへのダウンサンプリング
+      if (actualRate !== 16000) {
+        const ratio    = actualRate / 16000;
+        const outLen   = Math.round(chunk.length / ratio);
+        const resampled = new Float32Array(outLen);
+        for (let i = 0; i < outLen; i++) {
+          resampled[i] = chunk[Math.round(i * ratio)];
+        }
+        browserAudioBuffer.push(resampled);
+      } else {
+        browserAudioBuffer.push(new Float32Array(chunk));
+      }
+    };
+
+    source.connect(browserProcessor);
+    browserProcessor.connect(browserAudioCtx.destination);
+
+    browserMicActive = true;
+    updateMicBtn();
+    setStatus('🎤 ブラウザマイク録音中...');
+
+    // 定期的にサーバーに送信
+    browserChunkTimer = setInterval(sendBrowserAudioChunk, BROWSER_ASR_CHUNK_SEC * 1000);
+
+  } catch (e) {
+    setStatus(`⚠ マイクアクセス失敗: ${e.message}`, true);
+    console.error('[BROWSER_ASR] マイクアクセス失敗:', e);
+  }
+}
+
+function stopBrowserASR() {
+  if (!browserMicActive) return;
+
+  clearInterval(browserChunkTimer);
+  browserChunkTimer = null;
+
+  if (browserProcessor) {
+    browserProcessor.disconnect();
+    browserProcessor = null;
+  }
+  if (browserAudioCtx) {
+    browserAudioCtx.close();
+    browserAudioCtx = null;
+  }
+  if (browserMediaStream) {
+    browserMediaStream.getTracks().forEach(t => t.stop());
+    browserMediaStream = null;
+  }
+
+  browserAudioBuffer = [];
+  browserMicActive   = false;
+  updateMicBtn();
+  setStatus('⏹ ブラウザマイク停止');
+}
+
+function sendBrowserAudioChunk() {
+  if (!browserMicActive || browserAudioBuffer.length === 0 || !socket?.connected) return;
+
+  // バッファを結合
+  const totalLen = browserAudioBuffer.reduce((s, c) => s + c.length, 0);
+  const merged   = new Float32Array(totalLen);
+  let offset = 0;
+  for (const chunk of browserAudioBuffer) {
+    merged.set(chunk, offset);
+    offset += chunk.length;
+  }
+  browserAudioBuffer = [];
+
+  // Float32Array → base64（大きな配列対応）
+  const bytes = new Uint8Array(merged.buffer);
+  let b64 = '';
+  const CHUNK = 8192;
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    b64 += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  }
+  b64 = btoa(b64);
+
+  console.log(`[BROWSER_ASR] 送信: ${merged.length}サンプル, ${bytes.length}bytes`);
+  socket.emit('audio_chunk', {
+    audio:     b64,
+    slide_num: currentSlide,
+  });
 }
 
 function showTranscript(text) {

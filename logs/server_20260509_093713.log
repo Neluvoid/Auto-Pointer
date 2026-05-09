@@ -1,0 +1,9 @@
+2026-05-09 09:37:13 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260509_093713.log
+2026-05-09 09:37:13 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-09 09:37:13 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-09 09:37:13 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-09 09:37:13 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-09 09:37:21 [INFO    ] autopointer: [WS] クライアント接続: 6cnQLF_FVfrBAaPsAAAB
+2026-05-09 09:38:13 [INFO    ] autopointer: [WS] クライアント切断: 6cnQLF_FVfrBAaPsAAAB

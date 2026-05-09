@@ -1,0 +1,14 @@
+2026-05-08 09:29:52 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260508_092952.log
+2026-05-08 09:29:52 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-08 09:29:52 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-08 09:29:52 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-08 09:29:52 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-08 09:29:52 [INFO    ] autopointer: [INFO] マイクASRを自動起動します...
+2026-05-08 09:29:52 [INFO    ] autopointer: [ASR] ワーカースレッド起動
+2026-05-08 09:29:53 [INFO    ] autopointer: [ASR] モデルロード中: small / cuda / float16
+2026-05-08 09:29:54 [INFO    ] autopointer: [ASR] モデルロード完了。マイク入力開始...
+2026-05-08 09:48:56 [INFO    ] autopointer: [ASR] 停止シグナル送信...
+2026-05-08 09:49:01 [INFO    ] autopointer: [ASR] ワーカースレッド停止完了
+2026-05-08 09:49:01 [INFO    ] autopointer: [ASR] ワーカースレッド終了

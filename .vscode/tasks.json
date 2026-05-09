@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "サーバー起動 (5060tiPC)",
+            "type": "shell",
+            "command": "C:\\Users\\admin\\miniconda3\\Scripts\\activate && conda activate auto_pointer && C:\\Users\\admin\\miniconda3\\envs\\auto_pointer\\python.exe server.py --model llama3 --asr-prompt-model gemma3:12b --asr-model medium",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}

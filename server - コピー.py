@@ -114,14 +114,11 @@ logger = _setup_logger()
 _slide_data: dict = {}          # slide_parser.py の出力JSON
 _images_dir: str  = ""          # スライド画像ディレクトリ
 _current_slide: int = 1         # 現在のスライド番号（1-indexed）
-_llm_model: str = "llama3"      # 使用するOllamaモデル（ポインティング推論用）
-_asr_prompt_model: str = "llama3"  # ASRプロンプト生成用モデル（精度重視、遅くてもOK）
+_llm_model: str = "llama3"      # 使用するOllamaモデル
 _processing: bool = False       # LLM処理中フラグ（二重実行防止）
 
 # --- ASR関連 ---
-_asr_enabled: bool = False      # --asr フラグでTrue（サーバー側マイク）
-_browser_asr_model = None       # ブラウザASR用Whisperモデル（遅延ロード）
-_browser_asr_lock = threading.Lock()  # Whisperモデルのスレッドセーフアクセス用
+_asr_enabled: bool = False      # --asr フラグでTrue
 _asr_thread: threading.Thread | None = None
 _asr_stop_event: threading.Event = threading.Event()
 _asr_running: bool = False      # 現在マイク収録中かどうか
@@ -434,91 +431,6 @@ async def connect(sid, environ):
 @sio.event
 async def disconnect(sid):
     logger.info(f"[WS] クライアント切断: {sid}")
-
-
-@sio.event
-async def audio_chunk(sid, data):
-    """
-    ブラウザからの音声チャンクを受信してWhisperで文字起こしする。
-    data: { audio: <base64 encoded PCM float32 mono 16kHz>, slide_num: int }
-    サーバー側マイク（--asr）不要で動作する。
-    """
-    global _browser_asr_model
-
-    if not _slide_data or "slides" not in _slide_data:
-        return
-
-    audio_b64  = data.get("audio")
-    slide_num  = data.get("slide_num", _current_slide)
-
-    if not audio_b64:
-        return
-
-    # Whisperモデルの遅延ロード（初回のみ）
-    if _browser_asr_model is None:
-        with _browser_asr_lock:
-            if _browser_asr_model is None:
-                try:
-                    from faster_whisper import WhisperModel
-                    logger.info(f"[BROWSER_ASR] Whisperモデルロード中: {_asr_model_size}")
-                    _browser_asr_model = WhisperModel(
-                        _asr_model_size, device="cuda", compute_type="float16"
-                    )
-                    logger.info("[BROWSER_ASR] モデルロード完了")
-                except Exception as e:
-                    logger.error(f"[BROWSER_ASR] モデルロード失敗: {e}", exc_info=True)
-                    await sio.emit("error", {"message": f"ASRモデルロード失敗: {e}"}, room=sid)
-                    return
-
-    # base64 → numpy配列に変換
-    try:
-        import base64, numpy as np
-        audio_bytes = base64.b64decode(audio_b64)
-        audio_np    = np.frombuffer(audio_bytes, dtype=np.float32)
-    except Exception as e:
-        logger.error(f"[BROWSER_ASR] 音声デコード失敗: {e}")
-        return
-
-    # Whisperで文字起こし（run_in_executorでブロッキング回避）
-    loop = asyncio.get_event_loop()
-    try:
-        def _transcribe():
-            max_amp = float(abs(audio_np).max())
-
-            # 無音チャンクはスキップ（幻聴防止）
-            if max_amp < 0.01:
-                return []
-
-            segments, info = _browser_asr_model.transcribe(
-                audio_np,
-                beam_size=5,
-                language="ja",
-                vad_filter=True,
-                vad_parameters=dict(min_silence_duration_ms=500),
-                initial_prompt=_asr_initial_prompt,
-            )
-            results = []
-            for seg in segments:
-                text = seg.text.strip()
-                logprob = seg.avg_logprob
-                no_speech = getattr(seg, "no_speech_prob", 0)
-                if logprob > -1.0 and no_speech < 0.5:
-                    is_kanji = any("一" <= c <= "龯" for c in text)
-                    if len(text) > 1 or (len(text) == 1 and is_kanji):
-                        results.append((text, logprob))
-            return results
-
-        t0 = time.time()
-        results = await loop.run_in_executor(None, _transcribe)
-        asr_elapsed = time.time() - t0
-
-        for text, logprob in results:
-            logger.info(f"[BROWSER_ASR] {text}  (logprob={logprob:.2f}, asr={asr_elapsed:.2f}s)")
-            await sio.emit("asr_transcript", {"text": text, "confidence": round(logprob, 3)}, room=sid)
-            _trigger_pointing(text, asr_elapsed=asr_elapsed)
-
-    except Exception as e:
-        logger.error(f"[BROWSER_ASR] 文字起こし失敗: {e}", exc_info=True)
 
 
 @sio.event
@@ -984,7 +896,7 @@ def _generate_all_asr_prompts():
         return
 
     total = len(slides)
-    logger.info(f"[ASR_PROMPT] バックグラウンドでprompt生成開始 ({total}スライド / モデル: {_asr_prompt_model})")
+    logger.info(f"[ASR_PROMPT] バックグラウンドでprompt生成開始 ({total}スライド / モデル: {_llm_model})")
 
     SYSTEM = (
         "You are a helper for a Japanese speech recognition system.\n"
@@ -1140,10 +1052,9 @@ def _get_image_path(slide_num: int) -> str | None:
 # ============================================================
 
 def load_resources(slide_json_path: str, images_dir: str, model: str,
-                   asr_prompt_model: str = "llama3",
                    asr: bool = False, asr_model: str = "small"):
     """スライドデータと設定を読み込む。"""
-    global _slide_data, _images_dir, _llm_model, _asr_prompt_model, _asr_enabled, _asr_model_size
+    global _slide_data, _images_dir, _llm_model, _asr_enabled, _asr_model_size
 
     if not os.path.exists(slide_json_path):
         sys.exit(f"[ERROR] JSONが見つかりません: {slide_json_path}")
@@ -1154,11 +1065,10 @@ def load_resources(slide_json_path: str, images_dir: str, model: str,
     slide_count = len(_slide_data.get("slides", []))
     logger.info(f"[INFO] スライド数: {slide_count}")
 
-    _images_dir       = images_dir
-    _llm_model        = model
-    _asr_prompt_model = asr_prompt_model
-    _asr_enabled      = asr
-    _asr_model_size   = asr_model
+    _images_dir    = images_dir
+    _llm_model     = model
+    _asr_enabled   = asr
+    _asr_model_size = asr_model
 
     # --- 起動時の環境チェックログ ---
     logger.info("=" * 60)
@@ -1167,8 +1077,7 @@ def load_resources(slide_json_path: str, images_dir: str, model: str,
     logger.info(f"  スライドJSON   : {slide_json_path}")
     logger.info(f"  スライド数     : {slide_count}")
     logger.info(f"  画像ディレクトリ: {images_dir or '(JSONのimage_pathを使用)'}")
-    logger.info(f"  LLMモデル      : {model} (ポインティング推論)")
-    logger.info(f"  ASR Promptモデル: {asr_prompt_model} (プロンプト生成)")
+    logger.info(f"  LLMモデル      : {model}")
     logger.info(f"  マイクASR      : {'有効' if asr else '無効'}" + (f" (Whisper {asr_model})" if asr else ""))
 
     # GPU可用性チェック
@@ -1194,13 +1103,11 @@ def main():
     parser.add_argument("--pptx", default=None,
                         help="PPTXを渡すと自動でJSON生成・画像エクスポートを行う")
     parser.add_argument("--model", default="llama3",
-                        help="Ollamaモデル名 ポインティング推論用 (デフォルト: llama3)")
-    parser.add_argument("--asr-prompt-model", default=None,
-                        help="ASRプロンプト生成用モデル 精度重視 (デフォルト: --modelと同じ)")
+                        help="Ollamaモデル名 (デフォルト: llama3)")
     parser.add_argument("--asr", action="store_true",
                         help="マイクからのリアルタイムASRを有効化する")
     parser.add_argument("--asr-model", default="small",
-                        choices=["tiny", "base", "small", "medium", "large-v2", "large-v3"],
+                        choices=["tiny", "base", "small", "medium"],
                         help="Whisperモデルサイズ (デフォルト: small)")
     parser.add_argument("--host", default="0.0.0.0",
                         help="ホスト (デフォルト: 0.0.0.0)")
@@ -1223,15 +1130,11 @@ def main():
         logger.info(f"[INFO] PPTXを自動セットアップ中: {args.pptx}")
         slide_json, image_paths = setup_from_pptx(args.pptx, output_dir="server_output")
         images_dir = str(Path(image_paths[0]).parent) if image_paths else ""
-        asr_pm = args.asr_prompt_model or args.model
         load_resources(slide_json, images_dir, args.model,
-                       asr_prompt_model=asr_pm,
                        asr=args.asr, asr_model=args.asr_model)
 
     elif args.slide_json:
-        asr_pm = args.asr_prompt_model or args.model
         load_resources(args.slide_json, args.images_dir, args.model,
-                       asr_prompt_model=asr_pm,
                        asr=args.asr, asr_model=args.asr_model)
     else:
         # --pptx も --slide-json も指定なし → ブラウザからアップロードモードで起動
@@ -1239,11 +1142,10 @@ def main():
         _pptx_setup_status["state"]   = "idle"
         _pptx_setup_status["message"] = "PPTXファイルを選択してください"
         # ASR/LLM設定だけ先に適用（スライドなしでも起動直後からASR有効に）
-        global _asr_enabled, _asr_model_size, _llm_model, _asr_prompt_model
-        _asr_enabled      = args.asr
-        _asr_model_size   = args.asr_model
-        _llm_model        = args.model
-        _asr_prompt_model = args.asr_prompt_model or args.model
+        global _asr_enabled, _asr_model_size, _llm_model
+        _asr_enabled    = args.asr
+        _asr_model_size = args.asr_model
+        _llm_model      = args.model
 
     logger.info(f"\n🚀 サーバー起動: http://{args.host}:{args.port}")
     logger.info("   ブラウザで上記URLにアクセスしてください\n")
