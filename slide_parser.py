@@ -81,13 +81,23 @@ except ImportError:
 # ============================================================
 # 設定
 # ============================================================
-VLM_MODEL = "moondream"          # Ollama上のVLMモデル名
+VLM_MODEL_CLASSIFY = "qwen3-vl:4b"    # Phase1: 図表か否かの分類
+VLM_MODEL_DESCRIBE = "qwen3-vl:4b"    # Phase2: 図表の詳細説明
+VLM_MODEL = VLM_MODEL_DESCRIBE         # 後方互換
+
+VLM_PROMPT_CLASSIFY = (
+    "Is this a chart, graph, or diagram? Reply only: yes or no."
+)
 VLM_PROMPT = (
-    "Describe all visual elements in this image in detail. "
-    "If it is a chart or graph, identify the chart type, axes labels, "
-    "legend items, and notable data points or trends. "
-    "If it is a diagram, describe the components and their relationships. "
-    "Respond in English."
+    "Describe the visual elements in this image. "
+    "If it is a bar chart, respond in this exact format:\n"
+    "CHART_TYPE: vertical bar chart\n"
+    "BARS:\n"
+    "- label: <name>, value: <number>, x_left: <0-1>, x_right: <0-1>, y_top: <0-1>, y_bottom: <0-1>\n"
+    "- label: <name>, value: <number>, x_left: <0-1>, x_right: <0-1>, y_top: <0-1>, y_bottom: <0-1>\n"
+    "TITLE: <title>\n"
+    "If it is a diagram or other image, describe components and relationships in plain text.\n"
+    "Be concise. No thinking, no explanation."
 )
 
 
@@ -122,28 +132,69 @@ def pil_image_to_base64(img: "Image.Image", fmt: str = "PNG") -> str:
 # VLM解析
 # ============================================================
 
-def analyze_image_with_vlm(img: "Image.Image", model: str = VLM_MODEL) -> str:
+def analyze_image_with_vlm(img: "Image.Image", model: str = VLM_MODEL_DESCRIBE) -> str:
     """
-    PIL ImageをMoondream2（Ollama）に渡し、内容の説明文を返す。
-    Ollamaが利用できない場合や失敗した場合は空文字列を返す。
+    2段階VLM解析:
+      Phase1: moondreamで「図表か否か」を判定（高速・0.2秒）
+      Phase2: qwen3-vl:4bで図表の詳細説明を生成（図表のみ・約20秒）
+    写真など図表でない画像はPhase1でスキップしてNoneを返す。
+    最大辺を1024pxにリサイズしてGGML_ASSERTエラーを防ぐ。
     """
     if not OLLAMA_AVAILABLE:
         return "[VLM unavailable: ollama not installed]"
+
+    # リサイズ（GGML_ASSERTエラー対策）
+    MAX_SIZE = 1024
+    if max(img.size) > MAX_SIZE:
+        ratio = MAX_SIZE / max(img.size)
+        new_size = (int(img.size[0] * ratio), int(img.size[1] * ratio))
+        img = img.resize(new_size, Image.LANCZOS)
+
     try:
+        # --- Phase 1: 図表分類チェック（moondream） ---
         img_b64 = pil_image_to_base64(img)
-        response = _ollama.chat(
+        classify_response = _ollama.chat(
+            model=VLM_MODEL_CLASSIFY,
+            messages=[{
+                "role": "user",
+                "content": VLM_PROMPT_CLASSIFY,
+                "images": [img_b64]
+            }],
+            options={"think": False, "num_predict": 10},
+        )
+        answer = classify_response["message"]["content"].strip().lower()
+
+        # 空レスポンス・判定不能の場合は安全側（詳細解析する）に倒す
+        if not answer:
+            is_chart = True
+            print(f"    [VLM Phase1] classify='' → 判定不能のため詳細解析へ")
+        else:
+            is_chart = "yes" in answer or "chart" in answer or "graph" in answer or "diagram" in answer
+            print(f"    [VLM Phase1] classify={answer!r} → {'図表→詳細解析' if is_chart else 'スキップ'}")
+        if not is_chart:  # ← この2行を追加
+            return None
+        # --- Phase 2: 詳細説明（qwen3-vl:4b） ---
+        detail_response = _ollama.chat(
             model=model,
             messages=[{
                 "role": "user",
                 "content": VLM_PROMPT,
                 "images": [img_b64]
-            }]
+            }],
+            options={"think": False, "num_predict": 512},
         )
-        return response["message"]["content"].strip()
+        raw = detail_response["message"]["content"].strip()
+        if not raw:
+            # thinkingから最終的な出力部分だけ抽出（thinking終了後のテキスト）
+            thinking = detail_response["message"].thinking or ""
+            # thinkingの最後の段落を使う
+            lines = [l.strip() for l in thinking.split('\n') if l.strip()]
+            raw = '\n'.join(lines[-10:]) if lines else ""
+            print(f"    [VLM Phase2] thinkingから末尾抽出")
+        return raw
+
     except Exception as e:
         return f"[VLM error: {e}]"
-
-
 # ============================================================
 # PowerPoint COMオートメーション：スライド画像エクスポート
 # ============================================================
@@ -675,7 +726,7 @@ def main():
         use_vlm = False
 
     print(f"[INFO] Parsing: {pptx_path}")
-    print(f"[INFO] VLM解析: {'有効 (Moondream2)' if use_vlm else '無効'}")
+    print(f"[INFO] VLM解析: {'有効 (qwen3-vl:4b)' if use_vlm else '無効'}")
 
     data = parse_pptx(pptx_path, use_vlm=use_vlm)
 

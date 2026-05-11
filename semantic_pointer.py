@@ -37,7 +37,14 @@ import json
 import os
 import sys
 from typing import Optional
+import re
 
+# フィラー・スライド遷移フレーズの事前フィルタ
+_TRANSITION_PATTERN = re.compile(
+    r"次の?スライド|前の?スライド|スライドを?移|以上です|では次に"
+    r"|^(えーと|あのー|そうですね|はい|うん)[、。\s]*$",
+    re.IGNORECASE,
+)
 # --- Ollama ---
 try:
     import ollama as _ollama
@@ -145,6 +152,9 @@ def get_pointing_target(
     dict
         ポインティング結果
     """
+    if _TRANSITION_PATTERN.search(asr_text):
+        return _no_target_result("Filtered by transition/filler pattern before LLM")
+
     if not OLLAMA_AVAILABLE:
         return _error_result("ollama not installed")
 
@@ -296,8 +306,207 @@ def get_pointing_target(
         "confidence":              confidence,
         "smartart_node_index":     smartart_node_index,
         "smartart_node_bbox_ratio": smartart_node_bbox_ratio,
+        "chart_pointing":           None,  # server.pyで非同期で別送信
+        "is_image_element":         matched["type"] == "image" and bool(matched.get("vlm_description")),  # ← 追加
+    }
+# ============================================================
+# 図表内部へのセマンティックポインティング（4.2）
+# ============================================================
+
+_CHART_POINTING_SYSTEM = """You are an AI assistant for a presentation auto-pointing system.
+Given a speaker's utterance and a description of a chart/graph/diagram,
+determine what visual annotation should be drawn on the chart.
+
+For vertical bar charts with N bars, the bars are evenly spaced left to right:
+- Bar 1 (leftmost):  x center ≈ 1/(2N),   width ≈ 0.6/N
+- Bar 2 (middle):    x center ≈ 3/(2N),   width ≈ 0.6/N
+- Bar 3 (rightmost): x center ≈ 5/(2N),   width ≈ 0.6/N
+For a 3-bar chart: bar1 center≈0.17, bar2 center≈0.50, bar3 center≈0.83 (width≈0.20 each)
+The y coordinates: top of bar = 1 - (bar_value / max_value), height = bar_value / max_value
+
+You must respond ONLY with a valid JSON object in this exact format:
+{
+  "draw_type": "<circle|arrow|none>",
+  "target_description": "<brief description of what to point at in English>",
+  "bbox_ratio": [x, y, w, h],
+  "arrow_start_ratio": [x, y],
+  "arrow_end_ratio": [x, y],
+  "reason": "<brief explanation>"
+}
+
+Rules:
+- draw_type "circle": use when speaker refers to a specific data point, bar, or value
+  → set bbox_ratio to the approximate location relative to the chart's own bbox
+- draw_type "arrow": use when speaker refers to a trend or sequence
+  (e.g., "increasing", "decreasing", "right-upward", "from left to right")
+  → set arrow_start_ratio to where trend begins, arrow_end_ratio to where it ends
+- draw_type "none": use when utterance only refers to the chart as a whole
+- All coordinates are ratios (0.0 to 1.0) relative to the chart element's bounding box
+- For a 3-bar vertical chart mentioned in the description:
+  * leftmost bar:  bbox_ratio ≈ [0.05, y_top, 0.25, bar_height]
+  * middle bar:    bbox_ratio ≈ [0.35, y_top, 0.25, bar_height]
+  * rightmost bar: bbox_ratio ≈ [0.65, y_top, 0.25, bar_height]
+- Do NOT include any text outside the JSON object
+"""
+
+def get_chart_pointing(
+    asr_text: str,
+    vlm_description: str,
+    image_bbox_ratio: list[float],
+    image_b64: str | None = None, 
+    model: str = "llama3",
+    verbose: bool = False,
+) -> dict | None:
+    """
+    図表要素が選ばれたときに、図表内部のどこを指すかを推論する。
+
+    Parameters
+    ----------
+    asr_text : str
+        発話テキスト
+    vlm_description : str
+        slide_parser.pyが生成した図表の説明文
+    image_bbox_ratio : list[float]
+        図表要素全体のbbox_ratio [x, y, w, h]（スライド全体に対する比率）
+    model : str
+        使用するOllamaモデル名
+
+    Returns
+    -------
+    dict | None
+        {
+          draw_type: "circle" | "arrow" | "none",
+          abs_bbox_ratio: [x, y, w, h] | None,   # スライド全体座標系に変換済み
+          abs_arrow_start: [x, y] | None,
+          abs_arrow_end:   [x, y] | None,
+          reason: str,
+        }
+        推論失敗時は None を返す。
+    """
+    if not OLLAMA_AVAILABLE:
+        return None
+
+    user_prompt = f"""Speaker's utterance (Japanese):
+"{asr_text}"
+
+Chart/diagram description:
+{vlm_description[:600]}
+
+Based on the utterance, what should be annotated on this chart?
+Respond with JSON only."""
+
+    if verbose:
+        print("\n--- [CHART_POINTING] User Prompt ---")
+        print(user_prompt[:300])
+
+    message_content = {
+        "role": "user",
+        "content": user_prompt,
+    }
+    if image_b64:
+        message_content["images"] = [image_b64]
+    try:
+        response = _ollama.chat(
+            model=model,
+            messages=[
+                {"role": "system", "content": _CHART_POINTING_SYSTEM},
+                message_content,
+            ],
+            options={"num_predict": 1024, "temperature": 0.1, "think": False},
+        )
+        raw = response["message"]["content"].strip()
+        thinking = response["message"].thinking or ""
+
+        print(f"    [CHART_POINTING DEBUG] content_len={len(raw)} thinking_len={len(thinking)}")
+        print(f"    [CHART_POINTING DEBUG] thinking_tail={repr(thinking[-200:])}")
+        # think=Falseが効かない場合のフォールバック: thinkingフィールドを使う
+        if not raw:
+            thinking = response["message"].thinking or ""
+            # thinkingの中からJSONブロックを探す
+            import re as _re
+            json_match = _re.search(r'\{[^{}]*"draw_type"[^{}]*\}', thinking, _re.DOTALL)
+            if json_match:
+                raw = json_match.group(0)
+                print(f"    [CHART_POINTING] thinkingからJSON抽出: {raw[:80]}")
+            else:
+                # thinkingの末尾にJSONがある場合
+                last_brace = thinking.rfind("}")
+                first_brace = thinking.rfind("{", 0, last_brace)
+                if first_brace != -1 and last_brace != -1:
+                    raw = thinking[first_brace:last_brace+1]
+                    print(f"    [CHART_POINTING] thinkingから末尾JSON抽出: {raw[:80]}")
+
+        print(f"    [CHART_POINTING DEBUG] raw={repr(raw[:150])}")
+        if verbose:
+            print(f"\n--- [CHART_POINTING] Raw ---\n{raw}")
+
+        # JSONパース
+        clean = raw
+        if "```" in clean:
+            clean = clean.split("```")[1]
+            if clean.startswith("json"):
+                clean = clean[4:]
+        clean = clean.strip()
+        if clean and not clean.endswith("}"):
+            clean = clean[:clean.rfind("}") + 1] if "}" in clean else clean + "}"
+
+        parsed = json.loads(clean)
+
+    except Exception as e:
+        print(f"    [CHART_POINTING] エラー: {e}")
+        return None
+
+    draw_type = parsed.get("draw_type", "none")
+    if draw_type == "none":
+        return {"draw_type": "none", "abs_bbox_ratio": None,
+                "abs_arrow_start": None, "abs_arrow_end": None,
+                "reason": parsed.get("reason", "")}
+
+    # 図表内部の相対座標 → スライド全体の絶対座標に変換
+    ix, iy, iw, ih = image_bbox_ratio
+
+    abs_bbox_ratio    = None
+    abs_arrow_start   = None
+    abs_arrow_end     = None
+
+    if draw_type == "circle":
+        local_bbox = parsed.get("bbox_ratio")
+        if local_bbox and len(local_bbox) == 4:
+            lx, ly, lw, lh = local_bbox
+            abs_bbox_ratio = [
+                round(ix + lx * iw, 4),
+                round(iy + ly * ih, 4),
+                round(lw * iw, 4),
+                round(lh * ih, 4),
+            ]
+
+    elif draw_type == "arrow":
+        start = parsed.get("arrow_start_ratio")
+        end   = parsed.get("arrow_end_ratio")
+        if start and end and len(start) == 2 and len(end) == 2:
+            abs_arrow_start = [
+                round(ix + start[0] * iw, 4),
+                round(iy + start[1] * ih, 4),
+            ]
+            abs_arrow_end = [
+                round(ix + end[0] * iw, 4),
+                round(iy + end[1] * ih, 4),
+            ]
+
+    result = {
+        "draw_type":       draw_type,
+        "abs_bbox_ratio":  abs_bbox_ratio,
+        "abs_arrow_start": abs_arrow_start,
+        "abs_arrow_end":   abs_arrow_end,
+        "reason":          parsed.get("reason", ""),
+        "target":          parsed.get("target_description", ""),
     }
 
+    print(f"    [CHART_POINTING] draw_type={draw_type}  "
+          f"bbox={abs_bbox_ratio}  "
+          f"start={abs_arrow_start} end={abs_arrow_end}")
+
+    return result
 
 def _no_target_result(reason: str) -> dict:
     """ポインティング不要の結果を返す。"""

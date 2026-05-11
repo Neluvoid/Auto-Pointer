@@ -1,0 +1,74 @@
+[
+  {
+    "slide_num": 2,
+    "element_id": "s1_e2",
+    "shape_name": "図 7",
+    "model": "moondream",
+    "prompt_label": "EN",
+    "elapsed_sec": 0.5,
+    "description": "The image presents two charts side by side against each other on a white background. The first chart displays a bar graph with three bars representing different categories of data, while the second chart shows a line graph depicting the same data over time. Both charts are labeled with text and have arrows pointing to specific points in the graphs. The labels indicate that the x-axis represents time and the y-axis represents the number of occurrences or values for each category. There is also a legend present, which provides explanations for the colors used in the bar graph."
+  },
+  {
+    "slide_num": 2,
+    "element_id": "s1_e2",
+    "shape_name": "図 7",
+    "model": "moondream",
+    "prompt_label": "JA",
+    "elapsed_sec": 0.17,
+    "description": "The image is a diagram that shows two people talking to each other using microphones. The diagram also includes text in Japanese and English, which might be instructions or explanations about the diagram's content."
+  },
+  {
+    "slide_num": 3,
+    "element_id": "s2_e3",
+    "shape_name": "Picture 2",
+    "model": "moondream",
+    "prompt_label": "EN",
+    "elapsed_sec": 0.23,
+    "description": "[0.01, 0.62, 1.0, 0.83]"
+  },
+  {
+    "slide_num": 3,
+    "element_id": "s2_e3",
+    "shape_name": "Picture 2",
+    "model": "moondream",
+    "prompt_label": "JA",
+    "elapsed_sec": 0.07,
+    "description": ""
+  },
+  {
+    "slide_num": 3,
+    "element_id": "s2_e4",
+    "shape_name": "Picture 4",
+    "model": "moondream",
+    "prompt_label": "EN",
+    "elapsed_sec": 0.33,
+    "description": "[0.01, 0.39, 0.99, 0.87]"
+  },
+  {
+    "slide_num": 3,
+    "element_id": "s2_e4",
+    "shape_name": "Picture 4",
+    "model": "moondream",
+    "prompt_label": "JA",
+    "elapsed_sec": 0.14,
+    "description": ""
+  },
+  {
+    "slide_num": 4,
+    "element_id": "s3_e4",
+    "shape_name": "図 5",
+    "model": "moondream",
+    "prompt_label": "EN",
+    "elapsed_sec": 0.35,
+    "description": "The image presents a bar graph that shows the total fuel cost for three different vehicles: Ford, Toyota, and Honda Civic. The graph has purple bars representing each vehicle's fuel costs, with the highest bar indicating the most expensive option. The graph also includes text providing information about the average fuel efficiency of these vehicles in miles per gallon (mpg)."
+  },
+  {
+    "slide_num": 4,
+    "element_id": "s3_e4",
+    "shape_name": "図 5",
+    "model": "moondream",
+    "prompt_label": "JA",
+    "elapsed_sec": 0.3,
+    "description": "The image shows a purple bar graph with three bars representing the fuel efficiency of different vehicles. The first bar represents the fuel efficiency of a Ford vehicle, which is $130.59 per gallon. The second bar represents the fuel efficiency of a Toyota vehicle, which is $82.55 per gallon. The third bar represents the fuel efficiency of a Honda vehicle, which is $77.75 per gallon."
+  }
+]

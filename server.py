@@ -51,7 +51,7 @@ import json
 import logging
 import logging.handlers
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"  # OpenMP二重ロード回避
+# os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"  # OpenMP二重ロード回避
 import sys
 import threading
 import time
@@ -72,7 +72,7 @@ from contextlib import asynccontextmanager
 sys.path.insert(0, str(Path(__file__).parent))
 try:
     from semantic_pointer import (
-        load_slide_data, get_elements_for_slide, get_pointing_target
+        load_slide_data, get_elements_for_slide, get_pointing_target, get_chart_pointing
     )
 except ImportError:
     sys.exit("[ERROR] semantic_pointer.py が見つかりません。同じディレクトリに置いてください。")
@@ -932,6 +932,12 @@ async def _run_pointing(text: str, slide_num: int, asr_elapsed: float = 0.0):
             **result,
         })
 
+        # image要素かつvlm_descriptionありの場合、chart_pointingを非同期で実行
+        if result.get("is_image_element"):
+            asyncio.ensure_future(
+                _run_chart_pointing(text, result, slide_num)
+            )
+
         # タイミング情報もフロントに送信
         await sio.emit("timing", {
             "asr_sec":   round(asr_elapsed, 3),
@@ -959,6 +965,84 @@ async def _run_pointing(text: str, slide_num: int, asr_elapsed: float = 0.0):
             logger.debug(f"[THROTTLE] キュー処理: {pending[:30]}")
             asyncio.ensure_future(_run_pointing(pending, _current_slide))
 
+async def _run_chart_pointing(asr_text: str, pointing_result: dict, slide_num: int):
+    """
+    chart_pointingをバックグラウンドで実行し、完了後にフロントへ送信する。
+    llama3のpointing_resultとは独立して非同期実行される。
+    """
+    import base64
+
+    element_id = pointing_result.get("element_id")
+    if not element_id or not _slide_data:
+        return
+
+    # スライドデータから対象要素を取得
+    elements = get_elements_for_slide(_slide_data, slide_num)
+    matched  = next((e for e in elements if e["id"] == element_id), None)
+    if not matched or matched["type"] != "image":
+        return
+
+    vlm_desc   = matched.get("vlm_description")
+    bbox_ratio = matched.get("bbox_ratio")
+    if not vlm_desc or not bbox_ratio:
+        return
+
+    # スライド画像を読み込んでbase64化
+    image_b64 = None
+    image_path = _get_image_path(slide_num)
+    if image_path and os.path.exists(image_path):
+        try:
+            from PIL import Image
+            import io
+            img = Image.open(image_path).convert("RGB")
+            # 対象要素のbboxでクロップ
+            W, H = img.size
+            rx, ry, rw, rh = bbox_ratio
+            crop = img.crop((
+                int(rx * W), int(ry * H),
+                int((rx + rw) * W), int((ry + rh) * H)
+            ))
+            # 最大辺1024pxにリサイズ
+            MAX_SIZE = 1024
+            if max(crop.size) > MAX_SIZE:
+                ratio    = MAX_SIZE / max(crop.size)
+                new_size = (int(crop.size[0] * ratio), int(crop.size[1] * ratio))
+                crop     = crop.resize(new_size, Image.LANCZOS)
+            buf = io.BytesIO()
+            crop.save(buf, format="PNG")
+            image_b64 = base64.b64encode(buf.getvalue()).decode("utf-8")
+        except Exception as e:
+            logger.warning(f"[CHART_POINTING] 画像読み込み失敗: {e}")
+
+    logger.info(f"[CHART_POINTING] 開始: {element_id} / image={'あり' if image_b64 else 'なし'}")
+    t0 = time.time()
+
+    loop = asyncio.get_event_loop()
+    try:
+        chart_result = await loop.run_in_executor(
+            None,
+            lambda: get_chart_pointing(
+                asr_text=asr_text,
+                vlm_description=vlm_desc,
+                image_bbox_ratio=bbox_ratio,
+                image_b64=image_b64,
+                model="llama3",
+            )
+        )
+    except Exception as e:
+        logger.error(f"[CHART_POINTING] エラー: {e}")
+        return
+
+    elapsed = time.time() - t0
+    logger.info(f"[CHART_POINTING] 完了: {elapsed:.2f}s / draw_type={chart_result.get('draw_type') if chart_result else None}")
+
+    if chart_result and chart_result.get("draw_type") != "none":
+        await sio.emit("chart_pointing_result", {
+            "asr_text":   asr_text,
+            "slide_num":  slide_num,
+            "element_id": element_id,
+            **chart_result,
+        })
 
 def _generate_all_asr_prompts():
     """

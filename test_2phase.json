@@ -1,0 +1,678 @@
+{
+  "file": "AI自動ポインティングシステムの発案.pptx",
+  "slide_width_pt": 960.0,
+  "slide_height_pt": 540.0,
+  "slides": [
+    {
+      "slide_index": 0,
+      "slide_number": 1,
+      "elements": [
+        {
+          "id": "s0_e0",
+          "type": "text",
+          "content": "AI自動ポインティングに関する調べものとプロトタイプ構想",
+          "bbox_pt": [
+            74.88,
+            106.51,
+            778.53,
+            233.04
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.1972,
+            0.811,
+            0.4316
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s0_e1",
+          "type": "text",
+          "content": "M1　　白木陽",
+          "bbox_pt": [
+            74.88,
+            348.13,
+            588.16,
+            76.28
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.6447,
+            0.6127,
+            0.1413
+          ],
+          "shape_name": "字幕 2"
+        }
+      ]
+    },
+    {
+      "slide_index": 1,
+      "slide_number": 2,
+      "elements": [
+        {
+          "id": "s1_e0",
+          "type": "text",
+          "content": "自動ポインティングの前例",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s1_e1",
+          "type": "text",
+          "content": "説明音声から資料中の該当箇所をリアルタイムに推定する技術（富士通, 2015）",
+          "bbox_pt": [
+            46.52,
+            180.31,
+            433.48,
+            109.05
+          ],
+          "bbox_ratio": [
+            0.0485,
+            0.3339,
+            0.4515,
+            0.202
+          ],
+          "shape_name": "テキスト ボックス 5"
+        },
+        {
+          "id": "s1_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            529.01,
+            119.83,
+            400.0,
+            230.0
+          ],
+          "bbox_ratio": [
+            0.5511,
+            0.2219,
+            0.4167,
+            0.4259
+          ],
+          "shape_name": "図 7",
+          "vlm_description": "This image is a **schematic diagram** illustrating a system for enhancing presentations through an \"automatic pointing system.\" It depicts a three-part interaction between a presenter, an AI/automation system, and an audience member, with no statistical data or charting elements. Below is a detailed breakdown:  \n\n### 1. **Left Side: Presenter and Slide Materials**  \n- **Human Figure**: A simplified silhouette of a person (representing the presenter) with a speech bubble containing ellipses (`……`) above a microphone icon. This visualizes the presenter speaking.  \n- **Text Label**: Below the presenter, the Japanese phrase *\"スライド資料\"* (literally, \"slide materials\") is written, indicating the presentation slides.  \n- **Slide Image**: A small inset graphic shows a sample slide (likely from a presentation or webpage). It contains text, bullet points, and a partially visible image (e.g., a logo or infographic), suggesting the content being presented.  \n- **Arrow & Label**: A curved arrow connects the presenter’s speech bubble/microphone to the central system, labeled *\"説明声音\"* (literally, \"explanation sound\"). This denotes the **input** of the presenter’s audio into the system.  \n\n---\n\n### 2. **Central Component: Automatic Pointing System**  \n- **Rectangular Box**: A central rectangle labeled *\"説明箇所の自動ポインティングシステム\"* (literally, \"automatic pointing system for explanation points\"). This is the core technology:  \n  - It processes the \"explanation sound\" (input) to identify key points in the presentation.  \n  - It acts as a bridge between the presenter’s speech and the audience’s visual experience.  \n\n---\n\n### 3. **Right Side: Audience and Highlighted Output**  \n- **Human Figure**: A silhouette of a person (representing the audience member), indicating the recipient of the system’s output.  \n- **Text Label**: Below this figure, the phrase *\"説明箇所を強調表示\"* (literally, \"emphasize the explanation points\") is written.  \n- **Slide Image with Highlight**: A second inset graphic shows a presentation slide with a **red rectangular box** highlighting a specific section (e.g., a text block or graphic). This visually demonstrates the system’s output: where the explanation points are emphasized for the audience.  \n- **Arrow & Label**: A curved arrow connects the central system to the audience figure, labeled *\"説明箇所を強調表示\"*, indicating the **output** of the system (the highlighted slide content).  \n\n---\n\n### **Relationships & Flow**  \n- **Input to System**: The presenter’s spoken \"explanation sound\" (`説明声音`) is captured by the microphone and fed into the central system.  \n- **Processing**: The system analyzes the audio to detect and tag \"explanation points\" (e.g., topics requiring emphasis or clarification).  \n- **Output to Audience**: The system then *automatically highlights* these points on the slide, making them stand out for the audience (e.g., the red box in the right slide).  \n\nThis diagram effectively models a **feedback loop** in presentation technology: the system enhances understanding by linking spoken content to visual reinforcement. There are no axes, data points, or statistical trends (e.g., no bar graphs, line charts, or numerical scales), so it is a **process-oriented schematic** rather than a data visualization."
+        },
+        {
+          "id": "s1_e3",
+          "type": "text",
+          "content": "https://info.archives.global.fujitsu/jp/news/2015/04/1-1.html",
+          "bbox_pt": [
+            536.83,
+            350.4,
+            480.42,
+            24.23
+          ],
+          "bbox_ratio": [
+            0.5592,
+            0.6489,
+            0.5004,
+            0.0449
+          ],
+          "shape_name": "テキスト ボックス 11"
+        },
+        {
+          "id": "s1_e4",
+          "type": "text",
+          "content": "主にテキストのキーワードマッチングに依存\n図表内の特定の要素や、抽象的な表現を用いた説明には対応が困難",
+          "bbox_pt": [
+            99.62,
+            418.59,
+            760.76,
+            72.0
+          ],
+          "bbox_ratio": [
+            0.1038,
+            0.7752,
+            0.7925,
+            0.1333
+          ],
+          "shape_name": "四角形: 角を丸くする 2"
+        }
+      ]
+    },
+    {
+      "slide_index": 2,
+      "slide_number": 3,
+      "elements": [
+        {
+          "id": "s2_e0",
+          "type": "text",
+          "content": "オブジェクト認識",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s2_e1",
+          "type": "text",
+          "content": "Grounded SAM 2 ：画像や動画内の任意のオブジェクトを検出",
+          "bbox_pt": [
+            65.11,
+            107.14,
+            829.78,
+            41.2
+          ],
+          "bbox_ratio": [
+            0.0678,
+            0.1984,
+            0.8644,
+            0.0763
+          ],
+          "shape_name": "テキスト ボックス 2"
+        },
+        {
+          "id": "s2_e2",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            457.59,
+            319.2,
+            63.48,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.4767,
+            0.5911,
+            0.0661,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 13"
+        },
+        {
+          "id": "s2_e3",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            40.46,
+            206.08,
+            396.11,
+            264.4
+          ],
+          "bbox_ratio": [
+            0.0421,
+            0.3816,
+            0.4126,
+            0.4896
+          ],
+          "shape_name": "Picture 2",
+          "vlm_description": "This image is a **photograph** depicting a dynamic scene of a herd of horses galloping across a grassy plain. It contains no charts, graphs, or diagrams, so the description will focus entirely on the visual elements of the landscape, subjects, and atmosphere.  \n\n### **Key Visual Elements:**  \n#### **1. Horses (Primary Subjects):**  \n- **Number and Composition:** Approximately 8–10 horses are visible, with some partially obscured by the dust cloud and motion. They are tightly grouped in a herd, suggesting a cohesive movement.  \n- **Colors and Variations:**  \n  - **Dominant hue:** Multiple chestnut-brown horses (varying shades from light to deep brown) fill the scene.  \n  - **Notable exception:** A single **white horse** stands out in the foreground (center-right), with the letters “**Rca**” visible on its side.  \n- **Posture and Motion:** All horses are in mid-gallop, with legs extended, hooves off the ground, and manes/tails streaming backward. This conveys speed and energy.  \n  - The white horse is positioned slightly ahead of the brown herd, leading the movement.  \n  - Some horses have **dark manes** (e.g., the horse with a black mane on the right), while others have lighter, flowing manes.  \n- **Details:** Dust clouds rise behind the herd, emphasizing their rapid motion. The horses’ bodies are lean and muscular, typical of riding stock (e.g., Quarter or Thoroughbred breeds).  \n\n#### **2. Landscape and Terrain:**  \n- **Foreground:** A lush, grassy plain with short, vibrant green grass. Small **white wildflowers** (likely daisies or clover) dot the field, adding texture.  \n- **Middle Ground:** The horses traverse the grassy plain, with the dust cloud partially obscuring the lower portions of their bodies.  \n- **Background:**  \n  - **Hills/Mountains:** Rolling, arid hills dominate the distance, with dry, yellowish vegetation (sparse bushes or low trees) covering their slopes. A dense cluster of **evergreen trees** (e.g., pines) sits on the left side of the hill, providing contrast.  \n  - **Horizon Line:** The hills rise gently toward the horizon, with the sky above them.  \n\n#### **3. Sky and Atmosphere:**  \n- **Sky:** A clear, bright **blue sky** with scattered, fluffy **white clouds** (some cumulus clouds). The clouds are spread across the upper portion of the image, creating a sense of openness.  \n- **Lighting:** Sunlight bathes the scene, casting soft shadows on the grass and highlighting the horses’ forms. The lighting suggests a warm, sunny day.  \n- **Mood:** The image evokes a sense of **freedom, wildness, and natural beauty**. The dust, galloping motion, and vast landscape emphasize untamed energy.  \n\n#### **4. Additional Textural and Dynamic Elements:**  \n- **Dust and Motion:** A thick cloud of dust trails behind the herd, emphasizing their speed and movement. The dust particles are visible in the air, adding depth and dynamism.  \n- **Perspective:** The low-angle perspective (from ground level) magnifies the horses’ size and energy, making them appear dominant in the frame.  \n\n### **Overall Impression:**  \nThe photograph captures a moment of **natural spontaneity**—a herd of horses running through a serene, open landscape. The combination of the horses’ motion, the detailed terrain, and the clear sky creates a vivid, immersive scene that celebrates the beauty of wild, free movement in nature. There are no labels, axes, or data points, as this is a **photographic artwork** rather than a technical chart or diagram."
+        },
+        {
+          "id": "s2_e4",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            542.09,
+            206.08,
+            396.11,
+            264.4
+          ],
+          "bbox_ratio": [
+            0.5647,
+            0.3816,
+            0.4126,
+            0.4896
+          ],
+          "shape_name": "Picture 4",
+          "vlm_description": "The image is a **computer vision object detection visualization** (not a traditional chart or graph), commonly used to demonstrate how models like YOLO or Faster R-CNN identify and label objects within an image. Below is a detailed breakdown of all visual elements:  \n\n\n### **1. Background Scene**  \nThe image depicts a natural landscape with the following components:  \n- **Grassy Field**: Dominates the foreground with textured, greenish grass. Dust and motion blur suggest the horses are galloping at high speed.  \n- **Horses**: A group of brown and white horses are in mid-gallop, occupying the central and right portions of the image. Their dynamic poses (extended legs, flowing manes) emphasize motion.  \n- **Mountains**: A large, brownish mountain range forms the mid-ground, partially obscured by the horses and grass.  \n- **Sky**: Clear blue sky with scattered clouds. The sky occupies the upper half of the image, with clouds dispersed across it.    \n\n\n### **2. Bounding Boxes (Object Detection Output)**  \nOverlaid on the landscape are **colored bounding boxes**, each labeled with an *object class* (e.g., \"clouds,\" \"horse\") and a *confidence score* (a numerical value between 0 and 1). Confidence scores indicate the model’s reliability in detecting the object.  \n\n#### **Key Object Classes and Their Bounding Boxes**  \n##### **Clouds**  \n- *Color/Shape Variability*: Multiple clouds are detected, each enclosed in a distinct-colored box (green, blue, cyan) with varying confidence scores.  \n  - **Green box**: \"clouds 0.50\" (top-center, large cloud).  \n  - **Green box**: \"clouds 0.40\" (left-middle, medium cloud).  \n  - **Blue box**: \"clouds 0.58\" (middle-upper, largest cloud).  \n  - **Blue box**: \"clouds 0.39\" (right-middle, cloud).  \n  - **Cyan box**: \"clouds 0.39\" (rightmost, small cloud).  \n- *Trend*: The highest confidence for clouds (0.58) corresponds to a cloud near the middle of the sky, suggesting strong detection of that specific cloud. Smaller clouds have lower confidence scores (e.g., 0.39).  \n\n##### **Horses**  \n- *Color/Shape Variability*: Multiple horses are detected, each enclosed in a uniquely colored box (red, green, orange, blue, yellow, pink, purple) with confidence scores.  \n  - **Red box**: \"grasses 0.76\" (bottom-left, grassy field; *note: \"grasses\" is a distinct object class*).  \n  - **Green box**: \"horse 0.56\" (left-middle, green box, matching a brown horse).  \n  - **Orange box**: \"horse 0.50\" (leftmost, orange box, matching a brown horse).  \n  - **Blue box**: \"horse 0.47\" (middle-left, blue box, matching a brown horse).  \n  - **Yellow box**: \"horse 0.42\" (middle, yellow box, matching a brown horse).  \n  - **Pink box**: \"horse 0.56\" (right-middle, pink box, matching a white horse).  \n  - **Purple box**: \"horse 0.56\" (rightmost, purple box, matching a brown horse).  \n- *Trend*: Horses have confidence scores ranging from 0.42 to 0.56, with no single horse achieving the highest confidence (0.76 belongs to \"grasses\"). The model reliably detects horses in motion, though some boxes (e.g., yellow box for \"horse 0.42\") have lower confidence, possibly due to overlapping or partial occlusion.  \n\n##### **Grasses**  \n- **Red box**: \"grasses 0.76\" (bottom-left, covering the grassy field). This is the **highest confidence score** in the image (0.76), reflecting the model’s strong detection of the uniform, textured grass.  \n\n##### **Hill**  \n- **Blue box**: \"hill 0.40\" (mid-ground, above the grassy field). This label indicates a small hill in the background, with a low confidence score (0.40), suggesting the model is less certain about this object.    \n\n\n### **3. Layout and Relationships**  \n- **Spatial Alignment**: Bounding boxes are precisely positioned to match the objects they detect. For example:  \n  - The \"grasses\" box (red) fully covers the lower-left grassy, yyyyyyy, yyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyyy, yyyyy, yyy, yyyyy, yyy, yy"
+        }
+      ]
+    },
+    {
+      "slide_index": 3,
+      "slide_number": 4,
+      "elements": [
+        {
+          "id": "s3_e0",
+          "type": "text",
+          "content": "グラフ構造の理解",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            42.71
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0791
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s3_e1",
+          "type": "text",
+          "content": "ChartVLM ：チャート（グラフ）を推論",
+          "bbox_pt": [
+            205.69,
+            107.93,
+            548.61,
+            41.2
+          ],
+          "bbox_ratio": [
+            0.2143,
+            0.1999,
+            0.5715,
+            0.0763
+          ],
+          "shape_name": "テキスト ボックス 3"
+        },
+        {
+          "id": "s3_e2",
+          "type": "text",
+          "content": "チャートを単なる画像としてではなく、\nデータ構造として理解することで推論の根拠を明確にしている",
+          "bbox_pt": [
+            90.61,
+            449.08,
+            778.76,
+            82.8
+          ],
+          "bbox_ratio": [
+            0.0944,
+            0.8316,
+            0.8112,
+            0.1533
+          ],
+          "shape_name": "四角形: 角を丸くする 7"
+        },
+        {
+          "id": "s3_e3",
+          "type": "text",
+          "content": "'who has the largest value?'",
+          "bbox_pt": [
+            256.61,
+            262.98,
+            216.0,
+            55.74
+          ],
+          "bbox_ratio": [
+            0.2673,
+            0.487,
+            0.225,
+            0.1032
+          ],
+          "shape_name": "テキスト ボックス 2"
+        },
+        {
+          "id": "s3_e4",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            57.32,
+            148.29,
+            179.57,
+            259.72
+          ],
+          "bbox_ratio": [
+            0.0597,
+            0.2746,
+            0.187,
+            0.481
+          ],
+          "shape_name": "図 5",
+          "vlm_description": "The image is a **vertical bar chart** illustrating \"Total fueling cost\" for three different vehicle models. Below is a detailed breakdown of its visual elements:  \n\n### **Chart Type & Structure**  \n- **Type**: Simple vertical bar chart (no grouping, as all bars represent distinct categories).  \n- **Background**: Solid white.  \n- **Bar Colors**: All bars are uniformly colored **purple** with white text for value labeling.  \n\n### **Axes & Labels**  \n- **X-Axis**: Labeled with three vehicle models:  \n  - *Leftmost*: \"Ford F150 (Regular Cab)\" (with \"Regular Cab\" in parentheses below the model name).  \n  - *Middle*: \"Toyota RAV4\".  \n  - *Rightmost*: \"Honda Civic\".  \n  - *Axis Orientation*: Horizontal (standard for bar charts, with categories positioned along the bottom).  \n- **Y-Axis**: No explicit numerical scale is visible, but the vertical height of each bar corresponds to the fueling cost (implied by the dollar values labeled atop each bar).  \n- **Title**: \"Total fueling cost\" is centered at the bottom of the chart, clearly stating the chart’s subject.  \n\n### **Notable Data Points & Trends**  \n- **Value Labels**: Each bar has a dollar amount displayed at its top:  \n  - *Ford F150 (Regular Cab)*: **$130.96** (tallest bar).  \n  - *Toyota RAV4*: **$82.56** (medium-height bar).  \n  - *Honda Civic*: **$70.55** (shortest bar).  \n- **Trend**: There is a **decreasing trend** in total fueling cost from left to right:  \n  Ford F150 has the highest cost, followed by Toyota RAV4, and Honda Civic has the lowest.  \n\n### **Additional Elements**  \n- **No Legend**: Since all bars use the same color (purple), there is no legend to explain color coding.  \n- **Text Style**: Labels for vehicle models and dollar values are in a clean, sans-serif font (white for contrast against purple bars).  \n- **Spacing**: Bars are evenly spaced horizontally, with no gridlines or additional visual clutter.  \n\n### **Interpretation of the Chart**  \nThe chart effectively communicates that the Ford F150 (Regular Cab) incurs the highest total fueling cost among the three models, while the Honda Civic has the lowest. This visual comparison highlights cost differences in a straightforward, easily digestible format."
+        },
+        {
+          "id": "s3_e5",
+          "type": "text",
+          "content": "Ford F150 (Regular Cab)",
+          "bbox_pt": [
+            629.44,
+            273.05,
+            479.88,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.6557,
+            0.5057,
+            0.4999,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 8"
+        },
+        {
+          "id": "s3_e6",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            503.57,
+            269.72,
+            77.04,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.5246,
+            0.4995,
+            0.0803,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 9"
+        },
+        {
+          "id": "s3_e7",
+          "type": "text",
+          "content": "入力：画像 ＆ テキスト",
+          "bbox_pt": [
+            169.86,
+            407.73,
+            252.35,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.1769,
+            0.7551,
+            0.2629,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 10"
+        },
+        {
+          "id": "s3_e8",
+          "type": "text",
+          "content": "出力：テキスト or CSV",
+          "bbox_pt": [
+            629.44,
+            407.73,
+            252.35,
+            31.5
+          ],
+          "bbox_ratio": [
+            0.6557,
+            0.7551,
+            0.2629,
+            0.0583
+          ],
+          "shape_name": "テキスト ボックス 11"
+        }
+      ]
+    },
+    {
+      "slide_index": 4,
+      "slide_number": 5,
+      "elements": [
+        {
+          "id": "s4_e0",
+          "type": "text",
+          "content": "技術的課題",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s4_e1",
+          "type": "smartart",
+          "content": [
+            "意味的理解の表現",
+            "単純な単語の一致ではなく、発表者の発話の意図や文脈を理解し、スライド上のどの要素を指しているかを推論する",
+            "図表の構造解析",
+            "スライド内のテキストだけでなく、グラフの線や棒、円グラフのセグメント、図解の特定のノードなど、非言語的な視覚要素を個別のオブジェクトとして認識し、座標を特定する"
+          ],
+          "bbox_pt": [
+            74.88,
+            101.12,
+            820.36,
+            399.18
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.1873,
+            0.8545,
+            0.7392
+          ],
+          "shape_name": "図表 2",
+          "smartart_node_count": 4,
+          "vlm_description": null
+        }
+      ]
+    },
+    {
+      "slide_index": 5,
+      "slide_number": 6,
+      "elements": [
+        {
+          "id": "s5_e0",
+          "type": "text",
+          "content": "プロトタイプ構想",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            50.55
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0936
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s5_e1",
+          "type": "smartart",
+          "content": [
+            "スライド解析モジュール",
+            "ポインティング制御モジュール",
+            "音声・意味理解モジュール"
+          ],
+          "bbox_pt": [
+            89.55,
+            160.78,
+            780.9,
+            304.38
+          ],
+          "bbox_ratio": [
+            0.0933,
+            0.2977,
+            0.8134,
+            0.5637
+          ],
+          "shape_name": "図表 2",
+          "smartart_node_count": 3,
+          "vlm_description": null
+        }
+      ]
+    },
+    {
+      "slide_index": 6,
+      "slide_number": 7,
+      "elements": [
+        {
+          "id": "s6_e0",
+          "type": "text",
+          "content": "入力されたスライドを解析し、含まれるすべての要素のメタデータと画面上の座標を抽出\nVLM（ Moondream など）を活用し、スライド画像を解析させる\nGrounded SAM 2 や ChartVLM のような専用モデルによる構造抽出を検討",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            279.03
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.5167
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s6_e1",
+          "type": "text",
+          "content": "スライド解析モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ]
+    },
+    {
+      "slide_index": 7,
+      "slide_number": 8,
+      "elements": [
+        {
+          "id": "s7_e0",
+          "type": "text",
+          "content": "発表中の音声をマイクからリアルタイムに取得し、OpenAIの Whisper などの高性能な音声認識（ASR）モデルを用いてテキスト化\nスライド解析モジュールから得られたスライド要素をマルチモーダルLLM（Llama3など）に入力し、発話内容と最も意味的に関連するスライド要素の座標を推論させる",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            305.88
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.5665
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s7_e1",
+          "type": "text",
+          "content": "音声・意味理解モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ]
+    },
+    {
+      "slide_index": 8,
+      "slide_number": 9,
+      "elements": [
+        {
+          "id": "s8_e0",
+          "type": "text",
+          "content": "スライド画像の上にポインティング用の層を重畳表示\nLLMが特定した要素の座標位置にレーザーポインター風のエフェクトを描画\n要素間の移動時には、視覚的に滑らかな軌跡を描くことで、人間の自然なポインティング動作を模倣する",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            219.69
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.4068
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s8_e1",
+          "type": "text",
+          "content": "ポインティング制御モジュール",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ]
+    },
+    {
+      "slide_index": 9,
+      "slide_number": 10,
+      "elements": [
+        {
+          "id": "s9_e0",
+          "type": "text",
+          "content": "VLMによる図表解析のプロンプト設計と検証を行い、Grounded SAM 2 や ChartVLM の有用性を確かめる\nスライド解析モジュールのスクリプトを作成する\nOpenAI Whisperによる声のリアルタイムテキスト化をテストする",
+          "bbox_pt": [
+            74.88,
+            184.7,
+            829.66,
+            219.69
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.342,
+            0.8642,
+            0.4068
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s9_e1",
+          "type": "text",
+          "content": "今後",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ]
+    }
+  ]
+}

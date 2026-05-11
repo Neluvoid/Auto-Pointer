@@ -263,7 +263,9 @@ header {
   opacity: 0.88;
   rx: 3;
 }
-
+#chart-annotation {
+  pointer-events: none;
+}
 /* スライドなし状態 */
 #no-slide {
   display: flex;
@@ -992,6 +994,19 @@ function connectSocket() {
     timingEl.textContent =
       `ASR:${data.asr_sec}s | LLM:${data.llm_sec}s | Total:${data.total_sec}s`;
   });
+
+  
+  socket.on('chart_pointing_result', (data) => {
+    console.log('[CHART_POINTING] data.slide_num=', data.slide_num, typeof data.slide_num, 
+                'currentSlide=', currentSlide, typeof currentSlide);
+    if (data.slide_num !== currentSlide) {
+      console.log('[CHART_POINTING] スキップ');
+      return;
+    }
+    if (data.draw_type && data.draw_type !== 'none') {
+      drawChartAnnotation(data);
+    }
+  });
 }
 
 // =====================================================
@@ -1051,6 +1066,8 @@ function fitContainer() {
   overlayEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
   // ポインターが表示中なら再描画
   if (pointerTarget) drawPointerSVG(pointerTarget, false);
+  // ← 追加: chart-annotationも再描画
+  if (_lastChartPt) drawChartAnnotation(_lastChartPt);
 }
 
 window.addEventListener('resize', fitContainer);
@@ -1145,6 +1162,104 @@ function drawPointerSVG(target, animate = true, pulse = false) {
   overlayEl.appendChild(g);
 }
 
+// ============================================================
+// 図表内部アノテーション描画（4.2）
+// ============================================================
+let _lastChartPt = null;  // グローバル変数として追加
+
+function drawChartAnnotation(chartPt) {
+  _lastChartPt = chartPt; // 最新のチャートポイントを保存
+  const W = parseFloat(overlayEl.getAttribute('width')  || containerEl.clientWidth);
+  const H = parseFloat(overlayEl.getAttribute('height') || containerEl.clientHeight);
+
+  // 既存のアノテーションを削除
+  const old = overlayEl.getElementById('chart-annotation');
+  if (old) old.remove();
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.id = 'chart-annotation';
+  g.style.setProperty('--ptr-color', '#00d4ff');  // シアン（ポインターの赤と区別）
+
+  if (chartPt.draw_type === 'circle' && chartPt.abs_bbox_ratio) {
+    const [rx, ry, rw, rh] = chartPt.abs_bbox_ratio;
+    const px = rx * W, py = ry * H;
+    const pw = rw * W, ph = rh * H;
+    const cx = px + pw / 2, cy = py + ph / 2;
+    const radiusX = pw / 2 + 8, radiusY = ph / 2 + 8;
+
+    // 楕円の丸枠
+    const ellipse = mkEl('ellipse', {
+      cx, cy,
+      rx: radiusX, ry: radiusY,
+      fill: 'none',
+      stroke: '#00d4ff',
+      'stroke-width': 3,
+      'stroke-dasharray': '6,3',
+      opacity: 0.9,
+      filter: 'url(#glow)',
+    });
+    g.appendChild(ellipse);
+
+    // ラベル
+    const lbl = mkEl('text', {
+      x: cx,
+      y: cy - radiusY - 6,
+      'text-anchor': 'middle',
+      fill: '#00d4ff',
+      'font-size': 11,
+      'font-family': 'monospace',
+    });
+    lbl.textContent = chartPt.target || '';
+    g.appendChild(lbl);
+
+  } else if (chartPt.draw_type === 'arrow' &&
+             chartPt.abs_arrow_start && chartPt.abs_arrow_end) {
+    const [sx, sy] = chartPt.abs_arrow_start;
+    const [ex, ey] = chartPt.abs_arrow_end;
+    const psx = sx * W, psy = sy * H;
+    const pex = ex * W, pey = ey * H;
+
+    // 矢印マーカー定義
+    const defs = overlayEl.querySelector('defs') || (() => {
+      const d = mkEl('defs', {}); overlayEl.prepend(d); return d;
+    })();
+    if (!defs.querySelector('#arrow-marker')) {
+      const marker = mkEl('marker', {
+        id: 'arrow-marker',
+        markerWidth: 8, markerHeight: 8,
+        refX: 6, refY: 3,
+        orient: 'auto',
+      });
+      const markerPath = mkEl('path', {
+        d: 'M0,0 L0,6 L8,3 z',
+        fill: '#00d4ff',
+      });
+      marker.appendChild(markerPath);
+      defs.appendChild(marker);
+    }
+
+    // 矢印線
+    const line = mkEl('line', {
+      x1: psx, y1: psy, x2: pex, y2: pey,
+      stroke: '#00d4ff',
+      'stroke-width': 3,
+      'stroke-linecap': 'round',
+      'marker-end': 'url(#arrow-marker)',
+      opacity: 0.9,
+      filter: 'url(#glow)',
+    });
+    g.appendChild(line);
+  }
+
+  // フェードイン
+  g.style.opacity = '0';
+  overlayEl.appendChild(g);
+  requestAnimationFrame(() => {
+    g.style.transition = 'opacity 0.4s ease';
+    g.style.opacity = '1';
+  });
+}
+
 /**
  * ポインターをフェードアウトして消す。
  * @param {boolean} instant - trueなら即時消去（スライド切り替え時など）
@@ -1153,6 +1268,11 @@ function clearPointer(instant = false) {
   if (rafId)        { cancelAnimationFrame(rafId); rafId = null; }
   if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
   if (fadeTimerId)  { clearTimeout(fadeTimerId);  fadeTimerId  = null; }
+
+  // chart-annotationを常に消す（early returnの前に実行）
+  const ann = overlayEl.getElementById('chart-annotation');
+  if (ann) ann.remove();
+  _lastChartPt = null;
 
   const g = overlayEl.getElementById('pointer-group');
   if (!g) {
@@ -1185,32 +1305,47 @@ function mkEl(tag, attrs) {
 // ポインティング結果処理
 // =====================================================
 function handlePointingResult(data) {
-  const conf    = data.confidence || 'none';
-  const bboxR   = data.smartart_node_bbox_ratio || data.bbox_ratio;
-  const text    = data.asr_text || '';
-  const preview = data.content_preview || '';
-  const reason  = data.reason || '';
-  const elemId  = data.element_id || '-';
-  const t1 = Date.now();
+  const conf      = data.confidence || 'none';
+  const bboxR     = data.smartart_node_bbox_ratio || data.bbox_ratio;
+  const text      = data.asr_text || '';
+  const preview   = data.content_preview || '';
+  const reason    = data.reason || '';
+  const elemId    = data.element_id || '-';
+  const chartPt   = data.chart_pointing;  // ← 追加
 
   addLogEntry({ text, conf, preview, reason, elemId });
 
   if (conf === 'none' || !bboxR) {
-    clearPointer();   // フェードアウトで消す
+    clearPointer();
     return;
   }
 
   const [rx, ry, rw, rh] = bboxR;
   const cx = rx + rw / 2;
   const cy = ry + rh / 2;
-
-  const shortLabel = (preview.length > 20 ? preview.slice(0, 20) + '…' : preview) + ` [${conf}]`;
-
+  // chart_pointingがある場合はtargetをラベルに使う
+  const shortLabel = chartPt && chartPt.target ? `${chartPt.target} [${conf}]` : (preview.length > 20 ? preview.slice(0, 20) + '…' : preview) + ` [${conf}]`;
   const target = { cx, cy, rx, ry, rw, rh, confidence: conf, label: shortLabel };
 
-  // 滑らかな移動: 前のポインターから補間
+  // chart_pointing がある場合は追加アノテーションを描画
+  if (chartPt && chartPt.draw_type !== 'none') {
+    if (pointerCurrent) {
+      if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
+      const g = overlayEl.getElementById('pointer-group');
+      if (g) g.classList.remove('pointer-pulse', 'pointer-fadeout');
+      animatePointer(pointerCurrent, target);
+    } else {
+      pointerTarget  = target;
+      pointerCurrent = { ...target };
+      drawPointerSVG(target, true, false);
+    }
+    // chart_pointing の描画（少し遅延させてメインポインターの後に表示）
+    setTimeout(() => drawChartAnnotation(chartPt), 300);
+    return;
+  }
+
+  // 通常ポインティング（従来通り）
   if (pointerCurrent) {
-    // 既存パルスを止めてから移動開始
     if (pulseTimerId) { clearTimeout(pulseTimerId); pulseTimerId = null; }
     const g = overlayEl.getElementById('pointer-group');
     if (g) g.classList.remove('pointer-pulse', 'pointer-fadeout');
@@ -1219,7 +1354,6 @@ function handlePointingResult(data) {
     pointerTarget  = target;
     pointerCurrent = { ...target };
     drawPointerSVG(target, true, false);
-    // 初回出現後もパルスを予約
     pulseTimerId = setTimeout(() => {
       const g = overlayEl.getElementById('pointer-group');
       if (g) g.classList.add('pointer-pulse');

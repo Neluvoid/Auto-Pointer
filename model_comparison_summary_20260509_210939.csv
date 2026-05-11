@@ -1,0 +1,4 @@
+﻿model,accuracy_pct,avg_time_sec,acc_text_direct,acc_text_semantic,acc_smartart_node,acc_none_filler,acc_text_pronoun,acc_text_abstract,acc_text_numeric
+llama3,87.5,0.769,100.0,100.0,100.0,0.0,100.0,100.0,100.0
+gemma4,12.5,6.923,0.0,0.0,0.0,100.0,0.0,0.0,0.0
+gemma3:12b,100.0,3.368,100.0,100.0,100.0,100.0,100.0,100.0,100.0

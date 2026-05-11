@@ -250,7 +250,7 @@ def run_pipeline(
 
 def setup_from_pptx(pptx_path: str,
                     output_dir: str,
-                    use_vlm: bool = False,
+                    use_vlm: bool = True,
                     image_width: int = 1920) -> tuple[str, list[str]]:
     """
     PPTXファイルからスライドJSONと画像を自動生成して返す。
