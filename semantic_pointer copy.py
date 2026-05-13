@@ -294,15 +294,6 @@ def get_pointing_target(
                     round(rw, 4),
                     round(node_h, 4),
                 ]
-    chart_pointing = None
-    if matched["type"] == "image" and matched.get("vlm_description"):
-        chart_pointing = get_chart_pointing(
-            asr_text=asr_text,
-            vlm_description=matched["vlm_description"],
-            image_bbox_ratio=matched["bbox_ratio"],
-            model=model,
-            verbose=verbose,
-        )
 
     return {
         "element_id":              element_id,
@@ -315,7 +306,8 @@ def get_pointing_target(
         "confidence":              confidence,
         "smartart_node_index":     smartart_node_index,
         "smartart_node_bbox_ratio": smartart_node_bbox_ratio,
-        "chart_pointing":           chart_pointing,
+        "chart_pointing":           None,  # server.pyで非同期で別送信
+        "is_image_element":         matched["type"] == "image" and bool(matched.get("vlm_description")),  # ← 追加
     }
 # ============================================================
 # 図表内部へのセマンティックポインティング（4.2）
@@ -325,29 +317,42 @@ _CHART_POINTING_SYSTEM = """You are an AI assistant for a presentation auto-poin
 Given a speaker's utterance and a description of a chart/graph/diagram,
 determine what visual annotation should be drawn on the chart.
 
+IMPORTANT: Read the chart description carefully to identify the ORDER of bars from left to right.
+Map each bar name to its position index (0=leftmost, 1=middle, 2=rightmost, etc.)
+
+For a 3-bar chart:
+  Bar index 0 (leftmost) : x_left=0.05, x_right=0.28
+  Bar index 1 (middle)   : x_left=0.37, x_right=0.60
+  Bar index 2 (rightmost): x_left=0.69, x_right=0.92
+
+For y-coordinates:
+  y_bottom = 0.75
+  Tallest bar:  y_top ≈ 0.05
+  Medium bar:   y_top ≈ 0.37
+  Shortest bar: y_top ≈ 0.46
+
+Steps to determine bbox_ratio:
+  1. Find the bar name mentioned in the utterance
+  2. Look up its position index from the chart description (left-to-right order)
+  3. Use the x coordinates for that index
+  4. Use y coordinates based on bar height
+
 You must respond ONLY with a valid JSON object in this exact format:
 {
   "draw_type": "<circle|arrow|none>",
-  "target_description": "<brief description of what to point at in English>",
-  "bbox_ratio": [x, y, w, h],
+  "target_description": "<brief description>",
+  "bbox_ratio": [x_left, y_top, width, height],
   "arrow_start_ratio": [x, y],
   "arrow_end_ratio": [x, y],
-  "reason": "<brief explanation>"
+  "reason": "<which bar index was selected and why>"
 }
 
 Rules:
-- draw_type "circle": use when speaker refers to a specific data point, bar, or value
-  (e.g., "the largest", "Ford", "130 dollars", "this value")
-  → set bbox_ratio to the approximate location of that element (relative to the chart's own bbox)
-  → set arrow_start_ratio and arrow_end_ratio to null
-- draw_type "arrow": use when speaker refers to a trend or sequence
-  (e.g., "increasing", "decreasing", "right-upward", "from left to right")
-  → set bbox_ratio to null
-  → set arrow_start_ratio to where the trend begins, arrow_end_ratio to where it ends
-  → coordinates are relative to the chart's own bbox (0,0 = top-left, 1,1 = bottom-right)
-- draw_type "none": use when the utterance only refers to the chart as a whole
-  (e.g., "this chart shows", "as you can see")
-- All coordinates are ratios (0.0 to 1.0) relative to the chart element's bounding box
+- draw_type "circle": speaker refers to a specific bar or data point
+- draw_type "arrow": speaker refers to a trend (increasing, decreasing, etc.)
+  → arrow_start_ratio = [leftmost_center_x, 0.4], arrow_end_ratio = [rightmost_center_x, 0.4]
+- draw_type "none": utterance refers to the chart as a whole
+- All coordinates relative to the chart element's bounding box (0,0=top-left, 1,1=bottom-right)
 - Do NOT include any text outside the JSON object
 """
 
@@ -355,7 +360,8 @@ def get_chart_pointing(
     asr_text: str,
     vlm_description: str,
     image_bbox_ratio: list[float],
-    model: str = LLM_MODEL,
+    image_b64: str | None = None, 
+    model: str = "llama3",
     verbose: bool = False,
 ) -> dict | None:
     """
@@ -400,17 +406,44 @@ Respond with JSON only."""
         print("\n--- [CHART_POINTING] User Prompt ---")
         print(user_prompt[:300])
 
+    message_content = {
+        "role": "user",
+        "content": user_prompt,
+    }
+    if image_b64:
+        message_content["images"] = [image_b64]
     try:
         response = _ollama.chat(
             model=model,
             messages=[
                 {"role": "system", "content": _CHART_POINTING_SYSTEM},
-                {"role": "user",   "content": user_prompt},
+                message_content,
             ],
-            options={"num_predict": 200, "temperature": 0.1},
+            options={"num_predict": 1024, "temperature": 0.1, "think": False},
         )
         raw = response["message"]["content"].strip()
+        thinking = response["message"].thinking or ""
 
+        print(f"    [CHART_POINTING DEBUG] content_len={len(raw)} thinking_len={len(thinking)}")
+        print(f"    [CHART_POINTING DEBUG] thinking_tail={repr(thinking[-200:])}")
+        # think=Falseが効かない場合のフォールバック: thinkingフィールドを使う
+        if not raw:
+            thinking = response["message"].thinking or ""
+            # thinkingの中からJSONブロックを探す
+            import re as _re
+            json_match = _re.search(r'\{[^{}]*"draw_type"[^{}]*\}', thinking, _re.DOTALL)
+            if json_match:
+                raw = json_match.group(0)
+                print(f"    [CHART_POINTING] thinkingからJSON抽出: {raw[:80]}")
+            else:
+                # thinkingの末尾にJSONがある場合
+                last_brace = thinking.rfind("}")
+                first_brace = thinking.rfind("{", 0, last_brace)
+                if first_brace != -1 and last_brace != -1:
+                    raw = thinking[first_brace:last_brace+1]
+                    print(f"    [CHART_POINTING] thinkingから末尾JSON抽出: {raw[:80]}")
+
+        print(f"    [CHART_POINTING DEBUG] raw={repr(raw[:150])}")
         if verbose:
             print(f"\n--- [CHART_POINTING] Raw ---\n{raw}")
 

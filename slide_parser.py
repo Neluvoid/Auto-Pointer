@@ -81,23 +81,19 @@ except ImportError:
 # ============================================================
 # 設定
 # ============================================================
-VLM_MODEL_CLASSIFY = "qwen3-vl:4b"    # Phase1: 図表か否かの分類
-VLM_MODEL_DESCRIBE = "qwen3-vl:4b"    # Phase2: 図表の詳細説明
+VLM_MODEL_CLASSIFY = "gemma4:e2b"    # Phase1: 図表か否かの分類
+VLM_MODEL_DESCRIBE = "gemma4:e2b"    # Phase2: 図表の詳細説明
 VLM_MODEL = VLM_MODEL_DESCRIBE         # 後方互換
 
 VLM_PROMPT_CLASSIFY = (
     "Is this a chart, graph, or diagram? Reply only: yes or no."
 )
 VLM_PROMPT = (
-    "Describe the visual elements in this image. "
-    "If it is a bar chart, respond in this exact format:\n"
-    "CHART_TYPE: vertical bar chart\n"
-    "BARS:\n"
-    "- label: <name>, value: <number>, x_left: <0-1>, x_right: <0-1>, y_top: <0-1>, y_bottom: <0-1>\n"
-    "- label: <name>, value: <number>, x_left: <0-1>, x_right: <0-1>, y_top: <0-1>, y_bottom: <0-1>\n"
-    "TITLE: <title>\n"
-    "If it is a diagram or other image, describe components and relationships in plain text.\n"
-    "Be concise. No thinking, no explanation."
+    "Describe all visual elements in this image in detail. "
+    "If it is a bar chart, identify the chart type, the order of bars from left to right, "
+    "each bar's label and value, and any notable trends. "
+    "If it is a diagram, describe the components and their relationships. "
+    "Respond in English. Be concise."
 )
 
 
@@ -159,8 +155,8 @@ def analyze_image_with_vlm(img: "Image.Image", model: str = VLM_MODEL_DESCRIBE) 
                 "role": "user",
                 "content": VLM_PROMPT_CLASSIFY,
                 "images": [img_b64]
-            }],
-            options={"think": False, "num_predict": 10},
+            }]
+            # options指定なし
         )
         answer = classify_response["message"]["content"].strip().lower()
 
@@ -171,26 +167,26 @@ def analyze_image_with_vlm(img: "Image.Image", model: str = VLM_MODEL_DESCRIBE) 
         else:
             is_chart = "yes" in answer or "chart" in answer or "graph" in answer or "diagram" in answer
             print(f"    [VLM Phase1] classify={answer!r} → {'図表→詳細解析' if is_chart else 'スキップ'}")
-        if not is_chart:  # ← この2行を追加
-            return None
-        # --- Phase 2: 詳細説明（qwen3-vl:4b） ---
+        if not is_chart:  
+            # 写真はスキップするが位置情報を簡易ラベルとして保持
+            # bbox_ratioからx位置を判断してleft/right/centerを付与
+            return "[photo: non-chart image]"  
+        # --- Phase 2: 詳細説明 ---
         detail_response = _ollama.chat(
             model=model,
             messages=[{
                 "role": "user",
                 "content": VLM_PROMPT,
                 "images": [img_b64]
-            }],
-            options={"think": False, "num_predict": 512},
+            }]
+            # options指定なし
         )
         raw = detail_response["message"]["content"].strip()
         if not raw:
-            # thinkingから最終的な出力部分だけ抽出（thinking終了後のテキスト）
-            thinking = detail_response["message"].thinking or ""
-            # thinkingの最後の段落を使う
+            # thinkingフォールバック
+            thinking = str(getattr(detail_response["message"], "thinking", "") or "")
             lines = [l.strip() for l in thinking.split('\n') if l.strip()]
             raw = '\n'.join(lines[-10:]) if lines else ""
-            print(f"    [VLM Phase2] thinkingから末尾抽出")
         return raw
 
     except Exception as e:
@@ -500,7 +496,20 @@ def parse_pptx(pptx_path: str, use_vlm: bool = True) -> dict:
                 pil_img = extract_image_from_shape(shape)
                 if pil_img and use_vlm:
                     print(f"    [VLM] Analyzing image in element {elem_id}...")
-                    elem["vlm_description"] = analyze_image_with_vlm(pil_img)
+                    # x位置から左右を判定
+                    x_center = left_pt / slide_width_pt + width_pt / slide_width_pt / 2
+                    if x_center < 0.4:
+                        position = "left"
+                    elif x_center > 0.6:
+                        position = "right"
+                    else:
+                        position = "center"
+                    
+                    vlm_result = analyze_image_with_vlm(pil_img)
+                    if vlm_result == "[photo: non-chart image]":
+                        elem["vlm_description"] = f"[photo: non-chart image, position={position}]"
+                    else:
+                        elem["vlm_description"] = vlm_result
                 else:
                     elem["vlm_description"] = None
 

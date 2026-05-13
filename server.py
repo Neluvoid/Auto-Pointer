@@ -932,11 +932,14 @@ async def _run_pointing(text: str, slide_num: int, asr_elapsed: float = 0.0):
             **result,
         })
 
-        # image要素かつvlm_descriptionありの場合、chart_pointingを非同期で実行
+        # image要素の場合、chart_pointingを非同期で実行
+        # vlm_descriptionなし（写真）の場合はchart_pointingをスキップ
         if result.get("is_image_element"):
-            asyncio.ensure_future(
-                _run_chart_pointing(text, result, slide_num)
-            )
+            if result.get("has_vlm_description"):
+                asyncio.ensure_future(
+                    _run_chart_pointing(text, result, slide_num)
+                )
+            # vlm_descriptionなしの写真 → chart_pointingなし、bbox全体でポインティングのみ
 
         # タイミング情報もフロントに送信
         await sio.emit("timing", {
@@ -1026,7 +1029,8 @@ async def _run_chart_pointing(asr_text: str, pointing_result: dict, slide_num: i
                 vlm_description=vlm_desc,
                 image_bbox_ratio=bbox_ratio,
                 image_b64=image_b64,
-                model="llama3",
+                model="ministral-3:8b",
+                verbose=True,
             )
         )
     except Exception as e:

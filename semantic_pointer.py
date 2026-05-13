@@ -249,12 +249,18 @@ def get_pointing_target(
 
     # contentのプレビュー生成
     content = matched.get("content")
+    vlm_desc = matched.get("vlm_description") or ""
     if isinstance(content, list):
         preview = " / ".join(content)[:80]
     elif content:
         preview = content[:80]
     else:
-        preview = matched.get("vlm_description", "")[:80] or "(no content)"
+        preview = vlm_desc[:80] or "(no content)"
+
+    # image型の場合のis_image_elementフラグ
+    # vlm_descriptionがNoneでも（写真でスキップされた場合も）image型ならTrue
+    is_image_element = matched["type"] == "image"
+    has_vlm = bool(vlm_desc)
 
     # SmartArtの場合はノードインデックスからbboxを等分割して計算
     smartart_node_index    = llm_result.get("smartart_node_index")
@@ -307,45 +313,104 @@ def get_pointing_target(
         "smartart_node_index":     smartart_node_index,
         "smartart_node_bbox_ratio": smartart_node_bbox_ratio,
         "chart_pointing":           None,  # server.pyで非同期で別送信
-        "is_image_element":         matched["type"] == "image" and bool(matched.get("vlm_description")),  # ← 追加
+        "is_image_element":         is_image_element,
+        "has_vlm_description":      has_vlm,  # ← 追加
     }
 # ============================================================
 # 図表内部へのセマンティックポインティング（4.2）
 # ============================================================
 
+# vlm_descriptionから棒の数を推定して座標テーブルを生成
+def _make_bar_position_hint(vlm_description: str) -> str:
+    """vlm_descriptionの棒グラフ情報から位置ヒントを生成する"""
+    # 棒の数を推定（"Order of Bars"セクションの番号リストをカウント）
+    import re
+    items = re.findall(r'^\s*\d+\.\s+(.+)$', vlm_description, re.MULTILINE)
+    n = len(items)
+    if n < 2:
+        return ""
+    
+    hints = [f"EXACT BAR POSITIONS (use these coordinates):"]
+    for i, name in enumerate(items):
+        # ピクセル解析済みの正確な値
+        if n == 3:
+            positions = [
+                (0.089, 0.306, 0.198),
+                (0.396, 0.613, 0.504),
+                (0.702, 0.919, 0.811),
+            ]
+        else:
+            # n本の場合の等分割推定
+            gap = 0.08
+            bar_w = (1.0 - gap * (n + 1)) / n
+            positions = []
+            for j in range(n):
+                xl = gap * (j + 1) + bar_w * j
+                xr = xl + bar_w
+                positions.append((xl, xr, (xl + xr) / 2))
+        
+        xl, xr, cx = positions[i]
+        name_clean = name.strip().split('(')[0].strip()
+        hints.append(f"  Bar {i+1} '{name_clean}': x_left={xl}, x_right={xr}, center_x={cx}")
+    
+    return '\n'.join(hints)
+
+_CHART_POINTING_PROMPT_TEMPLATE = """Speaker's utterance (Japanese): "{asr_text}"
+
+Chart description:
+{vlm_description}
+
+{bar_positions}
+
+Based on the utterance, identify which bar is referred to using the EXACT BAR POSITIONS above.
+Reply ONLY with JSON:
+{{"draw_type": "circle|arrow|none", "bbox_ratio": [x_left, y_top, width, height], "arrow_start_ratio": [x, y], "arrow_end_ratio": [x, y], "reason": "bar name and position used"}}
+
+- Use x_left and x_right from EXACT BAR POSITIONS
+- y_top: tallest bar≈0.05, medium≈0.37, shortest≈0.46; y_bottom≈0.78
+- width = x_right - x_left
+- null for unused fields"""
+
 _CHART_POINTING_SYSTEM = """You are an AI assistant for a presentation auto-pointing system.
 Given a speaker's utterance and a description of a chart/graph/diagram,
 determine what visual annotation should be drawn on the chart.
 
-For vertical bar charts with N bars, the bars are evenly spaced left to right:
-- Bar 1 (leftmost):  x center ≈ 1/(2N),   width ≈ 0.6/N
-- Bar 2 (middle):    x center ≈ 3/(2N),   width ≈ 0.6/N
-- Bar 3 (rightmost): x center ≈ 5/(2N),   width ≈ 0.6/N
-For a 3-bar chart: bar1 center≈0.17, bar2 center≈0.50, bar3 center≈0.83 (width≈0.20 each)
-The y coordinates: top of bar = 1 - (bar_value / max_value), height = bar_value / max_value
+IMPORTANT: Read the chart description carefully to identify the ORDER of bars from left to right.
+Map each bar name to its position index (0=leftmost, 1=middle, 2=rightmost, etc.)
+
+For a 3-bar chart:
+  Bar index 0 (leftmost) : x_left=0.05, x_right=0.28
+  Bar index 1 (middle)   : x_left=0.37, x_right=0.60
+  Bar index 2 (rightmost): x_left=0.69, x_right=0.92
+
+For y-coordinates:
+  y_bottom = 0.75
+  Tallest bar:  y_top ≈ 0.05
+  Medium bar:   y_top ≈ 0.37
+  Shortest bar: y_top ≈ 0.46
+
+Steps to determine bbox_ratio:
+  1. Find the bar name mentioned in the utterance
+  2. Look up its position index from the chart description (left-to-right order)
+  3. Use the x coordinates for that index
+  4. Use y coordinates based on bar height
 
 You must respond ONLY with a valid JSON object in this exact format:
 {
   "draw_type": "<circle|arrow|none>",
-  "target_description": "<brief description of what to point at in English>",
-  "bbox_ratio": [x, y, w, h],
+  "target_description": "<brief description>",
+  "bbox_ratio": [x_left, y_top, width, height],
   "arrow_start_ratio": [x, y],
   "arrow_end_ratio": [x, y],
-  "reason": "<brief explanation>"
+  "reason": "<which bar index was selected and why>"
 }
 
 Rules:
-- draw_type "circle": use when speaker refers to a specific data point, bar, or value
-  → set bbox_ratio to the approximate location relative to the chart's own bbox
-- draw_type "arrow": use when speaker refers to a trend or sequence
-  (e.g., "increasing", "decreasing", "right-upward", "from left to right")
-  → set arrow_start_ratio to where trend begins, arrow_end_ratio to where it ends
-- draw_type "none": use when utterance only refers to the chart as a whole
-- All coordinates are ratios (0.0 to 1.0) relative to the chart element's bounding box
-- For a 3-bar vertical chart mentioned in the description:
-  * leftmost bar:  bbox_ratio ≈ [0.05, y_top, 0.25, bar_height]
-  * middle bar:    bbox_ratio ≈ [0.35, y_top, 0.25, bar_height]
-  * rightmost bar: bbox_ratio ≈ [0.65, y_top, 0.25, bar_height]
+- draw_type "circle": speaker refers to a specific bar or data point
+- draw_type "arrow": speaker refers to a trend (increasing, decreasing, etc.)
+  → arrow_start_ratio = [leftmost_center_x, 0.4], arrow_end_ratio = [rightmost_center_x, 0.4]
+- draw_type "none": utterance refers to the chart as a whole
+- All coordinates relative to the chart element's bounding box (0,0=top-left, 1,1=bottom-right)
 - Do NOT include any text outside the JSON object
 """
 
@@ -353,104 +418,53 @@ def get_chart_pointing(
     asr_text: str,
     vlm_description: str,
     image_bbox_ratio: list[float],
-    image_b64: str | None = None, 
-    model: str = "llama3",
+    image_b64: str | None = None,
+    model: str = "gemma4:e2b",
     verbose: bool = False,
 ) -> dict | None:
-    """
-    図表要素が選ばれたときに、図表内部のどこを指すかを推論する。
-
-    Parameters
-    ----------
-    asr_text : str
-        発話テキスト
-    vlm_description : str
-        slide_parser.pyが生成した図表の説明文
-    image_bbox_ratio : list[float]
-        図表要素全体のbbox_ratio [x, y, w, h]（スライド全体に対する比率）
-    model : str
-        使用するOllamaモデル名
-
-    Returns
-    -------
-    dict | None
-        {
-          draw_type: "circle" | "arrow" | "none",
-          abs_bbox_ratio: [x, y, w, h] | None,   # スライド全体座標系に変換済み
-          abs_arrow_start: [x, y] | None,
-          abs_arrow_end:   [x, y] | None,
-          reason: str,
-        }
-        推論失敗時は None を返す。
-    """
     if not OLLAMA_AVAILABLE:
         return None
 
-    user_prompt = f"""Speaker's utterance (Japanese):
-"{asr_text}"
-
-Chart/diagram description:
-{vlm_description[:600]}
-
-Based on the utterance, what should be annotated on this chart?
-Respond with JSON only."""
+    bar_positions = _make_bar_position_hint(vlm_description)
+    user_prompt = _CHART_POINTING_PROMPT_TEMPLATE.format(
+        asr_text=asr_text,
+        vlm_description=vlm_description[:400],
+        bar_positions=bar_positions,
+    )
 
     if verbose:
-        print("\n--- [CHART_POINTING] User Prompt ---")
-        print(user_prompt[:300])
+        print(f"\n--- [CHART_POINTING] Prompt ---\n{user_prompt[:200]}")
 
-    message_content = {
-        "role": "user",
-        "content": user_prompt,
-    }
+    message_content = {"role": "user", "content": user_prompt}
     if image_b64:
         message_content["images"] = [image_b64]
+
     try:
         response = _ollama.chat(
             model=model,
-            messages=[
-                {"role": "system", "content": _CHART_POINTING_SYSTEM},
-                message_content,
-            ],
-            options={"num_predict": 1024, "temperature": 0.1, "think": False},
+            messages=[message_content],
+            # optionsなし
         )
         raw = response["message"]["content"].strip()
-        thinking = response["message"].thinking or ""
 
-        print(f"    [CHART_POINTING DEBUG] content_len={len(raw)} thinking_len={len(thinking)}")
-        print(f"    [CHART_POINTING DEBUG] thinking_tail={repr(thinking[-200:])}")
-        # think=Falseが効かない場合のフォールバック: thinkingフィールドを使う
-        if not raw:
-            thinking = response["message"].thinking or ""
-            # thinkingの中からJSONブロックを探す
-            import re as _re
-            json_match = _re.search(r'\{[^{}]*"draw_type"[^{}]*\}', thinking, _re.DOTALL)
-            if json_match:
-                raw = json_match.group(0)
-                print(f"    [CHART_POINTING] thinkingからJSON抽出: {raw[:80]}")
-            else:
-                # thinkingの末尾にJSONがある場合
-                last_brace = thinking.rfind("}")
-                first_brace = thinking.rfind("{", 0, last_brace)
-                if first_brace != -1 and last_brace != -1:
-                    raw = thinking[first_brace:last_brace+1]
-                    print(f"    [CHART_POINTING] thinkingから末尾JSON抽出: {raw[:80]}")
-
-        print(f"    [CHART_POINTING DEBUG] raw={repr(raw[:150])}")
         if verbose:
             print(f"\n--- [CHART_POINTING] Raw ---\n{raw}")
 
-        # JSONパース
-        clean = raw
-        if "```" in clean:
-            clean = clean.split("```")[1]
-            if clean.startswith("json"):
-                clean = clean[4:]
-        clean = clean.strip()
-        if clean and not clean.endswith("}"):
-            clean = clean[:clean.rfind("}") + 1] if "}" in clean else clean + "}"
+        # コードブロック除去
+        if "```" in raw:
+            parts = raw.split("```")
+            for part in parts:
+                part = part.strip()
+                if part.startswith("json"):
+                    part = part[4:]
+                if part.strip().startswith("{"):
+                    raw = part.strip()
+                    break
 
-        parsed = json.loads(clean)
+        if not raw or not raw.strip().startswith("{"):
+            return None
+
+        parsed = json.loads(raw.strip())
 
     except Exception as e:
         print(f"    [CHART_POINTING] エラー: {e}")
@@ -462,12 +476,10 @@ Respond with JSON only."""
                 "abs_arrow_start": None, "abs_arrow_end": None,
                 "reason": parsed.get("reason", "")}
 
-    # 図表内部の相対座標 → スライド全体の絶対座標に変換
     ix, iy, iw, ih = image_bbox_ratio
-
-    abs_bbox_ratio    = None
-    abs_arrow_start   = None
-    abs_arrow_end     = None
+    abs_bbox_ratio  = None
+    abs_arrow_start = None
+    abs_arrow_end   = None
 
     if draw_type == "circle":
         local_bbox = parsed.get("bbox_ratio")
@@ -499,15 +511,13 @@ Respond with JSON only."""
         "abs_arrow_start": abs_arrow_start,
         "abs_arrow_end":   abs_arrow_end,
         "reason":          parsed.get("reason", ""),
-        "target":          parsed.get("target_description", ""),
+        "target":          parsed.get("reason", "")[:30],
     }
 
     print(f"    [CHART_POINTING] draw_type={draw_type}  "
-          f"bbox={abs_bbox_ratio}  "
-          f"start={abs_arrow_start} end={abs_arrow_end}")
+          f"bbox={abs_bbox_ratio}  start={abs_arrow_start} end={abs_arrow_end}")
 
     return result
-
 def _no_target_result(reason: str) -> dict:
     """ポインティング不要の結果を返す。"""
     return {

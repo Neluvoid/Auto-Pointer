@@ -1,0 +1,67 @@
+2026-05-12 20:12:38 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260512_201238.log
+2026-05-12 20:12:38 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-12 20:12:38 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-12 20:12:38 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-12 20:12:38 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-12 20:13:04 [INFO    ] autopointer: [WS] クライアント接続: nJ3DGJ-Q8eV6gqQoAAAB
+2026-05-12 20:13:09 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI自動ポインティングシステムの発案.pptx (1283KB)
+2026-05-12 20:13:09 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-12 20:14:06 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-12 20:14:06 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (10スライド)
+2026-05-12 20:14:06 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (10スライド / モデル: gemma3:12b)
+2026-05-12 20:14:06 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (10スライド)
+2026-05-12 20:14:06 [INFO    ] autopointer: [PPTX_SETUP] 完了: 10スライド
+2026-05-12 20:14:11 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティング技術を開発中のM1白木陽氏がプロトタイプ構想に取り組んでいます。AI自動ポイン...
+2026-05-12 20:14:12 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 富士通の説明音声技術（2015年）が自動ポインティングを実現するため、スライド資料から説明箇所をリア...
+2026-05-12 20:14:13 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: 画像中の任意のオブジェクトをGrounded SAM 2で検出しました。オブジェクト認識技術が活用さ...
+2026-05-12 20:14:14 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: グラフ構造の理解が ChartVLM によって推論され、画像としてではなくデータ構造として捉えること...
+2026-05-12 20:14:15 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 技術的課題に対処するためには、意味的理解の表現が必要です。発表者の発話の意図や文脈を理解し、スライド...
+2026-05-12 20:14:16 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールを組み合わせることで、...
+2026-05-12 20:14:17 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: スライド7では、スライド解析モジュールが Moondream を活用し、VLM を適用してスライド画...
+2026-05-12 20:14:18 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 音声理解モジュールは、マイクからリアルタイムに音声を取得し、Whisperなどの高性能ASRモデルで...
+2026-05-12 20:14:19 [INFO    ] autopointer: [ASR_PROMPT]  スライド 9 完了: LLMはスライド画像上にポインティング制御モジュールを重畳表示し、特定要素の座標位置にレーザーポイン...
+2026-05-12 20:14:20 [INFO    ] autopointer: [ASR_PROMPT]  スライド10 完了: 今後、VLMによる図表解析のプロンプト設計と検証を行うため、Grounded SAM 2 や Cha...
+2026-05-12 20:14:20 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (10/10)
+2026-05-12 20:14:26 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=富士通の説明音声技術（2015年）が自動ポインティングを実現するため、スライド資...
+2026-05-12 20:14:27 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトをGrounded SAM 2で検出しました。オブジェ...
+2026-05-12 20:14:27 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造の理解が ChartVLM によって推論され、画像としてではなくデータ...
+2026-05-12 20:14:28 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対処するためには、意味的理解の表現が必要です。発表者の発話の意図や文...
+2026-05-12 20:14:30 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造の理解が ChartVLM によって推論され、画像としてではなくデータ...
+2026-05-12 20:14:52 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-12 20:14:55 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-12 20:14:56 [INFO    ] autopointer: [BROWSER_ASR] ホンダCivicの値  (logprob=-0.31, asr=1.63s)
+2026-05-12 20:14:57 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 20:14:57 [INFO    ] autopointer: [TIMING] ASR=1.63s | LLM=1.00s | Total=2.63s | slide=4
+2026-05-12 20:14:57 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 20:15:05 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.40s / draw_type=circle
+2026-05-12 20:15:32 [INFO    ] autopointer: [BROWSER_ASR] トヨタの値  (logprob=-0.27, asr=0.87s)
+2026-05-12 20:15:37 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 20:15:37 [INFO    ] autopointer: [TIMING] ASR=0.87s | LLM=4.87s | Total=5.74s | slide=4
+2026-05-12 20:15:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 20:15:44 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.81s / draw_type=circle
+2026-05-12 20:16:17 [INFO    ] autopointer: [BROWSER_ASR] トヨタRAV4  (logprob=-0.20, asr=0.83s)
+2026-05-12 20:16:21 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 20:16:21 [INFO    ] autopointer: [TIMING] ASR=0.83s | LLM=4.87s | Total=5.70s | slide=4
+2026-05-12 20:16:21 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 20:16:29 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.51s / draw_type=circle
+2026-05-12 20:17:05 [INFO    ] autopointer: [BROWSER_ASR] フォード  (logprob=-0.24, asr=0.75s)
+2026-05-12 20:17:08 [INFO    ] autopointer: [BROWSER_ASR] フォードF150  (logprob=-0.46, asr=0.78s)
+2026-05-12 20:17:08 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: フォードF150
+2026-05-12 20:17:09 [INFO    ] autopointer: [POINT] id=s3_e5, conf=high
+2026-05-12 20:17:09 [INFO    ] autopointer: [TIMING] ASR=0.75s | LLM=4.73s | Total=5.49s | slide=4
+2026-05-12 20:17:09 [DEBUG   ] autopointer: [THROTTLE] キュー処理: フォードF150
+2026-05-12 20:17:11 [INFO    ] autopointer: [POINT] id=s3_e5, conf=high
+2026-05-12 20:17:11 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=2.01s | Total=2.01s | slide=4
+2026-05-12 20:17:23 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフのフォード  (logprob=-0.14, asr=0.91s)
+2026-05-12 20:17:25 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 20:17:25 [INFO    ] autopointer: [TIMING] ASR=0.91s | LLM=2.23s | Total=3.15s | slide=4
+2026-05-12 20:17:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 20:17:32 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.27s / draw_type=circle
+2026-05-12 20:17:53 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフで最も高い  (logprob=-0.26, asr=0.94s)
+2026-05-12 20:17:57 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 20:17:57 [INFO    ] autopointer: [TIMING] ASR=0.94s | LLM=4.32s | Total=5.26s | slide=4
+2026-05-12 20:17:57 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 20:18:05 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.56s / draw_type=circle
+2026-05-12 20:21:49 [INFO    ] autopointer: [WS] クライアント切断: nJ3DGJ-Q8eV6gqQoAAAB

@@ -1,0 +1,74 @@
+2026-05-11 10:46:49 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260511_104649.log
+2026-05-11 10:46:49 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-11 10:46:49 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-11 10:46:49 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-11 10:46:49 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-11 10:46:54 [INFO    ] autopointer: [WS] クライアント接続: ucyyJXyM52KI9zjJAAAB
+2026-05-11 10:46:59 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI自動ポインティングシステムの発案.pptx (1283KB)
+2026-05-11 10:46:59 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-11 10:47:22 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-11 10:47:22 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (10スライド)
+2026-05-11 10:47:22 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (10スライド / モデル: gemma3:12b)
+2026-05-11 10:47:22 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (10スライド)
+2026-05-11 10:47:22 [INFO    ] autopointer: [PPTX_SETUP] 完了: 10スライド
+2026-05-11 10:47:25 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティング技術を開発中のM1白木陽がプロトタイプ構想に取り組みます。AI自動ポインティン...
+2026-05-11 10:47:26 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 富士通の自動ポインティング技術により、スピーカーが説明音声を発声すると同時に、システムは資料中の該当...
+2026-05-11 10:47:27 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: オブジェクト認識技術Grounded SAM 2を使用し、画像や動画内の馬を検出することができます。...
+2026-05-11 10:47:29 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: グラフ構造 ChartVLM を使って、自動車3種類の燃料費を推論することができます。三つの車種、フ...
+2026-05-11 10:47:30 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 技術的課題に対処するには、意味的理解の表現が必要です。発表者の発話の意図や文脈を理解し、スライド上の...
+2026-05-11 10:47:31 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールを組み合わせた音声・意...
+2026-05-11 10:47:32 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: スライド7では、VLMを活用したスライド画像解析を行い、Grounded SAM 2やChartVL...
+2026-05-11 10:47:33 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 音声理解モジュールは、Whisperなどの高性能ASRモデルを使用し、音声をリアルタイムにテキスト化...
+2026-05-11 10:47:34 [INFO    ] autopointer: [ASR_PROMPT]  スライド 9 完了: LLMが特定した要素の座標位置にレーザーポインター風のエフェクトを描画するポインティング制御モジュー...
+2026-05-11 10:47:35 [INFO    ] autopointer: [ASR_PROMPT]  スライド10 完了: 今後、VLMによる図表解析のプロンプト設計と検証を行うため、Grounded SAM 2 や Cha...
+2026-05-11 10:47:35 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (10/10)
+2026-05-11 10:47:45 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=富士通の自動ポインティング技術により、スピーカーが説明音声を発声すると同時に、シ...
+2026-05-11 10:47:45 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=オブジェクト認識技術Grounded SAM 2を使用し、画像や動画内の馬を検出...
+2026-05-11 10:47:47 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を使って、自動車3種類の燃料費を推論することができ...
+2026-05-11 10:47:48 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対処するには、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 10:47:49 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を使って、自動車3種類の燃料費を推論することができ...
+2026-05-11 10:47:54 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-11 10:47:57 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-11 10:48:21 [INFO    ] autopointer: [BROWSER_ASR] のグラフのフォード。  (logprob=-0.42, asr=14.87s)
+2026-05-11 10:48:22 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:48:22 [INFO    ] autopointer: [TIMING] ASR=14.87s | LLM=1.24s | Total=16.11s | slide=4
+2026-05-11 10:48:22 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:48:25 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.68s / draw_type=arrow
+2026-05-11 10:48:32 [INFO    ] autopointer: [BROWSER_ASR] ホンダシビック  (logprob=-0.38, asr=14.10s)
+2026-05-11 10:48:33 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:48:33 [INFO    ] autopointer: [TIMING] ASR=14.10s | LLM=1.15s | Total=15.25s | slide=4
+2026-05-11 10:48:33 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:48:35 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.22s / draw_type=circle
+2026-05-11 10:48:39 [INFO    ] autopointer: [BROWSER_ASR] 左にFueling cost が減少しているため、フォードF150（レギュラーカブ）が最も高く、トヨタRAV4  (logprob=-0.21, asr=36.54s)
+2026-05-11 10:48:40 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:48:40 [INFO    ] autopointer: [TIMING] ASR=36.54s | LLM=1.03s | Total=37.57s | slide=4
+2026-05-11 10:48:40 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:48:41 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.19s / draw_type=arrow
+2026-05-11 10:49:04 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフのトヨタ  (logprob=-0.18, asr=1.08s)
+2026-05-11 10:49:05 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:49:05 [INFO    ] autopointer: [TIMING] ASR=1.08s | LLM=1.15s | Total=2.23s | slide=4
+2026-05-11 10:49:05 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:49:06 [INFO    ] autopointer: [CHART_POINTING] 完了: 0.98s / draw_type=circle
+2026-05-11 10:49:52 [INFO    ] autopointer: [BROWSER_ASR] を使用することができます。  (logprob=-0.66, asr=1.07s)
+2026-05-11 10:49:53 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:49:53 [INFO    ] autopointer: [TIMING] ASR=1.07s | LLM=1.24s | Total=2.31s | slide=4
+2026-05-11 10:49:53 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:49:55 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.22s / draw_type=arrow
+2026-05-11 10:50:06 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフで  (logprob=-0.44, asr=12.24s)
+2026-05-11 10:50:07 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:50:07 [INFO    ] autopointer: [TIMING] ASR=12.24s | LLM=1.06s | Total=13.30s | slide=4
+2026-05-11 10:50:07 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:50:08 [INFO    ] autopointer: [BROWSER_ASR] が最も高いものです。  (logprob=-0.39, asr=10.92s)
+2026-05-11 10:50:09 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.30s / draw_type=arrow
+2026-05-11 10:50:10 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフで最も高いもの。  (logprob=-0.27, asr=1.55s)
+2026-05-11 10:50:10 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 左のグラフで最も高いもの。
+2026-05-11 10:50:11 [INFO    ] autopointer: [POINT] id=s3_e3, conf=high
+2026-05-11 10:50:11 [INFO    ] autopointer: [TIMING] ASR=10.92s | LLM=3.73s | Total=14.65s | slide=4
+2026-05-11 10:50:11 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 左のグラフで最も高いもの。
+2026-05-11 10:50:12 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 10:50:12 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.74s | Total=0.74s | slide=4
+2026-05-11 10:50:12 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 10:50:13 [INFO    ] autopointer: [CHART_POINTING] 完了: 0.94s / draw_type=circle
+2026-05-11 11:00:41 [INFO    ] autopointer: [WS] クライアント切断: ucyyJXyM52KI9zjJAAAB

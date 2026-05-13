@@ -1,0 +1,889 @@
+2026-05-11 13:24:29 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260511_132429.log
+2026-05-11 13:24:29 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-11 13:24:29 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-11 13:24:29 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-11 13:24:29 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-11 13:24:33 [INFO    ] autopointer: [WS] クライアント接続: C16O2hgLPhCqp-0BAAAB
+2026-05-11 13:24:44 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI自動ポインティングシステムの発案.pptx (1283KB)
+2026-05-11 13:24:44 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-11 13:25:57 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-11 13:25:57 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (10スライド)
+2026-05-11 13:25:57 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (10スライド / モデル: gemma3:12b)
+2026-05-11 13:25:57 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (10スライド)
+2026-05-11 13:25:57 [INFO    ] autopointer: [PPTX_SETUP] 完了: 10スライド
+2026-05-11 13:26:00 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティング技術を開発中のM1白木陽研究チームがプロトタイプを構想しています。AI自動ポイ...
+2026-05-11 13:26:01 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 富士通が2015年に開発した自動ポインティング技術は、スライド資料と説明音声をリアルタイムに統合し、...
+2026-05-11 13:26:02 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: 画像中の任意のオブジェクトを検出するGrounded SAM 2 を活用し、馬や草原を認識したり、ラ...
+2026-05-11 13:26:03 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford F150 の燃料費...
+2026-05-11 13:26:05 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を理解し、スライド上の...
+2026-05-11 13:26:05 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールが音声・意味理解モジュ...
+2026-05-11 13:26:06 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: スライド7では、Moondreamを活用したスライド解析モジュールを開発し、Grounded SAM...
+2026-05-11 13:26:07 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 音声認識モジュールは、Whisperなどの高性能モデルを活用し、リアルタイムに音声をテキスト化します...
+2026-05-11 13:26:09 [INFO    ] autopointer: [ASR_PROMPT]  スライド 9 完了: LLMが画像上に重畳表示したポインティング制御モジュールは、スライド画像の要素座標位置にレーザーポイ...
+2026-05-11 13:26:10 [INFO    ] autopointer: [ASR_PROMPT]  スライド10 完了: 今後、VLMによる図表解析のプロンプト設計と検証を行い、Grounded SAM 2 や Chart...
+2026-05-11 13:26:10 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (10/10)
+2026-05-11 13:26:22 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=富士通が2015年に開発した自動ポインティング技術は、スライド資料と説明音声をリ...
+2026-05-11 13:26:23 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトを検出するGrounded SAM 2 を活用し、馬や...
+2026-05-11 13:26:24 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford...
+2026-05-11 13:26:35 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-11 13:26:37 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-11 13:26:42 [INFO    ] autopointer: [BROWSER_ASR] Honda Civic  (logprob=-0.48, asr=0.71s)
+2026-05-11 13:26:43 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:26:43 [INFO    ] autopointer: [TIMING] ASR=0.71s | LLM=0.94s | Total=1.65s | slide=4
+2026-05-11 13:26:43 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:26:44 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.01s / draw_type=circle
+2026-05-11 13:27:39 [INFO    ] autopointer: [BROWSER_ASR] 先ほども説明したことがありました。  (logprob=-0.90, asr=1.03s)
+2026-05-11 13:27:40 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:27:40 [INFO    ] autopointer: [TIMING] ASR=1.03s | LLM=0.94s | Total=1.97s | slide=4
+2026-05-11 13:27:40 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:27:42 [INFO    ] autopointer: [BROWSER_ASR] スライドカーに積載して、  (logprob=-0.69, asr=0.87s)
+2026-05-11 13:27:43 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.49s / draw_type=arrow
+2026-05-11 13:27:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:27:44 [INFO    ] autopointer: [TIMING] ASR=0.87s | LLM=1.43s | Total=2.30s | slide=4
+2026-05-11 13:27:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:27:45 [INFO    ] autopointer: [BROWSER_ASR] それでメタデータを  (logprob=-0.57, asr=0.70s)
+2026-05-11 13:27:46 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.51s / draw_type=arrow
+2026-05-11 13:27:47 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:27:47 [INFO    ] autopointer: [TIMING] ASR=0.70s | LLM=1.89s | Total=2.59s | slide=4
+2026-05-11 13:27:47 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:27:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.50s / draw_type=arrow
+2026-05-11 13:27:51 [INFO    ] autopointer: [BROWSER_ASR] 音声のやつを  (logprob=-0.66, asr=0.60s)
+2026-05-11 13:27:52 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:27:52 [INFO    ] autopointer: [TIMING] ASR=0.60s | LLM=1.32s | Total=1.92s | slide=4
+2026-05-11 13:27:52 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:27:54 [INFO    ] autopointer: [BROWSER_ASR] 私はそれを知っています。  (logprob=-0.97, asr=0.68s)
+2026-05-11 13:27:55 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.47s / draw_type=arrow
+2026-05-11 13:27:56 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:27:56 [INFO    ] autopointer: [TIMING] ASR=0.68s | LLM=1.49s | Total=2.17s | slide=4
+2026-05-11 13:27:56 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:27:58 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.30s / draw_type=none
+2026-05-11 13:28:00 [INFO    ] autopointer: [BROWSER_ASR] それすべて座標を  (logprob=-0.63, asr=0.77s)
+2026-05-11 13:28:01 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:01 [INFO    ] autopointer: [TIMING] ASR=0.77s | LLM=1.19s | Total=1.95s | slide=4
+2026-05-11 13:28:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:04 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を特定させる。  (logprob=-0.64, asr=1.10s)
+2026-05-11 13:28:04 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.54s / draw_type=arrow
+2026-05-11 13:28:06 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:06 [INFO    ] autopointer: [TIMING] ASR=1.10s | LLM=2.33s | Total=3.43s | slide=4
+2026-05-11 13:28:06 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:07 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.18s / draw_type=circle
+2026-05-11 13:28:09 [INFO    ] autopointer: [BROWSER_ASR] マイクが終わっています。  (logprob=-0.78, asr=0.72s)
+2026-05-11 13:28:10 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:10 [INFO    ] autopointer: [TIMING] ASR=0.72s | LLM=1.32s | Total=2.04s | slide=4
+2026-05-11 13:28:10 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:13 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.44s / draw_type=none
+2026-05-11 13:28:18 [INFO    ] autopointer: [BROWSER_ASR] マイクが回っていますね、と思いました。  (logprob=-0.87, asr=0.83s)
+2026-05-11 13:28:19 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:19 [INFO    ] autopointer: [TIMING] ASR=0.83s | LLM=1.08s | Total=1.91s | slide=4
+2026-05-11 13:28:19 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:21 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.45s / draw_type=arrow
+2026-05-11 13:28:25 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.61, asr=1.07s)
+2026-05-11 13:28:25 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:25 [INFO    ] autopointer: [TIMING] ASR=1.07s | LLM=0.90s | Total=1.97s | slide=4
+2026-05-11 13:28:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:27 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.53s / draw_type=arrow
+2026-05-11 13:28:46 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費は 80.56 ドルと、右に減少する傾向があります。  (logprob=-0.70, asr=1.53s)
+2026-05-11 13:28:47 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:47 [INFO    ] autopointer: [TIMING] ASR=1.53s | LLM=0.92s | Total=2.45s | slide=4
+2026-05-11 13:28:47 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.59s / draw_type=arrow
+2026-05-11 13:28:55 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は、左から右に減少する傾向があります。  (logprob=-0.61, asr=1.29s)
+2026-05-11 13:28:56 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:28:56 [INFO    ] autopointer: [TIMING] ASR=1.29s | LLM=0.91s | Total=2.19s | slide=4
+2026-05-11 13:28:56 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:28:57 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.76s / draw_type=arrow
+2026-05-11 13:29:03 [INFO    ] autopointer: [BROWSER_ASR] だから、現状でこうなります。  (logprob=-0.78, asr=1.00s)
+2026-05-11 13:29:05 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:29:05 [INFO    ] autopointer: [TIMING] ASR=1.00s | LLM=1.11s | Total=2.11s | slide=4
+2026-05-11 13:29:05 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:29:06 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.45s / draw_type=arrow
+2026-05-11 13:29:21 [INFO    ] autopointer: [BROWSER_ASR] 認識できないと原稿から持ってきちゃうのかな?  (logprob=-0.51, asr=1.02s)
+2026-05-11 13:29:23 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:29:23 [INFO    ] autopointer: [TIMING] ASR=1.02s | LLM=1.11s | Total=2.13s | slide=4
+2026-05-11 13:29:23 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:29:24 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.59, asr=0.64s)
+2026-05-11 13:29:25 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.53s / draw_type=arrow
+2026-05-11 13:29:26 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:29:26 [INFO    ] autopointer: [TIMING] ASR=0.64s | LLM=1.89s | Total=2.53s | slide=4
+2026-05-11 13:29:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:29:28 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.17s / draw_type=none
+2026-05-11 13:29:33 [INFO    ] autopointer: [BROWSER_ASR] カプテンのご視聴ありがとうございます。  (logprob=-0.32, asr=0.78s)
+2026-05-11 13:29:34 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:29:34 [INFO    ] autopointer: [TIMING] ASR=0.78s | LLM=0.95s | Total=1.73s | slide=4
+2026-05-11 13:29:54 [INFO    ] autopointer: [BROWSER_ASR] マジでグラフをさせるよ  (logprob=-0.40, asr=0.91s)
+2026-05-11 13:29:55 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:29:55 [INFO    ] autopointer: [TIMING] ASR=0.91s | LLM=0.88s | Total=1.80s | slide=4
+2026-05-11 13:29:57 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.72, asr=1.01s)
+2026-05-11 13:29:58 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:29:58 [INFO    ] autopointer: [TIMING] ASR=1.01s | LLM=0.78s | Total=1.79s | slide=4
+2026-05-11 13:29:58 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:29:59 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.04s / draw_type=circle
+2026-05-11 13:30:00 [INFO    ] autopointer: [BROWSER_ASR] スティックで取り直します。  (logprob=-0.68, asr=0.79s)
+2026-05-11 13:30:01 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:01 [INFO    ] autopointer: [TIMING] ASR=0.79s | LLM=1.15s | Total=1.94s | slide=4
+2026-05-11 13:30:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:03 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.45s / draw_type=arrow
+2026-05-11 13:30:06 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.62, asr=0.64s)
+2026-05-11 13:30:07 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:07 [INFO    ] autopointer: [TIMING] ASR=0.64s | LLM=1.26s | Total=1.90s | slide=4
+2026-05-11 13:30:07 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:10 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.41s / draw_type=none
+2026-05-11 13:30:18 [INFO    ] autopointer: [BROWSER_ASR] 実際の発表だったらなぁ、現行作るしなぁ。  (logprob=-0.45, asr=1.07s)
+2026-05-11 13:30:19 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:19 [INFO    ] autopointer: [TIMING] ASR=1.07s | LLM=0.89s | Total=1.96s | slide=4
+2026-05-11 13:30:19 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:22 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.51s / draw_type=arrow
+2026-05-11 13:30:43 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.68, asr=1.20s)
+2026-05-11 13:30:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:44 [INFO    ] autopointer: [TIMING] ASR=1.20s | LLM=0.87s | Total=2.07s | slide=4
+2026-05-11 13:30:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:45 [INFO    ] autopointer: [BROWSER_ASR] 大事なことです。  (logprob=-0.76, asr=0.63s)
+2026-05-11 13:30:46 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.09s / draw_type=circle
+2026-05-11 13:30:47 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:47 [INFO    ] autopointer: [TIMING] ASR=0.63s | LLM=1.50s | Total=2.14s | slide=4
+2026-05-11 13:30:47 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:48 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.79s / draw_type=none
+2026-05-11 13:30:49 [INFO    ] autopointer: [BROWSER_ASR] マジで終わる  (logprob=-0.52, asr=1.15s)
+2026-05-11 13:30:50 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:50 [INFO    ] autopointer: [TIMING] ASR=1.15s | LLM=0.96s | Total=2.11s | slide=4
+2026-05-11 13:30:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:51 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.95s / draw_type=arrow
+2026-05-11 13:30:54 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.69, asr=1.03s)
+2026-05-11 13:30:55 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:30:55 [INFO    ] autopointer: [TIMING] ASR=1.03s | LLM=0.97s | Total=2.00s | slide=4
+2026-05-11 13:30:55 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:30:58 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.56s / draw_type=arrow
+2026-05-11 13:31:00 [INFO    ] autopointer: [BROWSER_ASR] GEMMA ジェモン ジューカー  (logprob=-0.98, asr=0.87s)
+2026-05-11 13:31:01 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:01 [INFO    ] autopointer: [TIMING] ASR=0.87s | LLM=0.97s | Total=1.84s | slide=4
+2026-05-11 13:31:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:03 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.97s / draw_type=arrow
+2026-05-11 13:31:04 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費です。  (logprob=-0.71, asr=1.97s)
+2026-05-11 13:31:05 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:05 [INFO    ] autopointer: [TIMING] ASR=1.97s | LLM=1.03s | Total=3.00s | slide=4
+2026-05-11 13:31:05 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:07 [INFO    ] autopointer: [BROWSER_ASR] E2EBモデル  (logprob=-0.53, asr=1.91s)
+2026-05-11 13:31:08 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.36s / draw_type=circle
+2026-05-11 13:31:09 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:09 [INFO    ] autopointer: [TIMING] ASR=1.91s | LLM=1.98s | Total=3.89s | slide=4
+2026-05-11 13:31:09 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:11 [INFO    ] autopointer: [BROWSER_ASR] ご覧いただきありがとうございます。  (logprob=-0.59, asr=2.51s)
+2026-05-11 13:31:12 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.91s / draw_type=arrow
+2026-05-11 13:31:14 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:14 [INFO    ] autopointer: [TIMING] ASR=2.51s | LLM=3.39s | Total=5.90s | slide=4
+2026-05-11 13:31:14 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:17 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.80s / draw_type=none
+2026-05-11 13:31:24 [INFO    ] autopointer: [BROWSER_ASR] 概要欄にリンクを貼っています。  (logprob=-0.52, asr=0.89s)
+2026-05-11 13:31:25 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:25 [INFO    ] autopointer: [TIMING] ASR=0.89s | LLM=0.97s | Total=1.85s | slide=4
+2026-05-11 13:31:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:28 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.30s / draw_type=arrow
+2026-05-11 13:31:30 [INFO    ] autopointer: [BROWSER_ASR] 次回もお楽しみに!  (logprob=-0.65, asr=0.69s)
+2026-05-11 13:31:31 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:31 [INFO    ] autopointer: [TIMING] ASR=0.69s | LLM=0.98s | Total=1.67s | slide=4
+2026-05-11 13:31:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:33 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.55s / draw_type=arrow
+2026-05-11 13:31:39 [INFO    ] autopointer: [BROWSER_ASR] Peace!  (logprob=-0.72, asr=0.52s)
+2026-05-11 13:31:40 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:40 [INFO    ] autopointer: [TIMING] ASR=0.52s | LLM=1.04s | Total=1.55s | slide=4
+2026-05-11 13:31:40 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:41 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.39s / draw_type=none
+2026-05-11 13:31:46 [INFO    ] autopointer: [BROWSER_ASR] チャッティーを書いてくれば、チャッティーです。  (logprob=-0.54, asr=1.43s)
+2026-05-11 13:31:47 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:47 [INFO    ] autopointer: [TIMING] ASR=1.43s | LLM=0.91s | Total=2.34s | slide=4
+2026-05-11 13:31:47 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.10s / draw_type=arrow
+2026-05-11 13:31:50 [INFO    ] autopointer: [BROWSER_ASR] フィージャムで、クロードがとても強いです。  (logprob=-0.54, asr=2.71s)
+2026-05-11 13:31:51 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:31:51 [INFO    ] autopointer: [TIMING] ASR=2.71s | LLM=0.98s | Total=3.69s | slide=4
+2026-05-11 13:31:51 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:31:53 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.49s / draw_type=arrow
+2026-05-11 13:32:00 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.65, asr=0.59s)
+2026-05-11 13:32:01 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:01 [INFO    ] autopointer: [TIMING] ASR=0.59s | LLM=0.93s | Total=1.52s | slide=4
+2026-05-11 13:32:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:02 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.24s / draw_type=none
+2026-05-11 13:32:03 [INFO    ] autopointer: [BROWSER_ASR] 解析したやつか、これ。  (logprob=-0.72, asr=0.84s)
+2026-05-11 13:32:04 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:04 [INFO    ] autopointer: [TIMING] ASR=0.84s | LLM=0.91s | Total=1.74s | slide=4
+2026-05-11 13:32:04 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:06 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.20s / draw_type=arrow
+2026-05-11 13:32:07 [INFO    ] autopointer: [BROWSER_ASR] 買い過ぎして、これができます。  (logprob=-0.85, asr=1.55s)
+2026-05-11 13:32:08 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:08 [INFO    ] autopointer: [TIMING] ASR=1.55s | LLM=0.96s | Total=2.51s | slide=4
+2026-05-11 13:32:08 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:11 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.51s / draw_type=arrow
+2026-05-11 13:32:15 [INFO    ] autopointer: [BROWSER_ASR] 素晴らしいです。  (logprob=-0.72, asr=0.64s)
+2026-05-11 13:32:16 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:16 [INFO    ] autopointer: [TIMING] ASR=0.64s | LLM=0.88s | Total=1.52s | slide=4
+2026-05-11 13:32:16 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:17 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.27s / draw_type=none
+2026-05-11 13:32:27 [INFO    ] autopointer: [BROWSER_ASR] フィールディスとかでもあるでしょうね。  (logprob=-0.87, asr=0.88s)
+2026-05-11 13:32:28 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:28 [INFO    ] autopointer: [TIMING] ASR=0.88s | LLM=1.14s | Total=2.02s | slide=4
+2026-05-11 13:32:28 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:31 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.41s / draw_type=arrow
+2026-05-11 13:32:31 [INFO    ] autopointer: [BROWSER_ASR] 次回の動画でお会いしましょう。  (logprob=-0.60, asr=1.71s)
+2026-05-11 13:32:32 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:32:32 [INFO    ] autopointer: [TIMING] ASR=1.71s | LLM=0.91s | Total=2.62s | slide=4
+2026-05-11 13:32:32 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:32:34 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.48s / draw_type=arrow
+2026-05-11 13:32:35 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトを検出するGrounded SAM 2 を活用し、馬や...
+2026-05-11 13:32:36 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=富士通が2015年に開発した自動ポインティング技術は、スライド資料と説明音声をリ...
+2026-05-11 13:32:36 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトを検出するGrounded SAM 2 を活用し、馬や...
+2026-05-11 13:32:39 [INFO    ] autopointer: [BROWSER_ASR] さらに、ラベル付けを行うことができます。  (logprob=-0.80, asr=1.00s)
+2026-05-11 13:32:41 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:32:41 [INFO    ] autopointer: [TIMING] ASR=1.00s | LLM=1.33s | Total=2.34s | slide=3
+2026-05-11 13:32:49 [INFO    ] autopointer: [BROWSER_ASR] オブジェクトを検出したり、ラベル付けを行うことができます。  (logprob=-0.53, asr=1.33s)
+2026-05-11 13:32:50 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:32:50 [INFO    ] autopointer: [TIMING] ASR=1.33s | LLM=0.77s | Total=2.10s | slide=3
+2026-05-11 13:32:52 [INFO    ] autopointer: [BROWSER_ASR] スメラル、ラベル、ブルーズ、ハンド、テキスト。  (logprob=-0.44, asr=1.15s)
+2026-05-11 13:32:52 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:32:52 [INFO    ] autopointer: [TIMING] ASR=1.15s | LLM=0.75s | Total=1.90s | slide=3
+2026-05-11 13:32:57 [INFO    ] autopointer: [BROWSER_ASR] さらにスティングをデータにします。  (logprob=-0.80, asr=0.92s)
+2026-05-11 13:32:58 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:32:58 [INFO    ] autopointer: [TIMING] ASR=0.92s | LLM=0.86s | Total=1.79s | slide=3
+2026-05-11 13:33:01 [INFO    ] autopointer: [BROWSER_ASR] ビジュアライゼーションをセグメンテーションエクサスワイズ  (logprob=-0.39, asr=1.38s)
+2026-05-11 13:33:02 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:02 [INFO    ] autopointer: [TIMING] ASR=1.38s | LLM=1.00s | Total=2.39s | slide=3
+2026-05-11 13:33:03 [INFO    ] autopointer: [BROWSER_ASR] それでは、始めましょう。  (logprob=-0.77, asr=0.58s)
+2026-05-11 13:33:04 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:04 [INFO    ] autopointer: [TIMING] ASR=0.58s | LLM=0.91s | Total=1.49s | slide=3
+2026-05-11 13:33:06 [INFO    ] autopointer: [BROWSER_ASR] Distributed across the sea  (logprob=-0.94, asr=0.64s)
+2026-05-11 13:33:07 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:33:07 [INFO    ] autopointer: [TIMING] ASR=0.64s | LLM=0.91s | Total=1.55s | slide=3
+2026-05-11 13:33:07 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:33:08 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.30s / draw_type=circle
+2026-05-11 13:33:09 [INFO    ] autopointer: [BROWSER_ASR] ネイキングスペシフィック  (logprob=-0.54, asr=0.79s)
+2026-05-11 13:33:10 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:10 [INFO    ] autopointer: [TIMING] ASR=0.79s | LLM=0.90s | Total=1.69s | slide=3
+2026-05-11 13:33:13 [INFO    ] autopointer: [BROWSER_ASR] エリアーズ・オブ・ザ・フォーシーズ・アンド  (logprob=-0.59, asr=1.25s)
+2026-05-11 13:33:14 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:14 [INFO    ] autopointer: [TIMING] ASR=1.25s | LLM=0.85s | Total=2.11s | slide=3
+2026-05-11 13:33:21 [INFO    ] autopointer: [BROWSER_ASR] 馬と草原と、  (logprob=-0.54, asr=0.94s)
+2026-05-11 13:33:22 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:33:22 [INFO    ] autopointer: [TIMING] ASR=0.94s | LLM=0.75s | Total=1.69s | slide=3
+2026-05-11 13:33:22 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:33:23 [INFO    ] autopointer: [CHART_POINTING] 完了: 0.95s / draw_type=circle
+2026-05-11 13:33:24 [INFO    ] autopointer: [BROWSER_ASR] ラベルが付加されます。  (logprob=-0.74, asr=0.88s)
+2026-05-11 13:33:25 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:33:25 [INFO    ] autopointer: [TIMING] ASR=0.88s | LLM=1.20s | Total=2.08s | slide=3
+2026-05-11 13:33:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:33:27 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.69s / draw_type=circle
+2026-05-11 13:33:39 [INFO    ] autopointer: [BROWSER_ASR] ラベル付けを行うことができます。  (logprob=-0.73, asr=0.98s)
+2026-05-11 13:33:40 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:40 [INFO    ] autopointer: [TIMING] ASR=0.98s | LLM=1.00s | Total=1.97s | slide=3
+2026-05-11 13:33:42 [INFO    ] autopointer: [BROWSER_ASR] バリエーズサーチアーズホース  (logprob=-0.51, asr=0.90s)
+2026-05-11 13:33:43 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:33:43 [INFO    ] autopointer: [TIMING] ASR=0.90s | LLM=0.87s | Total=1.77s | slide=3
+2026-05-11 13:33:43 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:33:45 [INFO    ] autopointer: [BROWSER_ASR] ちゃんと分かっているんだよ。  (logprob=-0.90, asr=0.70s)
+2026-05-11 13:33:46 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.62s / draw_type=circle
+2026-05-11 13:33:47 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:47 [INFO    ] autopointer: [TIMING] ASR=0.70s | LLM=1.75s | Total=2.45s | slide=3
+2026-05-11 13:33:51 [INFO    ] autopointer: [BROWSER_ASR] ただ、1、2、3、4、5、6点。  (logprob=-0.42, asr=0.96s)
+2026-05-11 13:33:52 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:52 [INFO    ] autopointer: [TIMING] ASR=0.96s | LLM=0.82s | Total=1.78s | slide=3
+2026-05-11 13:33:54 [INFO    ] autopointer: [BROWSER_ASR] どうもご視聴ありがとうございました。  (logprob=-0.61, asr=0.73s)
+2026-05-11 13:33:55 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:55 [INFO    ] autopointer: [TIMING] ASR=0.73s | LLM=0.88s | Total=1.62s | slide=3
+2026-05-11 13:33:57 [INFO    ] autopointer: [BROWSER_ASR] 1,2,3,4,5,6  (logprob=-0.57, asr=0.77s)
+2026-05-11 13:33:58 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:33:58 [INFO    ] autopointer: [TIMING] ASR=0.77s | LLM=0.71s | Total=1.48s | slide=3
+2026-05-11 13:34:00 [INFO    ] autopointer: [BROWSER_ASR] ラベルが付いているやつら。  (logprob=-0.45, asr=0.80s)
+2026-05-11 13:34:01 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:34:01 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=0.81s | Total=1.62s | slide=3
+2026-05-11 13:34:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:34:03 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.87s / draw_type=circle
+2026-05-11 13:34:09 [INFO    ] autopointer: [BROWSER_ASR] これらを見なきゃいけない。  (logprob=-0.78, asr=0.84s)
+2026-05-11 13:34:10 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:34:10 [INFO    ] autopointer: [TIMING] ASR=0.84s | LLM=1.10s | Total=1.95s | slide=3
+2026-05-11 13:34:16 [INFO    ] autopointer: [BROWSER_ASR] セクションウェアクラスはこれぞラベル付けを行います。  (logprob=-0.56, asr=1.21s)
+2026-05-11 13:34:17 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:34:17 [INFO    ] autopointer: [TIMING] ASR=1.21s | LLM=0.89s | Total=2.10s | slide=3
+2026-05-11 13:34:24 [INFO    ] autopointer: [BROWSER_ASR] 読んでないんだよな、まじで。  (logprob=-0.50, asr=0.82s)
+2026-05-11 13:34:25 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:34:25 [INFO    ] autopointer: [TIMING] ASR=0.82s | LLM=0.78s | Total=1.59s | slide=3
+2026-05-11 13:34:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:34:26 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.24s / draw_type=circle
+2026-05-11 13:34:36 [INFO    ] autopointer: [BROWSER_ASR] 馬0.40にあるわけです。  (logprob=-0.51, asr=0.80s)
+2026-05-11 13:34:37 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:34:37 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=0.98s | Total=1.79s | slide=3
+2026-05-11 13:34:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:34:39 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.85s / draw_type=circle
+2026-05-11 13:34:40 [INFO    ] autopointer: [BROWSER_ASR] これらのラベルを検出することができます。  (logprob=-0.75, asr=2.01s)
+2026-05-11 13:34:41 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:34:41 [INFO    ] autopointer: [TIMING] ASR=2.01s | LLM=0.89s | Total=2.91s | slide=3
+2026-05-11 13:34:42 [INFO    ] autopointer: [BROWSER_ASR] どうか分かんない。  (logprob=-0.93, asr=0.76s)
+2026-05-11 13:34:43 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:34:43 [INFO    ] autopointer: [TIMING] ASR=0.76s | LLM=0.94s | Total=1.70s | slide=3
+2026-05-11 13:34:48 [INFO    ] autopointer: [BROWSER_ASR] これらのラベルを検出することができます。  (logprob=-0.84, asr=0.97s)
+2026-05-11 13:34:49 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:34:49 [INFO    ] autopointer: [TIMING] ASR=0.97s | LLM=0.76s | Total=1.73s | slide=3
+2026-05-11 13:35:01 [INFO    ] autopointer: [BROWSER_ASR] このセシウムはどんなもんか分かりません。  (logprob=-0.80, asr=1.13s)
+2026-05-11 13:35:02 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:35:02 [INFO    ] autopointer: [TIMING] ASR=1.13s | LLM=1.04s | Total=2.17s | slide=3
+2026-05-11 13:35:03 [INFO    ] autopointer: [BROWSER_ASR] 以上です。  (logprob=-0.85, asr=0.49s)
+2026-05-11 13:35:03 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-05-11 13:35:03 [INFO    ] autopointer: [TIMING] ASR=0.49s | LLM=0.00s | Total=0.49s | slide=3
+2026-05-11 13:35:09 [INFO    ] autopointer: [BROWSER_ASR] 1兵庫と言うか。  (logprob=-0.53, asr=0.74s)
+2026-05-11 13:35:10 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:35:10 [INFO    ] autopointer: [TIMING] ASR=0.74s | LLM=1.02s | Total=1.76s | slide=3
+2026-05-11 13:35:10 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:35:12 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.78s / draw_type=circle
+2026-05-11 13:35:13 [INFO    ] autopointer: [BROWSER_ASR] これらのラベルを検出することができます。  (logprob=-0.82, asr=2.00s)
+2026-05-11 13:35:15 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:35:15 [INFO    ] autopointer: [TIMING] ASR=2.00s | LLM=1.65s | Total=3.65s | slide=3
+2026-05-11 13:35:15 [INFO    ] autopointer: [BROWSER_ASR] オブジェクトを…  (logprob=-0.73, asr=0.77s)
+2026-05-11 13:35:16 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:35:16 [INFO    ] autopointer: [TIMING] ASR=0.77s | LLM=0.77s | Total=1.55s | slide=3
+2026-05-11 13:35:18 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.47, asr=0.58s)
+2026-05-11 13:35:19 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-05-11 13:35:19 [INFO    ] autopointer: [TIMING] ASR=0.58s | LLM=0.71s | Total=1.29s | slide=3
+2026-05-11 13:35:22 [INFO    ] autopointer: [BROWSER_ASR] おつかれさまでした。  (logprob=-0.92, asr=1.30s)
+2026-05-11 13:35:23 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:35:23 [INFO    ] autopointer: [TIMING] ASR=1.30s | LLM=1.11s | Total=2.41s | slide=3
+2026-05-11 13:35:23 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:35:24 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.04s / draw_type=none
+2026-05-11 13:35:48 [INFO    ] autopointer: [BROWSER_ASR] やりたいことができているしない。  (logprob=-0.89, asr=0.81s)
+2026-05-11 13:35:50 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:35:50 [INFO    ] autopointer: [TIMING] ASR=0.81s | LLM=1.34s | Total=2.15s | slide=3
+2026-05-11 13:35:57 [INFO    ] autopointer: [BROWSER_ASR] あとはやりやすいです。  (logprob=-0.46, asr=0.73s)
+2026-05-11 13:35:58 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:35:58 [INFO    ] autopointer: [TIMING] ASR=0.73s | LLM=0.85s | Total=1.58s | slide=3
+2026-05-11 13:36:01 [INFO    ] autopointer: [BROWSER_ASR] グラフにすって矢印を引くとか、そういうことになります。  (logprob=-0.43, asr=1.10s)
+2026-05-11 13:36:01 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:36:01 [INFO    ] autopointer: [TIMING] ASR=1.10s | LLM=0.86s | Total=1.96s | slide=3
+2026-05-11 13:36:02 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:36:03 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.89s / draw_type=arrow
+2026-05-11 13:36:13 [INFO    ] autopointer: [BROWSER_ASR] その場合に矢印を出荷します。  (logprob=-0.67, asr=1.78s)
+2026-05-11 13:36:14 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:36:14 [INFO    ] autopointer: [TIMING] ASR=1.78s | LLM=1.22s | Total=3.00s | slide=3
+2026-05-11 13:36:15 [INFO    ] autopointer: [BROWSER_ASR] かわいいね  (logprob=-0.68, asr=0.55s)
+2026-05-11 13:36:16 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:36:16 [INFO    ] autopointer: [TIMING] ASR=0.55s | LLM=0.79s | Total=1.34s | slide=3
+2026-05-11 13:36:16 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:36:17 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.16s / draw_type=circle
+2026-05-11 13:36:18 [INFO    ] autopointer: [BROWSER_ASR] このレベルを検出することができます。  (logprob=-0.90, asr=0.88s)
+2026-05-11 13:36:19 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:36:19 [INFO    ] autopointer: [TIMING] ASR=0.88s | LLM=1.02s | Total=1.90s | slide=3
+2026-05-11 13:36:21 [INFO    ] autopointer: [BROWSER_ASR] では、ご覧いただきありがとうございます。  (logprob=-0.65, asr=0.70s)
+2026-05-11 13:36:22 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:36:22 [INFO    ] autopointer: [TIMING] ASR=0.70s | LLM=0.84s | Total=1.53s | slide=3
+2026-05-11 13:36:25 [INFO    ] autopointer: [BROWSER_ASR] ここからこうやって上がってますって言ったら嫌でるしかできるようになっています。  (logprob=-0.62, asr=1.24s)
+2026-05-11 13:36:25 [INFO    ] autopointer: [POINT] id=s2_e1, conf=high
+2026-05-11 13:36:25 [INFO    ] autopointer: [TIMING] ASR=1.24s | LLM=0.80s | Total=2.04s | slide=3
+2026-05-11 13:36:36 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.72, asr=0.63s)
+2026-05-11 13:36:37 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-05-11 13:36:37 [INFO    ] autopointer: [TIMING] ASR=0.63s | LLM=0.72s | Total=1.35s | slide=3
+2026-05-11 13:36:48 [INFO    ] autopointer: [BROWSER_ASR] この前何回までだろう?  (logprob=-0.65, asr=0.96s)
+2026-05-11 13:36:48 [INFO    ] autopointer: [BROWSER_ASR] こんなもんじゃん。  (logprob=-0.65, asr=0.96s)
+2026-05-11 13:36:48 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: こんなもんじゃん。
+2026-05-11 13:36:49 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:36:49 [INFO    ] autopointer: [TIMING] ASR=0.96s | LLM=0.79s | Total=1.75s | slide=3
+2026-05-11 13:36:49 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:36:49 [DEBUG   ] autopointer: [THROTTLE] キュー処理: こんなもんじゃん。
+2026-05-11 13:36:50 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:36:50 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.96s | Total=0.96s | slide=3
+2026-05-11 13:36:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:36:52 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.12s / draw_type=circle
+2026-05-11 13:36:53 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.11s / draw_type=circle
+2026-05-11 13:36:54 [INFO    ] autopointer: [BROWSER_ASR] そこまで生きている。  (logprob=-0.51, asr=0.66s)
+2026-05-11 13:36:55 [INFO    ] autopointer: [POINT] id=s2_e4, conf=high
+2026-05-11 13:36:55 [INFO    ] autopointer: [TIMING] ASR=0.66s | LLM=0.99s | Total=1.65s | slide=3
+2026-05-11 13:36:55 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e4 / image=あり
+2026-05-11 13:36:57 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.21s / draw_type=circle
+2026-05-11 13:37:03 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford...
+2026-05-11 13:37:03 [INFO    ] autopointer: [BROWSER_ASR] 右のグラフとかも反応するでしょう。  (logprob=-0.44, asr=0.90s)
+2026-05-11 13:37:04 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:37:04 [INFO    ] autopointer: [TIMING] ASR=0.90s | LLM=0.90s | Total=1.80s | slide=4
+2026-05-11 13:37:04 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:37:07 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.50s / draw_type=arrow
+2026-05-11 13:37:27 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.48, asr=0.82s)
+2026-05-11 13:37:28 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:37:28 [INFO    ] autopointer: [TIMING] ASR=0.82s | LLM=1.17s | Total=1.99s | slide=4
+2026-05-11 13:37:28 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:37:31 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.29s / draw_type=none
+2026-05-11 13:37:33 [INFO    ] autopointer: [BROWSER_ASR] また、県庁も緊張しています。  (logprob=-0.73, asr=0.81s)
+2026-05-11 13:37:34 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:37:34 [INFO    ] autopointer: [TIMING] ASR=0.81s | LLM=1.17s | Total=1.97s | slide=4
+2026-05-11 13:37:34 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:37:37 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.49s / draw_type=arrow
+2026-05-11 13:37:42 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.73, asr=0.97s)
+2026-05-11 13:37:43 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:37:43 [INFO    ] autopointer: [TIMING] ASR=0.97s | LLM=0.99s | Total=1.96s | slide=4
+2026-05-11 13:37:51 [INFO    ] autopointer: [BROWSER_ASR] わかりません。マイクが悪いです。  (logprob=-0.58, asr=0.89s)
+2026-05-11 13:37:52 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-05-11 13:37:52 [INFO    ] autopointer: [TIMING] ASR=0.89s | LLM=0.83s | Total=1.72s | slide=4
+2026-05-11 13:38:03 [INFO    ] autopointer: [BROWSER_ASR] どこもさせないであれば  (logprob=-0.62, asr=0.74s)
+2026-05-11 13:38:04 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:04 [INFO    ] autopointer: [TIMING] ASR=0.74s | LLM=1.05s | Total=1.79s | slide=4
+2026-05-11 13:38:04 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:06 [INFO    ] autopointer: [BROWSER_ASR] 何もできないわけです。  (logprob=-0.69, asr=0.68s)
+2026-05-11 13:38:07 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.53s / draw_type=arrow
+2026-05-11 13:38:08 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:08 [INFO    ] autopointer: [TIMING] ASR=0.68s | LLM=1.50s | Total=2.17s | slide=4
+2026-05-11 13:38:08 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:10 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.49s / draw_type=arrow
+2026-05-11 13:38:12 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.70, asr=0.94s)
+2026-05-11 13:38:13 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:13 [INFO    ] autopointer: [TIMING] ASR=0.94s | LLM=0.97s | Total=1.91s | slide=4
+2026-05-11 13:38:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:15 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.54s / draw_type=arrow
+2026-05-11 13:38:34 [INFO    ] autopointer: [BROWSER_ASR] あとは、遅延とかは無理です。  (logprob=-0.87, asr=1.10s)
+2026-05-11 13:38:34 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:34 [INFO    ] autopointer: [TIMING] ASR=1.10s | LLM=0.91s | Total=2.01s | slide=4
+2026-05-11 13:38:34 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:37 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.54s / draw_type=arrow
+2026-05-11 13:38:38 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.61, asr=2.57s)
+2026-05-11 13:38:39 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:39 [INFO    ] autopointer: [TIMING] ASR=2.57s | LLM=1.43s | Total=4.01s | slide=4
+2026-05-11 13:38:39 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:40 [INFO    ] autopointer: [BROWSER_ASR] 最適、何だろうな、位置。  (logprob=-0.82, asr=1.98s)
+2026-05-11 13:38:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.84s / draw_type=none
+2026-05-11 13:38:43 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:43 [INFO    ] autopointer: [TIMING] ASR=1.98s | LLM=2.64s | Total=4.62s | slide=4
+2026-05-11 13:38:43 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:43 [INFO    ] autopointer: [BROWSER_ASR] これを走って2秒くらいなら。  (logprob=-0.68, asr=1.96s)
+2026-05-11 13:38:46 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.70, asr=1.79s)
+2026-05-11 13:38:46 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: Ford F150 の燃料費を推論しています。
+2026-05-11 13:38:47 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.55s / draw_type=arrow
+2026-05-11 13:38:48 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.56, asr=1.00s)
+2026-05-11 13:38:48 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: ご視聴ありがとうございました。
+2026-05-11 13:38:49 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:49 [INFO    ] autopointer: [TIMING] ASR=1.96s | LLM=5.16s | Total=7.12s | slide=4
+2026-05-11 13:38:49 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:49 [DEBUG   ] autopointer: [THROTTLE] キュー処理: ご視聴ありがとうございました。
+2026-05-11 13:38:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.48s / draw_type=arrow
+2026-05-11 13:38:51 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:38:51 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=2.28s | Total=2.28s | slide=4
+2026-05-11 13:38:51 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:38:52 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.23s / draw_type=none
+2026-05-11 13:39:15 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.53, asr=0.80s)
+2026-05-11 13:39:16 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:16 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=0.92s | Total=1.72s | slide=4
+2026-05-11 13:39:16 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:19 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.38s / draw_type=none
+2026-05-11 13:39:30 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.66, asr=0.88s)
+2026-05-11 13:39:31 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:31 [INFO    ] autopointer: [TIMING] ASR=0.88s | LLM=1.18s | Total=2.05s | slide=4
+2026-05-11 13:39:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:34 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.28s / draw_type=none
+2026-05-11 13:39:36 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.66, asr=0.65s)
+2026-05-11 13:39:37 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:37 [INFO    ] autopointer: [TIMING] ASR=0.65s | LLM=0.93s | Total=1.57s | slide=4
+2026-05-11 13:39:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:38 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.31s / draw_type=none
+2026-05-11 13:39:39 [INFO    ] autopointer: [BROWSER_ASR] なぜに全開?  (logprob=-0.96, asr=0.62s)
+2026-05-11 13:39:40 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:40 [INFO    ] autopointer: [TIMING] ASR=0.62s | LLM=0.98s | Total=1.60s | slide=4
+2026-05-11 13:39:40 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.97s / draw_type=arrow
+2026-05-11 13:39:43 [INFO    ] autopointer: [BROWSER_ASR] ご覧いただきありがとうございます。  (logprob=-0.49, asr=1.68s)
+2026-05-11 13:39:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:44 [INFO    ] autopointer: [TIMING] ASR=1.68s | LLM=1.25s | Total=2.93s | slide=4
+2026-05-11 13:39:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:46 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.24s / draw_type=none
+2026-05-11 13:39:48 [INFO    ] autopointer: [BROWSER_ASR] ご覧いただきありがとうございます。  (logprob=-0.75, asr=0.62s)
+2026-05-11 13:39:49 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:49 [INFO    ] autopointer: [TIMING] ASR=0.62s | LLM=0.92s | Total=1.54s | slide=4
+2026-05-11 13:39:49 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.36s / draw_type=none
+2026-05-11 13:39:52 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 80.56 ドルと、左から右に減少する傾向があります。  (logprob=-0.57, asr=1.53s)
+2026-05-11 13:39:53 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:53 [INFO    ] autopointer: [TIMING] ASR=1.53s | LLM=0.89s | Total=2.42s | slide=4
+2026-05-11 13:39:53 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:55 [INFO    ] autopointer: [BROWSER_ASR] いろいろな人のスライドで使っています。  (logprob=-0.46, asr=1.94s)
+2026-05-11 13:39:56 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.83s / draw_type=arrow
+2026-05-11 13:39:57 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:39:57 [INFO    ] autopointer: [TIMING] ASR=1.94s | LLM=1.72s | Total=3.66s | slide=4
+2026-05-11 13:39:57 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:39:59 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.96s / draw_type=arrow
+2026-05-11 13:40:24 [INFO    ] autopointer: [BROWSER_ASR] 本日はご覧いただきありがとうございます。  (logprob=-0.79, asr=0.71s)
+2026-05-11 13:40:25 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:25 [INFO    ] autopointer: [TIMING] ASR=0.71s | LLM=1.08s | Total=1.79s | slide=4
+2026-05-11 13:40:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:27 [INFO    ] autopointer: [BROWSER_ASR] 今度はご覧いただきありがとうございます。  (logprob=-0.61, asr=0.80s)
+2026-05-11 13:40:28 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.43s / draw_type=none
+2026-05-11 13:40:28 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:28 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=1.28s | Total=2.08s | slide=4
+2026-05-11 13:40:29 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:30 [INFO    ] autopointer: [BROWSER_ASR] 1ヶ月も経ってないです。  (logprob=-0.37, asr=0.81s)
+2026-05-11 13:40:31 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.36s / draw_type=none
+2026-05-11 13:40:32 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:32 [INFO    ] autopointer: [TIMING] ASR=0.81s | LLM=1.53s | Total=2.34s | slide=4
+2026-05-11 13:40:32 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:34 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.49s / draw_type=arrow
+2026-05-11 13:40:40 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 1ドルで、左から右に減少する傾向があります。  (logprob=-0.64, asr=1.46s)
+2026-05-11 13:40:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:41 [INFO    ] autopointer: [TIMING] ASR=1.46s | LLM=0.93s | Total=2.39s | slide=4
+2026-05-11 13:40:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:42 [INFO    ] autopointer: [BROWSER_ASR] また一緒に試してみましょう。  (logprob=-0.79, asr=0.74s)
+2026-05-11 13:40:43 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.45s / draw_type=arrow
+2026-05-11 13:40:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:44 [INFO    ] autopointer: [TIMING] ASR=0.74s | LLM=1.92s | Total=2.66s | slide=4
+2026-05-11 13:40:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:46 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.43s / draw_type=arrow
+2026-05-11 13:40:55 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 80.56 ドルと、左から右に減少しています。  (logprob=-0.69, asr=1.64s)
+2026-05-11 13:40:56 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:40:56 [INFO    ] autopointer: [TIMING] ASR=1.64s | LLM=0.90s | Total=2.54s | slide=4
+2026-05-11 13:40:56 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:40:59 [INFO    ] autopointer: [BROWSER_ASR] それを見て良くしていくくらいしかやり方がありません。  (logprob=-0.83, asr=2.10s)
+2026-05-11 13:40:59 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.16s / draw_type=arrow
+2026-05-11 13:41:00 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:00 [INFO    ] autopointer: [TIMING] ASR=2.10s | LLM=1.45s | Total=3.55s | slide=4
+2026-05-11 13:41:00 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:01 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.46s / draw_type=arrow
+2026-05-11 13:41:07 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 を用いて、自動車の燃料費を推論しています。  (logprob=-0.47, asr=1.18s)
+2026-05-11 13:41:08 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:08 [INFO    ] autopointer: [TIMING] ASR=1.18s | LLM=0.97s | Total=2.15s | slide=4
+2026-05-11 13:41:08 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:10 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.07s / draw_type=arrow
+2026-05-11 13:41:10 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.47, asr=1.64s)
+2026-05-11 13:41:11 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:11 [INFO    ] autopointer: [TIMING] ASR=1.64s | LLM=1.28s | Total=2.92s | slide=4
+2026-05-11 13:41:11 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:13 [INFO    ] autopointer: [BROWSER_ASR] ご覧いただきありがとうございます。  (logprob=-0.54, asr=1.81s)
+2026-05-11 13:41:14 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.25s / draw_type=none
+2026-05-11 13:41:14 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:14 [INFO    ] autopointer: [TIMING] ASR=1.81s | LLM=1.27s | Total=3.08s | slide=4
+2026-05-11 13:41:15 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:17 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.68s / draw_type=none
+2026-05-11 13:41:33 [INFO    ] autopointer: [BROWSER_ASR] 最近は新しいトイレを使っています。  (logprob=-0.67, asr=0.80s)
+2026-05-11 13:41:34 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:34 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=0.92s | Total=1.73s | slide=4
+2026-05-11 13:41:34 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:36 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.46s / draw_type=arrow
+2026-05-11 13:41:39 [INFO    ] autopointer: [BROWSER_ASR] みんなの使用感をわかっています。  (logprob=-0.57, asr=0.82s)
+2026-05-11 13:41:40 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:40 [INFO    ] autopointer: [TIMING] ASR=0.82s | LLM=0.99s | Total=1.81s | slide=4
+2026-05-11 13:41:40 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.46s / draw_type=arrow
+2026-05-11 13:41:55 [INFO    ] autopointer: [BROWSER_ASR] ミストラルやグラナイトはどうなりますか?  (logprob=-0.42, asr=1.20s)
+2026-05-11 13:41:56 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:56 [INFO    ] autopointer: [TIMING] ASR=1.20s | LLM=1.01s | Total=2.22s | slide=4
+2026-05-11 13:41:56 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:41:58 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.04s / draw_type=arrow
+2026-05-11 13:41:58 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.67, asr=1.66s)
+2026-05-11 13:41:59 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:41:59 [INFO    ] autopointer: [TIMING] ASR=1.66s | LLM=1.30s | Total=2.96s | slide=4
+2026-05-11 13:41:59 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:02 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.88s / draw_type=none
+2026-05-11 13:42:04 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.65, asr=1.66s)
+2026-05-11 13:42:05 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:42:05 [INFO    ] autopointer: [TIMING] ASR=1.66s | LLM=1.00s | Total=2.66s | slide=4
+2026-05-11 13:42:06 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.63, asr=0.91s)
+2026-05-11 13:42:07 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:42:07 [INFO    ] autopointer: [TIMING] ASR=0.91s | LLM=0.87s | Total=1.78s | slide=4
+2026-05-11 13:42:09 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.75, asr=1.02s)
+2026-05-11 13:42:10 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:10 [INFO    ] autopointer: [TIMING] ASR=1.02s | LLM=0.74s | Total=1.76s | slide=4
+2026-05-11 13:42:10 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:12 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.06s / draw_type=arrow
+2026-05-11 13:42:13 [INFO    ] autopointer: [BROWSER_ASR] ラムも最適です。  (logprob=-0.83, asr=1.67s)
+2026-05-11 13:42:14 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:14 [INFO    ] autopointer: [TIMING] ASR=1.67s | LLM=1.24s | Total=2.91s | slide=4
+2026-05-11 13:42:14 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:16 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.53s / draw_type=circle
+2026-05-11 13:42:24 [INFO    ] autopointer: [BROWSER_ASR] ああ、10ヶ月前か。  (logprob=-0.95, asr=0.80s)
+2026-05-11 13:42:25 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:25 [INFO    ] autopointer: [TIMING] ASR=0.80s | LLM=0.92s | Total=1.72s | slide=4
+2026-05-11 13:42:25 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:28 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.59s / draw_type=arrow
+2026-05-11 13:42:30 [INFO    ] autopointer: [BROWSER_ASR] この蒸気が何なのかよくわかりません。  (logprob=-0.54, asr=0.99s)
+2026-05-11 13:42:31 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:31 [INFO    ] autopointer: [TIMING] ASR=0.99s | LLM=1.01s | Total=2.00s | slide=4
+2026-05-11 13:42:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:34 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.52s / draw_type=arrow
+2026-05-11 13:42:35 [INFO    ] autopointer: [BROWSER_ASR] 14 かけ 17 ドルのバイトと、18 かけ 17 ドルのバイトです。  (logprob=-0.70, asr=2.41s)
+2026-05-11 13:42:36 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:36 [INFO    ] autopointer: [TIMING] ASR=2.41s | LLM=1.11s | Total=3.52s | slide=4
+2026-05-11 13:42:36 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:39 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.44s / draw_type=arrow
+2026-05-11 13:42:40 [INFO    ] autopointer: [BROWSER_ASR] この車両は、Ford F150 の燃料費を推論しています。  (logprob=-0.90, asr=4.65s)
+2026-05-11 13:42:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:41 [INFO    ] autopointer: [TIMING] ASR=4.65s | LLM=1.40s | Total=6.04s | slide=4
+2026-05-11 13:42:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:42 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.64, asr=3.68s)
+2026-05-11 13:42:43 [INFO    ] autopointer: [BROWSER_ASR] 読みましてわからない  (logprob=-0.71, asr=1.31s)
+2026-05-11 13:42:43 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 読みましてわからない
+2026-05-11 13:42:44 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.55s / draw_type=arrow
+2026-05-11 13:42:45 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:45 [INFO    ] autopointer: [TIMING] ASR=3.68s | LLM=3.35s | Total=7.03s | slide=4
+2026-05-11 13:42:45 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:45 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 読みましてわからない
+2026-05-11 13:42:47 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.57, asr=2.21s)
+2026-05-11 13:42:47 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: Ford F150 の燃料費を推論しています。
+2026-05-11 13:42:48 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.70s / draw_type=arrow
+2026-05-11 13:42:50 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:50 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=4.07s | Total=4.07s | slide=4
+2026-05-11 13:42:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:50 [DEBUG   ] autopointer: [THROTTLE] キュー処理: Ford F150 の燃料費を推論しています。
+2026-05-11 13:42:52 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:52 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=2.30s | Total=2.30s | slide=4
+2026-05-11 13:42:52 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:42:54 [INFO    ] autopointer: [CHART_POINTING] 完了: 4.35s / draw_type=arrow
+2026-05-11 13:42:55 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.37s / draw_type=arrow
+2026-05-11 13:42:57 [INFO    ] autopointer: [BROWSER_ASR] 他の方法のやつは欲しいです。  (logprob=-0.66, asr=0.87s)
+2026-05-11 13:42:58 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:42:58 [INFO    ] autopointer: [TIMING] ASR=0.87s | LLM=0.95s | Total=1.82s | slide=4
+2026-05-11 13:42:58 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:00 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.46s / draw_type=arrow
+2026-05-11 13:43:03 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 245 ドルです。  (logprob=-0.67, asr=1.00s)
+2026-05-11 13:43:04 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:04 [INFO    ] autopointer: [TIMING] ASR=1.00s | LLM=0.98s | Total=1.98s | slide=4
+2026-05-11 13:43:04 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:06 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.56s / draw_type=circle
+2026-05-11 13:43:07 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 80.56 ドルと、左から右に減少しています。  (logprob=-0.69, asr=1.43s)
+2026-05-11 13:43:08 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:08 [INFO    ] autopointer: [TIMING] ASR=1.43s | LLM=0.85s | Total=2.28s | slide=4
+2026-05-11 13:43:08 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:11 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.74, asr=2.31s)
+2026-05-11 13:43:11 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.07s / draw_type=arrow
+2026-05-11 13:43:12 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.67, asr=1.00s)
+2026-05-11 13:43:12 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: ご視聴ありがとうございました。
+2026-05-11 13:43:12 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:12 [INFO    ] autopointer: [TIMING] ASR=2.31s | LLM=1.77s | Total=4.07s | slide=4
+2026-05-11 13:43:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:13 [DEBUG   ] autopointer: [THROTTLE] キュー処理: ご視聴ありがとうございました。
+2026-05-11 13:43:14 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.70s / draw_type=arrow
+2026-05-11 13:43:15 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:15 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=2.50s | Total=2.50s | slide=4
+2026-05-11 13:43:15 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:16 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.24s / draw_type=none
+2026-05-11 13:43:19 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費は 80.56 ドルと、左から右に減少しています。  (logprob=-0.66, asr=1.38s)
+2026-05-11 13:43:20 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:20 [INFO    ] autopointer: [TIMING] ASR=1.38s | LLM=0.88s | Total=2.26s | slide=4
+2026-05-11 13:43:20 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:21 [INFO    ] autopointer: [BROWSER_ASR] 少なくとも言えます。  (logprob=-0.92, asr=1.04s)
+2026-05-11 13:43:22 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.27s / draw_type=arrow
+2026-05-11 13:43:23 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:23 [INFO    ] autopointer: [TIMING] ASR=1.04s | LLM=1.29s | Total=2.33s | slide=4
+2026-05-11 13:43:23 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:25 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.61, asr=2.02s)
+2026-05-11 13:43:26 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.86s / draw_type=arrow
+2026-05-11 13:43:27 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:27 [INFO    ] autopointer: [TIMING] ASR=2.02s | LLM=1.59s | Total=3.61s | slide=4
+2026-05-11 13:43:27 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:28 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.66, asr=1.76s)
+2026-05-11 13:43:29 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.17s / draw_type=arrow
+2026-05-11 13:43:31 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:31 [INFO    ] autopointer: [TIMING] ASR=1.76s | LLM=2.63s | Total=4.39s | slide=4
+2026-05-11 13:43:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:33 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.43s / draw_type=arrow
+2026-05-11 13:43:36 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.73, asr=0.90s)
+2026-05-11 13:43:37 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:37 [INFO    ] autopointer: [TIMING] ASR=0.90s | LLM=0.95s | Total=1.85s | slide=4
+2026-05-11 13:43:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:40 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.54s / draw_type=arrow
+2026-05-11 13:43:40 [INFO    ] autopointer: [BROWSER_ASR] 傾向的に怪しいとなると、変えてみてください。  (logprob=-0.47, asr=1.71s)
+2026-05-11 13:43:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:41 [INFO    ] autopointer: [TIMING] ASR=1.71s | LLM=0.92s | Total=2.62s | slide=4
+2026-05-11 13:43:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:43 [INFO    ] autopointer: [BROWSER_ASR] 現状上手くいっています。  (logprob=-0.66, asr=1.55s)
+2026-05-11 13:43:44 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.69s / draw_type=arrow
+2026-05-11 13:43:46 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:46 [INFO    ] autopointer: [TIMING] ASR=1.55s | LLM=2.86s | Total=4.40s | slide=4
+2026-05-11 13:43:46 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:46 [INFO    ] autopointer: [BROWSER_ASR] あとは、軽いモデルにします。  (logprob=-0.44, asr=1.56s)
+2026-05-11 13:43:47 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.49s / draw_type=arrow
+2026-05-11 13:43:50 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:50 [INFO    ] autopointer: [TIMING] ASR=1.56s | LLM=3.54s | Total=5.10s | slide=4
+2026-05-11 13:43:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:53 [INFO    ] autopointer: [BROWSER_ASR] そこら辺がどういう関係になったのか。  (logprob=-0.48, asr=2.14s)
+2026-05-11 13:43:53 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.00s / draw_type=arrow
+2026-05-11 13:43:54 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:54 [INFO    ] autopointer: [TIMING] ASR=2.14s | LLM=1.48s | Total=3.62s | slide=4
+2026-05-11 13:43:54 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:55 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.71, asr=1.56s)
+2026-05-11 13:43:56 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.95s / draw_type=arrow
+2026-05-11 13:43:57 [INFO    ] autopointer: [BROWSER_ASR] 下げて軽くしてください。  (logprob=-0.63, asr=1.07s)
+2026-05-11 13:43:57 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 下げて軽くしてください。
+2026-05-11 13:43:58 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:43:58 [INFO    ] autopointer: [TIMING] ASR=1.56s | LLM=2.76s | Total=4.32s | slide=4
+2026-05-11 13:43:58 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:43:58 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 下げて軽くしてください。
+2026-05-11 13:43:59 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.56s / draw_type=arrow
+2026-05-11 13:44:02 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:02 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=4.43s | Total=4.43s | slide=4
+2026-05-11 13:44:02 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:02 [INFO    ] autopointer: [BROWSER_ASR] その裁縮していいのか、そのままできることはないかもしれません。  (logprob=-0.58, asr=2.81s)
+2026-05-11 13:44:02 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: その裁縮していいのか、そのままできることはないかもしれません
+2026-05-11 13:44:02 [DEBUG   ] autopointer: [THROTTLE] キュー処理: その裁縮していいのか、そのままできることはないかもしれません
+2026-05-11 13:44:04 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.27s / draw_type=arrow
+2026-05-11 13:44:05 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:05 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=3.10s | Total=3.10s | slide=4
+2026-05-11 13:44:05 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:07 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.45s / draw_type=arrow
+2026-05-11 13:44:12 [INFO    ] autopointer: [BROWSER_ASR] とても新しい車両です。  (logprob=-0.89, asr=0.74s)
+2026-05-11 13:44:13 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:13 [INFO    ] autopointer: [TIMING] ASR=0.74s | LLM=0.94s | Total=1.68s | slide=4
+2026-05-11 13:44:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:15 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.26s / draw_type=arrow
+2026-05-11 13:44:15 [INFO    ] autopointer: [BROWSER_ASR] シンキングモードがあります。  (logprob=-0.61, asr=1.06s)
+2026-05-11 13:44:17 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:17 [INFO    ] autopointer: [TIMING] ASR=1.06s | LLM=1.18s | Total=2.24s | slide=4
+2026-05-11 13:44:17 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:20 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.75, asr=2.36s)
+2026-05-11 13:44:20 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.09s / draw_type=arrow
+2026-05-11 13:44:22 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:22 [INFO    ] autopointer: [TIMING] ASR=2.36s | LLM=2.04s | Total=4.40s | slide=4
+2026-05-11 13:44:22 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:22 [INFO    ] autopointer: [BROWSER_ASR] これがオンになっているとマジで  (logprob=-0.40, asr=1.42s)
+2026-05-11 13:44:23 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.55s / draw_type=arrow
+2026-05-11 13:44:25 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.56, asr=1.95s)
+2026-05-11 13:44:25 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: ご視聴ありがとうございました。
+2026-05-11 13:44:26 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:26 [INFO    ] autopointer: [TIMING] ASR=1.42s | LLM=3.78s | Total=5.20s | slide=4
+2026-05-11 13:44:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:26 [DEBUG   ] autopointer: [THROTTLE] キュー処理: ご視聴ありがとうございました。
+2026-05-11 13:44:27 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:27 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=1.44s | Total=1.44s | slide=4
+2026-05-11 13:44:27 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:28 [INFO    ] autopointer: [BROWSER_ASR] 本当に良い値を足しています。  (logprob=-0.52, asr=1.27s)
+2026-05-11 13:44:29 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.18s / draw_type=arrow
+2026-05-11 13:44:30 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.29s / draw_type=none
+2026-05-11 13:44:32 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.63, asr=2.75s)
+2026-05-11 13:44:32 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: Toyota RAV4 の燃料費を推論しています。
+2026-05-11 13:44:32 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:32 [INFO    ] autopointer: [TIMING] ASR=1.27s | LLM=4.61s | Total=5.88s | slide=4
+2026-05-11 13:44:32 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:32 [DEBUG   ] autopointer: [THROTTLE] キュー処理: Toyota RAV4 の燃料費を推論しています。
+2026-05-11 13:44:35 [INFO    ] autopointer: [BROWSER_ASR] スイッチモードを使うと、精度が良くなります。  (logprob=-0.49, asr=2.49s)
+2026-05-11 13:44:35 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: スイッチモードを使うと、精度が良くなります。
+2026-05-11 13:44:36 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.76s / draw_type=arrow
+2026-05-11 13:44:38 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:38 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=5.58s | Total=5.58s | slide=4
+2026-05-11 13:44:38 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:38 [DEBUG   ] autopointer: [THROTTLE] キュー処理: スイッチモードを使うと、精度が良くなります。
+2026-05-11 13:44:39 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:39 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.93s | Total=0.93s | slide=4
+2026-05-11 13:44:39 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:41 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.36s / draw_type=circle
+2026-05-11 13:44:42 [INFO    ] autopointer: [BROWSER_ASR] 今回のタスク的には…  (logprob=-0.39, asr=0.99s)
+2026-05-11 13:44:43 [INFO    ] autopointer: [CHART_POINTING] 完了: 4.57s / draw_type=arrow
+2026-05-11 13:44:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:44 [INFO    ] autopointer: [TIMING] ASR=0.99s | LLM=1.77s | Total=2.76s | slide=4
+2026-05-11 13:44:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:46 [INFO    ] autopointer: [BROWSER_ASR] いらないと思うんだよね。  (logprob=-0.31, asr=1.74s)
+2026-05-11 13:44:47 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.75s / draw_type=arrow
+2026-05-11 13:44:49 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:49 [INFO    ] autopointer: [TIMING] ASR=1.74s | LLM=2.76s | Total=4.50s | slide=4
+2026-05-11 13:44:49 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:53 [INFO    ] autopointer: [CHART_POINTING] 完了: 4.20s / draw_type=arrow
+2026-05-11 13:44:54 [INFO    ] autopointer: [BROWSER_ASR] 設定でフォロスにしても結局付いてくる  (logprob=-0.44, asr=3.15s)
+2026-05-11 13:44:56 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:44:56 [INFO    ] autopointer: [TIMING] ASR=3.15s | LLM=2.17s | Total=5.32s | slide=4
+2026-05-11 13:44:56 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:44:59 [INFO    ] autopointer: [BROWSER_ASR] 少なくとも言えば、今すぐ行く効果がない。  (logprob=-0.81, asr=2.33s)
+2026-05-11 13:44:59 [INFO    ] autopointer: [CHART_POINTING] 完了: 3.16s / draw_type=arrow
+2026-05-11 13:45:00 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:00 [INFO    ] autopointer: [TIMING] ASR=2.33s | LLM=1.28s | Total=3.61s | slide=4
+2026-05-11 13:45:00 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:02 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.48s / draw_type=arrow
+2026-05-11 13:45:12 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.51, asr=0.63s)
+2026-05-11 13:45:13 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:13 [INFO    ] autopointer: [TIMING] ASR=0.63s | LLM=0.94s | Total=1.57s | slide=4
+2026-05-11 13:45:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:14 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.12s / draw_type=none
+2026-05-11 13:45:21 [INFO    ] autopointer: [BROWSER_ASR] これだけでも、余裕の稼いでいるのではないでしょうか。  (logprob=-0.82, asr=1.11s)
+2026-05-11 13:45:23 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:23 [INFO    ] autopointer: [TIMING] ASR=1.11s | LLM=1.06s | Total=2.17s | slide=4
+2026-05-11 13:45:23 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:26 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.96s / draw_type=arrow
+2026-05-11 13:45:26 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費を推論しています。  (logprob=-0.67, asr=2.15s)
+2026-05-11 13:45:27 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:45:27 [INFO    ] autopointer: [TIMING] ASR=2.15s | LLM=1.04s | Total=3.19s | slide=4
+2026-05-11 13:45:30 [INFO    ] autopointer: [BROWSER_ASR] 大変ですね。いろいろ使っているから。  (logprob=-0.58, asr=0.91s)
+2026-05-11 13:45:31 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:31 [INFO    ] autopointer: [TIMING] ASR=0.91s | LLM=0.83s | Total=1.74s | slide=4
+2026-05-11 13:45:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:33 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.28s / draw_type=arrow
+2026-05-11 13:45:34 [INFO    ] autopointer: [BROWSER_ASR] 全て説明が上げていない  (logprob=-0.51, asr=1.08s)
+2026-05-11 13:45:34 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:34 [INFO    ] autopointer: [TIMING] ASR=1.08s | LLM=0.88s | Total=1.96s | slide=4
+2026-05-11 13:45:34 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:36 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.66, asr=0.85s)
+2026-05-11 13:45:37 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.17s / draw_type=arrow
+2026-05-11 13:45:37 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:37 [INFO    ] autopointer: [TIMING] ASR=0.85s | LLM=1.23s | Total=2.08s | slide=4
+2026-05-11 13:45:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:40 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.34s / draw_type=none
+2026-05-11 13:45:41 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 の燃料費は 80.56 ドルと、右に減少する傾向があります。  (logprob=-0.68, asr=2.15s)
+2026-05-11 13:45:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:45:41 [INFO    ] autopointer: [TIMING] ASR=2.15s | LLM=0.88s | Total=3.03s | slide=4
+2026-05-11 13:45:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:45:43 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.41s / draw_type=arrow
+2026-05-11 13:46:18 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 を使用しています。  (logprob=-0.72, asr=0.81s)
+2026-05-11 13:46:19 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:46:19 [INFO    ] autopointer: [TIMING] ASR=0.81s | LLM=0.91s | Total=1.72s | slide=4
+2026-05-11 13:46:19 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:46:20 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.15s / draw_type=circle
+2026-05-11 13:46:33 [INFO    ] autopointer: [BROWSER_ASR] Toyota RAV4 を注目してくれていると。  (logprob=-0.43, asr=0.95s)
+2026-05-11 13:46:34 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:46:34 [INFO    ] autopointer: [TIMING] ASR=0.95s | LLM=0.90s | Total=1.85s | slide=4
+2026-05-11 13:46:34 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:46:35 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.03s / draw_type=circle
+2026-05-11 13:46:39 [INFO    ] autopointer: [BROWSER_ASR] 図書内の特定の要素を指しています。  (logprob=-0.52, asr=1.05s)
+2026-05-11 13:46:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:46:41 [INFO    ] autopointer: [TIMING] ASR=1.05s | LLM=1.12s | Total=2.17s | slide=4
+2026-05-11 13:46:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:46:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.89s / draw_type=circle
+2026-05-11 13:46:44 [INFO    ] autopointer: [BROWSER_ASR] このような自動車の燃料費を推論しています。  (logprob=-0.87, asr=2.16s)
+2026-05-11 13:46:45 [INFO    ] autopointer: [POINT] id=s3_e1, conf=high
+2026-05-11 13:46:45 [INFO    ] autopointer: [TIMING] ASR=2.16s | LLM=0.94s | Total=3.10s | slide=4
+2026-05-11 13:46:45 [INFO    ] autopointer: [BROWSER_ASR] あ、な、これが出てくる。  (logprob=-0.76, asr=1.07s)
+2026-05-11 13:46:46 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:46:46 [INFO    ] autopointer: [TIMING] ASR=1.07s | LLM=0.79s | Total=1.86s | slide=4
+2026-05-11 13:46:46 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:46:49 [INFO    ] autopointer: [CHART_POINTING] 完了: 2.20s / draw_type=arrow
+2026-05-11 13:46:54 [INFO    ] autopointer: [BROWSER_ASR] この水色のやつは…  (logprob=-0.62, asr=0.89s)
+2026-05-11 13:46:55 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:46:55 [INFO    ] autopointer: [TIMING] ASR=0.89s | LLM=1.05s | Total=1.95s | slide=4
+2026-05-11 13:46:55 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:46:56 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.03s / draw_type=circle
+2026-05-11 13:47:12 [INFO    ] autopointer: [BROWSER_ASR] ご視聴ありがとうございました。  (logprob=-0.46, asr=0.67s)
+2026-05-11 13:47:13 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:47:13 [INFO    ] autopointer: [TIMING] ASR=0.67s | LLM=0.88s | Total=1.55s | slide=4
+2026-05-11 13:47:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:47:14 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.25s / draw_type=none
+2026-05-11 13:47:19 [INFO    ] autopointer: [BROWSER_ASR] Ford F150 の燃料費を推論しています。  (logprob=-0.72, asr=1.14s)
+2026-05-11 13:47:19 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:47:19 [INFO    ] autopointer: [TIMING] ASR=1.14s | LLM=0.96s | Total=2.10s | slide=4
+2026-05-11 13:47:20 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:47:21 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.77s / draw_type=arrow
+2026-05-11 13:47:36 [INFO    ] autopointer: [BROWSER_ASR] 延長。延長。延長。  (logprob=-0.69, asr=0.84s)
+2026-05-11 13:47:37 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-11 13:47:37 [INFO    ] autopointer: [TIMING] ASR=0.84s | LLM=0.91s | Total=1.75s | slide=4
+2026-05-11 13:47:37 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-11 13:47:39 [INFO    ] autopointer: [CHART_POINTING] 完了: 1.46s / draw_type=arrow
+2026-05-11 13:47:47 [INFO    ] autopointer: [WS] クライアント切断: C16O2hgLPhCqp-0BAAAB
+2026-05-11 14:36:04 [INFO    ] autopointer: [WS] クライアント接続: iqiDn8jcaTxUiYxiAAAD
+2026-05-11 14:36:07 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 14:36:08 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールが...
+2026-05-11 14:36:11 [INFO    ] autopointer: [WS] スライド切り替え: 7  prompt=スライド7では、Moondreamを活用したスライド解析モジュールを開発し、Gr...
+2026-05-11 14:36:12 [INFO    ] autopointer: [WS] スライド切り替え: 8  prompt=音声認識モジュールは、Whisperなどの高性能モデルを活用し、リアルタイムに音...
+2026-05-11 14:36:13 [INFO    ] autopointer: [WS] スライド切り替え: 7  prompt=スライド7では、Moondreamを活用したスライド解析モジュールを開発し、Gr...
+2026-05-11 14:36:14 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールが...
+2026-05-11 14:36:15 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 14:36:23 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford...
+2026-05-11 14:36:31 [INFO    ] autopointer: [WS] ASRテキスト受信 (slide=4): 左のグラフ
+2026-05-11 14:36:35 [INFO    ] autopointer: [WS] ポインティング結果: id=s3_e4, conf=high
+2026-05-11 14:37:43 [INFO    ] autopointer: [WS] クライアント切断: iqiDn8jcaTxUiYxiAAAD
+2026-05-11 14:47:17 [INFO    ] autopointer: [WS] クライアント接続: xMZWo2YrKzCRNiUTAAAF
+2026-05-11 14:47:22 [INFO    ] autopointer: [WS] クライアント切断: xMZWo2YrKzCRNiUTAAAF
+2026-05-11 14:47:23 [INFO    ] autopointer: [WS] クライアント接続: e54JexINKhOZXdXmAAAH
+2026-05-11 14:47:24 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 14:47:25 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=プロトタイプ構想において、スライド解析モジュールとポインティング制御モジュールが...
+2026-05-11 14:47:26 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 14:47:26 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford...
+2026-05-11 14:47:27 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=技術的課題に対応するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を...
+2026-05-11 14:47:32 [INFO    ] autopointer: [WS] ASRテキスト受信 (slide=5): 意味的理解
+2026-05-11 14:47:36 [INFO    ] autopointer: [WS] ポインティング結果: id=s4_e1, conf=high
+2026-05-11 14:47:40 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=グラフ構造 ChartVLM を用いて、自動車の燃料費を推論しています。Ford...
+2026-05-11 14:47:42 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトを検出するGrounded SAM 2 を活用し、馬や...
+2026-05-11 14:47:50 [INFO    ] autopointer: [WS] ASRテキスト受信 (slide=3): 右の写真
+2026-05-11 14:47:52 [INFO    ] autopointer: [WS] ポインティング結果: id=s2_e4, conf=high
+2026-05-11 14:48:14 [INFO    ] autopointer: [WS] クライアント切断: e54JexINKhOZXdXmAAAH

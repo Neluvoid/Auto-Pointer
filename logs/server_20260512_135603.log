@@ -1,0 +1,61 @@
+2026-05-12 13:56:03 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260512_135603.log
+2026-05-12 13:56:03 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-12 13:56:03 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-12 13:56:03 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-12 13:56:03 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-12 13:56:08 [INFO    ] autopointer: [WS] クライアント接続: -ek7a7gAQl-ey6L-AAAB
+2026-05-12 13:56:13 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI自動ポインティングシステムの発案.pptx (1283KB)
+2026-05-12 13:56:13 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-12 13:57:10 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-12 13:57:10 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (10スライド)
+2026-05-12 13:57:10 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (10スライド / モデル: gemma3:12b)
+2026-05-12 13:57:10 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (10スライド)
+2026-05-12 13:57:10 [INFO    ] autopointer: [PPTX_SETUP] 完了: 10スライド
+2026-05-12 13:57:13 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティング技術を開発中のM1白木陽氏がプロトタイプを構想している。AI自動ポインティング...
+2026-05-12 13:57:15 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 富士通が2015年に提案した自動ポインティング技術を活用し、説明音声をリアルタイムに分析し、スライド...
+2026-05-12 13:57:16 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: 画像中の任意のオブジェクトをGrounded SAM 2で検出し、実際の世界との相関関係を持つオブジ...
+2026-05-12 13:57:17 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: チャートVLMがデータ構造としてグラフを理解し、推論の根拠を明確にしているため、Ford F150の...
+2026-05-12 13:57:18 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 技術的課題に対処するため、意味的理解の表現が必要です。発表者の発話の意図や文脈を理解し、スライド上の...
+2026-05-12 13:57:19 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: プロトタイプ構想に基づくスライド解析モジュールは、ポインティング制御モジュールと協力し、音声・意味理...
+2026-05-12 13:57:20 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: スライド7では、スライド解析モジュールが入力されたスライドをVLMを活用した画像解析に基づいて抽出し...
+2026-05-12 13:57:21 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 音声理解モジュールは、マイクからリアルタイムに音声を取得し、Whisperなどの高性能なASRモデル...
+2026-05-12 13:57:22 [INFO    ] autopointer: [ASR_PROMPT]  スライド 9 完了: LLMがスライド画像上に重畳表示したポインティング制御モジュールは、特定要素の座標位置にレーザーポイ...
+2026-05-12 13:57:24 [INFO    ] autopointer: [ASR_PROMPT]  スライド10 完了: 今後、VLMによる図表解析のプロンプト設計と検証を行うため、Grounded SAM 2 や Cha...
+2026-05-12 13:57:24 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (10/10)
+2026-05-12 13:57:48 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=富士通が2015年に提案した自動ポインティング技術を活用し、説明音声をリアルタイ...
+2026-05-12 13:57:48 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=画像中の任意のオブジェクトをGrounded SAM 2で検出し、実際の世界との...
+2026-05-12 13:57:49 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=チャートVLMがデータ構造としてグラフを理解し、推論の根拠を明確にしているため、...
+2026-05-12 14:00:32 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-12 14:00:35 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-12 14:00:43 [INFO    ] autopointer: [BROWSER_ASR] Honda Civicの値  (logprob=-0.29, asr=1.71s)
+2026-05-12 14:00:44 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:00:44 [INFO    ] autopointer: [TIMING] ASR=1.71s | LLM=1.04s | Total=2.75s | slide=4
+2026-05-12 14:00:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:00:52 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.26s / draw_type=circle
+2026-05-12 14:01:36 [INFO    ] autopointer: [BROWSER_ASR] 左のグラフで最も高い値。  (logprob=-0.19, asr=1.14s)
+2026-05-12 14:01:41 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:01:41 [INFO    ] autopointer: [TIMING] ASR=1.14s | LLM=4.59s | Total=5.73s | slide=4
+2026-05-12 14:01:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:01:49 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.57s / draw_type=circle
+2026-05-12 14:02:45 [INFO    ] autopointer: [BROWSER_ASR] Honda Civicの値  (logprob=-0.24, asr=0.78s)
+2026-05-12 14:02:50 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:02:50 [INFO    ] autopointer: [TIMING] ASR=0.78s | LLM=4.79s | Total=5.58s | slide=4
+2026-05-12 14:02:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:02:57 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.18s / draw_type=circle
+2026-05-12 14:03:21 [INFO    ] autopointer: [BROWSER_ASR] Toyota  (logprob=-0.28, asr=0.69s)
+2026-05-12 14:03:26 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:03:26 [INFO    ] autopointer: [TIMING] ASR=0.69s | LLM=4.75s | Total=5.44s | slide=4
+2026-05-12 14:03:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:03:33 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.08s / draw_type=circle
+2026-05-12 14:03:54 [INFO    ] autopointer: [BROWSER_ASR] Toyotaのご  (logprob=-0.48, asr=0.66s)
+2026-05-12 14:03:59 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:03:59 [INFO    ] autopointer: [TIMING] ASR=0.66s | LLM=4.95s | Total=5.61s | slide=4
+2026-05-12 14:03:59 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:04:06 [INFO    ] autopointer: [CHART_POINTING] 完了: 7.21s / draw_type=circle
+2026-05-12 14:04:12 [INFO    ] autopointer: [BROWSER_ASR] Toyota  (logprob=-0.30, asr=0.52s)
+2026-05-12 14:04:17 [INFO    ] autopointer: [POINT] id=s3_e4, conf=high
+2026-05-12 14:04:17 [INFO    ] autopointer: [TIMING] ASR=0.52s | LLM=5.05s | Total=5.56s | slide=4
+2026-05-12 14:04:17 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e4 / image=あり
+2026-05-12 14:04:24 [INFO    ] autopointer: [CHART_POINTING] 完了: 6.86s / draw_type=circle
