@@ -102,7 +102,21 @@ def build_user_prompt(asr_text: str, elements: list[dict]) -> str:
         elif content:
             content_str = content[:60]  # 長すぎる場合は切り詰め
         elif vlm_desc:
-            content_str = f"[image] {vlm_desc[:60]}"
+            # 写真: "[photo: A bicycle on a bridge., position=top-left]"
+            #   → "[photo at top-left: A bicycle on a bridge.]"
+            if vlm_desc.startswith("[photo:"):
+                import re as _re_pos
+                m_pos  = _re_pos.search(r', position=([^\]]+)', vlm_desc)
+                m_desc = _re_pos.match(r'\[photo: (.+?)(?:, position=|\])', vlm_desc)
+                pos    = m_pos.group(1)  if m_pos  else "unknown"
+                desc   = m_desc.group(1) if m_desc else "non-chart image"
+                # 内容説明が意味のある場合はそれを前面に出す
+                if desc and desc != "non-chart image":
+                    content_str = f"[photo at {pos}: {desc[:50]}]"
+                else:
+                    content_str = f"[photo at {pos} of slide]"
+            else:
+                content_str = f"[image] {vlm_desc[:60]}"
         else:
             content_str = "(no text content)"
 
@@ -419,7 +433,7 @@ def get_chart_pointing(
     vlm_description: str,
     image_bbox_ratio: list[float],
     image_b64: str | None = None,
-    model: str = "gemma4:e2b",
+    model: str = "qwen2.5vl:7b",
     verbose: bool = False,
 ) -> dict | None:
     if not OLLAMA_AVAILABLE:

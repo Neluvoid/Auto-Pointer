@@ -1,0 +1,30 @@
+2026-05-14 10:16:03 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260514_101603.log
+2026-05-14 10:16:03 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-14 10:16:03 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-14 10:16:03 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-14 10:16:03 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-14 10:16:14 [INFO    ] autopointer: [WS] クライアント接続: _5krwfqXTHVBcQmTAAAB
+2026-05-14 10:16:40 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: oresen.pptx (60KB)
+2026-05-14 10:16:40 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-14 10:17:20 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-14 10:17:20 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (1スライド)
+2026-05-14 10:17:20 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (1スライド / モデル: gemma3:12b)
+2026-05-14 10:17:20 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (1スライド)
+2026-05-14 10:17:20 [INFO    ] autopointer: [PPTX_SETUP] 完了: 1スライド
+2026-05-14 10:17:25 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: 気温の変化グラフにおいて、時間軸は7時から19時にわたる時間を表し、温度軸は10度から25度の範囲で...
+2026-05-14 10:17:25 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (1/1)
+2026-05-14 10:17:40 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-14 10:17:43 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-14 10:17:45 [INFO    ] autopointer: [BROWSER_ASR] 右肩上がりになっています。  (logprob=-0.17, asr=1.63s)
+2026-05-14 10:17:46 [INFO    ] autopointer: [POINT] id=s0_e0, conf=high
+2026-05-14 10:17:46 [INFO    ] autopointer: [TIMING] ASR=1.63s | LLM=0.80s | Total=2.43s | slide=1
+2026-05-14 10:17:46 [INFO    ] autopointer: [CHART_POINTING] 開始: s0_e0 / image=あり
+2026-05-14 10:17:56 [INFO    ] autopointer: [CHART_POINTING] 完了: 10.84s / draw_type=arrow
+2026-05-14 10:19:44 [INFO    ] autopointer: [BROWSER_ASR] 2万7千分のイメージで止める。  (logprob=-0.83, asr=1.09s)
+2026-05-14 10:19:48 [INFO    ] autopointer: [POINT] id=s0_e0, conf=high
+2026-05-14 10:19:48 [INFO    ] autopointer: [TIMING] ASR=1.09s | LLM=4.01s | Total=5.11s | slide=1
+2026-05-14 10:19:48 [INFO    ] autopointer: [CHART_POINTING] 開始: s0_e0 / image=あり
+2026-05-14 10:19:52 [INFO    ] autopointer: [WS] クライアント切断: _5krwfqXTHVBcQmTAAAB
+2026-05-14 10:20:01 [INFO    ] autopointer: [CHART_POINTING] 完了: 13.10s / draw_type=arrow

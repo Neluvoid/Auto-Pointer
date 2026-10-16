@@ -1,0 +1,464 @@
+{
+  "file": "AI-Driven Slide Navigation for Inclusive Communication.pptx",
+  "slide_width_pt": 960.0,
+  "slide_height_pt": 540.0,
+  "slides": [
+    {
+      "slide_index": 0,
+      "slide_number": 1,
+      "elements": [
+        {
+          "id": "s0_e0",
+          "type": "text",
+          "content": "AI-Driven Slide Navigation for Inclusive Communication: A Semantic Understanding Approach",
+          "bbox_pt": [
+            74.88,
+            27.89,
+            677.06,
+            311.67
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0516,
+            0.7053,
+            0.5772
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s0_e1",
+          "type": "text",
+          "content": "38414099　　Akira Shiraki",
+          "bbox_pt": [
+            74.88,
+            348.13,
+            677.06,
+            76.28
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.6447,
+            0.7053,
+            0.1413
+          ],
+          "shape_name": "字幕 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_001.png"
+    },
+    {
+      "slide_index": 1,
+      "slide_number": 2,
+      "elements": [
+        {
+          "id": "s1_e0",
+          "type": "text",
+          "content": "Human-Centered Society\nIntegrating Cyber & Physical Spaces\nBeyond Society 4.0 Burdens",
+          "bbox_pt": [
+            62.36,
+            153.63,
+            417.64,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.065,
+            0.2845,
+            0.435,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s1_e1",
+          "type": "text",
+          "content": "The Vision of Society 5.0",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s1_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            443.74,
+            155.83,
+            505.6,
+            349.97
+          ],
+          "bbox_ratio": [
+            0.4622,
+            0.2886,
+            0.5267,
+            0.6481
+          ],
+          "shape_name": "図 4",
+          "vlm_description": "This image illustrates the concept of **\"Society 5.0\"** as envisioned by Japan, depicting its evolution through various stages:\n\n1. **Society 1.0 (狩猎 - Hunting Society)**\n   - Depicted with primitive tools and animals.\n   - Represents a hunter-gatherer society.\n\n2. **Society 2.0 (農耕 - Agrarian Society)**\n   - Illustrated by farming imagery, including people working the land and crops.\n   - Indicates an agrarian or farming-based economy.\n\n3. **Society 3.0 (工業 - Industrial Society)**\n   - Shown with industrial machinery and factories.\n   - Represents an industrialized society focused on manufacturing.\n\n4. **Society 4.0 (情報 - Information Society)**\n   - Depicted by interconnected digital devices, including computers, smartphones, and networks.\n   - Illustrates a society driven by information technology and data connectivity.\n\n5. **Society 5.0 (新たな社会 - New Society)**\n   - Central image showing advanced technology integration with human activities: robots, smart cities, healthcare, education, and other digital innovations.\n   - Emphasizes a hyper-connected, AI-driven society that balances technological advancement with social needs.\n\nThe arrow indicates the progression from traditional societies through industrialization to an information-based society, culminating in Society 5.0, which integrates technology deeply into all aspects of life for enhanced efficiency and human well-being."
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_002.png"
+    },
+    {
+      "slide_index": 2,
+      "slide_number": 3,
+      "elements": [
+        {
+          "id": "s2_e0",
+          "type": "text",
+          "content": "The \"One-size-fits-all\" Problem\nBarriers for Diverse Presenters\nGoal: \"Leave No One Behind\" (SDGs)",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            413.47,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.4307,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s2_e1",
+          "type": "text",
+          "content": "Social Challenges",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s2_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            497.45,
+            115.29,
+            122.98,
+            122.98
+          ],
+          "bbox_ratio": [
+            0.5182,
+            0.2135,
+            0.1281,
+            0.2277
+          ],
+          "shape_name": "図 3",
+          "vlm_description": "[photo: A person sitting relaxed with arms outstretched while using a laptop., position=top]"
+        },
+        {
+          "id": "s2_e3",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            564.26,
+            246.41,
+            367.07,
+            259.5
+          ],
+          "bbox_ratio": [
+            0.5878,
+            0.4563,
+            0.3824,
+            0.4806
+          ],
+          "shape_name": "図 4",
+          "vlm_description": "This image depicts the **United Nations Sustainable Development Goals (SDGs)**, which are 17 broad objectives designed to transform our world by addressing global challenges.\n\nHere’s a detailed description of each visual element:\n\n1. **Title:**\n   - \"Sustainable Development Goals\"\n   - Subtitle: \"17 Goals to Transform Our World\"\n\n2. **Icons and Goals (from left to right, top to bottom):**\n   Each goal is represented by an icon and a number:\n\n   - **Goal 1:** No Poverty\n     *Icon:* Silhouettes of people\n\n   - **Goal 2:** Zero Hunger\n     *Icon:* Bowl with steam rising from it\n\n   - **Goal 3:** Good Health and Well-being\n     *Icon:* Heart with a heartbeat line\n\n   - **Goal 4:** Quality Education\n     *Icon:* Open book\n\n   - **Goal 5:** Gender Equality\n     *Icon:* Symbol of male and female figures equalized\n\n   - **Goal 6:** Clean Water and Sanitation\n     *Icon:* Water drop in a faucet\n\n   - **Goal 7:** Affordable and Clean Energy\n     *Icon:* Sun with rays\n\n   - **Goal 8:** Decent Work and Economic Growth\n     *Icon:* Graph showing upward trend\n\n   - **Goal 9:** Industry, Innovation, and Infrastructure\n     *Icon:* Three cubes stacked together\n\n   - **Goal 10:** Reduced Inequalities\n     *Icon:* Arrows pointing in opposite directions (indicating balance)\n\n   - **Goal 11:** Sustainable Cities and Communities\n     *Icon:* Skyscraper with a tree on top\n\n   - **Goal 12:** Responsible Consumption and Production\n     *Icon:* Infinity symbol\n\n   - **Goal 13:** Climate Action\n     *Icon:* Globe with an eye (symbolizing observation)\n\n   - **Goal 14:** Life Below Water\n     *Icon:* Fish\n\n   - **Goal 15:** Life on Land\n     *Icon:* Tree\n\n   - **Goal 16:** Peace, Justice and Strong Institutions\n     *Icon:* Dove with an olive branch\n\n   - **Goal 17:** Partnerships for the Goals\n     *Icon:* Flower-like shape made of interconnected circles\n\n3. **Color Coding:**\n   Each goal is enclosed in a colored box to distinguish it visually:\n   - Goal 1: Red\n   - Goal 2: Orange-Yellow\n   - Goal 3: Green\n   - Goal 4: Light Blue-Green\n   - Goal 5: Orange-Red\n   - Goal 6: Cyan\n   - Goal 7: Yellow-Orange\n   - Goal 8: Dark Red\n   - Goal 9: Purple\n   - Goal 10: Pinkish-Purple\n   - Goal 11: Light Brown-Yellow\n   - Goal 12: Orange-Brown\n   - Goal 13: Green\n   - Goal 14: Blue-Green\n   - Goal 15: Dark Green\n   - Goal 16: Blue\n   - Goal 17: Dark Blue\n\nThe image is a visual representation to help communicate the various goals and their importance in achieving sustainable development."
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_003.png"
+    },
+    {
+      "slide_index": 3,
+      "slide_number": 4,
+      "elements": [
+        {
+          "id": "s3_e0",
+          "type": "text",
+          "content": "Bridging the Gap\nSpeech (Physical) → AI → Slide (Cyber)\nReal-time Intent Recognition",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s3_e1",
+          "type": "text",
+          "content": "Research Overview",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s3_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            651.39,
+            238.7,
+            270.0,
+            270.0
+          ],
+          "bbox_ratio": [
+            0.6785,
+            0.442,
+            0.2812,
+            0.5
+          ],
+          "shape_name": "図 4",
+          "vlm_description": "This image depicts a conceptual diagram illustrating how AI integrates voice (audio) and slides.\n\n1. **Text at Top**:\n   - The Japanese text reads \"音声とスライドがAIで繋がる,\" which translates to \"Voice and slides connected by AI.\"\n\n2. **Components**:\n   - **Left Side**: An icon of a head with sound waves emanating from it, labeled \"音声\" (voice/audio).\n   - **Center**: A stylized representation of an AI chip or brain, labeled \"AI.\"\n   - **Right Side**: An icon of a presentation screen displaying slides, labeled \"スライド\" (slides).\n\n3. **Arrows**:\n   - Arrows indicate a cyclical process:\n     - From the voice icon to the AI.\n     - From the AI to the slide icon.\n     - From the slide icon back to the voice icon.\n\nThis diagram suggests that AI facilitates a feedback loop between audio input and slide presentation, likely indicating an integration where voice commands or data can influence slides and vice versa."
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_004.png"
+    },
+    {
+      "slide_index": 4,
+      "slide_number": 5,
+      "elements": [
+        {
+          "id": "s4_e0",
+          "type": "text",
+          "content": "Applying \"Gendered Innovations\"\nBeyond \"Standard\" Physical Ability\nEmpowering Every Speaker",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            411.12,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.4283,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s4_e1",
+          "type": "text",
+          "content": "Engineering for Diversity",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s4_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            553.3,
+            133.46,
+            357.13,
+            357.13
+          ],
+          "bbox_ratio": [
+            0.5764,
+            0.2471,
+            0.372,
+            0.6614
+          ],
+          "shape_name": "図 8",
+          "vlm_description": "[photo: The image depicts a diverse group collaborating with laptops and smartphones together., position=right]"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_005.png"
+    },
+    {
+      "slide_index": 5,
+      "slide_number": 6,
+      "elements": [
+        {
+          "id": "s5_e0",
+          "type": "text",
+          "content": "Semantic Speech Understanding\nLLM・VLM & Slide Parsing\n\"Embodying Ideas\" for Society",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            369.15
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.6836
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s5_e1",
+          "type": "text",
+          "content": "Technical Approach",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_006.png"
+    },
+    {
+      "slide_index": 6,
+      "slide_number": 7,
+      "elements": [
+        {
+          "id": "s6_e0",
+          "type": "text",
+          "content": "Creating New Value\nDeveloping \"Co-agency\"\nBridging AI & Social Needs",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s6_e1",
+          "type": "text",
+          "content": "Career Goals",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s6_e2",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            240.07,
+            258.27,
+            480.13,
+            24.23
+          ],
+          "bbox_ratio": [
+            0.2501,
+            0.4783,
+            0.5001,
+            0.0449
+          ],
+          "shape_name": "テキスト ボックス 6"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_007.png"
+    },
+    {
+      "slide_index": 7,
+      "slide_number": 8,
+      "elements": [
+        {
+          "id": "s7_e0",
+          "type": "text",
+          "content": "Summary: My research on AI-driven slide navigation is a step toward the inclusive, human-centered communication required in Society 5.0.\nFinal Message: Technology should adapt to humans, not the other way around.",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s7_e1",
+          "type": "text",
+          "content": "Conclusion",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI-Driven Slide Navigation for Inclusive Communication_images\\slide_008.png"
+    }
+  ]
+}

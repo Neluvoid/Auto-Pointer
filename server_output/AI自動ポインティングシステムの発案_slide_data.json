@@ -103,7 +103,7 @@
             0.4259
           ],
           "shape_name": "図 7",
-          "vlm_description": "This image is a conceptual diagram illustrating a process flow.\n\nThe diagram consists of several icons and text labels connected by arrows:\n\n1.  **Source (Left):** An icon representing a speaker/presenter and a microphone.\n2.  **Input/Audio (Center Top):** A speech bubble icon, labeled with the text **説明音声** (Explanatory audio/voice).\n3.  **System (Center Bottom):** A rectangular box labeled **説明箇所の自動ボイティングシステム** (Automatic voicing system for explanatory parts).\n4.  **Output/Display (Right):** Two outputs are shown:\n    *   An arrow leads from the system to a document/screen icon, labeled **説明箇所を強調表示** (Highlight explanatory parts).\n    *   The resulting document/screen icon is connected to a person icon (receiver).\n\n**Flow:** The diagram shows that the explanatory audio is processed by the automatic voicing system, which then results in the highlighting display of the explanatory sections."
+          "vlm_description": "This image depicts a simple diagram illustrating a presentation or explanation system with the following components:\n\n1. **Speaker (on the left)**:\n   - A person is shown speaking into a microphone, labeled \"説明音声\" (Explanation Audio), indicating that this person is providing verbal explanations.\n\n2. **Slide Material (スライド資料)**:\n   - The slide content is displayed on a screen, showing what appears to be a slide with text and images. This slide is being referred to during the explanation.\n\n3. **Automatic Pointing System (説明箇所の自動ボインティングシステム)**:\n   - The central box labeled \"説明箇所の自動ボインティングシステム\" (Automatic Pointing System for Explanation Areas) suggests a system that automatically points to specific areas on the slide.\n   - This system is connected to both the audio explanation and the slide content.\n\n4. **Enhanced Pointing Representation (説明箇所を強調表示)**:\n   - On the right, there is a highlighted section on the slide, labeled \"説明箇所を強調表示\" (Emphasized Display of Explanation Areas).\n   - This indicates that the system highlights or points to specific parts of the slide in real-time to match the verbal explanation.\n\nThe arrows show the flow of interaction: the explanation audio triggers the automatic pointing system, which then emphasizes the relevant parts on the slide. The audience (on the right) sees the emphasized areas on the slide."
         },
         {
           "id": "s1_e3",
@@ -219,7 +219,7 @@
             0.4896
           ],
           "shape_name": "Picture 2",
-          "vlm_description": "[photo: non-chart image, position=left]"
+          "vlm_description": "[photo: A herd of horses gallops energetically across an open, dusty field., position=bottom-left]"
         },
         {
           "id": "s2_e4",
@@ -238,7 +238,7 @@
             0.4896
           ],
           "shape_name": "Picture 4",
-          "vlm_description": "[photo: non-chart image, position=right]"
+          "vlm_description": "[photo: A herd of horses gallops across an open, grassy landscape under a sky., position=bottom-right]"
         }
       ],
       "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\AI自動ポインティングシステムの発案_images\\slide_003.png"
@@ -336,7 +336,7 @@
             0.481
           ],
           "shape_name": "図 5",
-          "vlm_description": "This image is a **bar chart** illustrating the total fueling costs for three different vehicles.\n\n**Order and Data:** The bars are arranged from left to right in the following order:\n1. **Ford F150:** $130.96\n2. **Toyota RAV4:** $82.56\n3. **Honda Civic:** $70.55\n\n**Trend:** The chart shows a decreasing trend in total fueling cost from left to right, with the Ford F150 having the highest cost and the Honda Civic having the lowest cost."
+          "vlm_description": "This image is a **bar chart** displaying the total fueling costs for three different vehicles.\n\n- **Chart Type:** Vertical bar chart\n- **Order of Bars (Left to Right):**\n  1. **Ford F150 (Regular Cab)**\n  2. **Toyota RAV4**\n  3. **Honda Civic**\n\n- **Labels and Values:**\n  - **Ford F150 (Regular Cab):** $130.96\n  - **Toyota RAV4:** $82.56\n  - **Honda Civic:** $70.55\n\n- **Notable Trends:**\n  - The Ford F150 has the highest fueling cost among the three vehicles.\n  - The Honda Civic has the lowest fueling cost.\n  - There is a significant difference in fueling costs between the Ford F150 and the other two vehicles."
         },
         {
           "id": "s3_e5",

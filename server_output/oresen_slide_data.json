@@ -1,0 +1,51 @@
+{
+  "file": "oresen.pptx",
+  "slide_width_pt": 960.0,
+  "slide_height_pt": 540.0,
+  "slides": [
+    {
+      "slide_index": 0,
+      "slide_number": 1,
+      "elements": [
+        {
+          "id": "s0_e0",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            187.19,
+            112.51,
+            598.12,
+            398.74
+          ],
+          "bbox_ratio": [
+            0.195,
+            0.2083,
+            0.623,
+            0.7384
+          ],
+          "shape_name": "図 3",
+          "vlm_description": "This image is a line graph illustrating the change in temperature over time.\n\n**Chart Details:**\n\n*   **Type:** Line Graph.\n*   **Title:** 気温の変化 (Temperature Change).\n*   **Y-Axis (Vertical Axis):** Represents temperature in degrees Celsius (℃).\n*   **X-Axis (Horizontal Axis):** Represents time, marked by hours ranging from 7時 to 19時.\n\n**Data Points and Trend:**\nThe graph displays temperature data points plotted across the timeline. The temperature generally increases from the beginning (13.7°C at 7h) to a peak around 14h (23.1°C). After the peak, the temperature fluctuates, generally remaining high before showing a noticeable decline towards the end of the period (dropping to 13.8°C at 19h)."
+        },
+        {
+          "id": "s0_e1",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            66.0,
+            28.75,
+            828.0,
+            104.38
+          ],
+          "bbox_ratio": [
+            0.0688,
+            0.0532,
+            0.8625,
+            0.1933
+          ],
+          "shape_name": "タイトル 5"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\oresen_images\\slide_001.png"
+    }
+  ]
+}

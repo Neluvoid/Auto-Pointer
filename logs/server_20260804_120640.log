@@ -1,0 +1,61 @@
+2026-08-04 12:06:40 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260804_120640.log
+2026-08-04 12:06:40 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-08-04 12:06:40 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-08-04 12:06:40 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-08-04 12:06:40 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-08-04 12:07:16 [INFO    ] autopointer: [WS] クライアント接続: --cY-0OrcLtWdqErAAAB
+2026-08-04 12:07:38 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: AI-Driven Slide Navigation for Inclusive Communication.pptx (3822KB)
+2026-08-04 12:07:38 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-08-04 12:09:13 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-08-04 12:09:13 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (8スライド)
+2026-08-04 12:09:13 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (8スライド / モデル: gemma3:12b)
+2026-08-04 12:09:13 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (8スライド)
+2026-08-04 12:09:13 [INFO    ] autopointer: [PPTX_SETUP] 完了: 8スライド
+2026-08-04 12:09:23 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AIドリブンナビゲーションのためのセマンティックアンダースタンディングアプローチをAkira Shi...
+2026-08-04 12:09:25 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 日本は、**Society 5.0** のビジョンを実現するために、**狩猎 - Hunting S...
+2026-08-04 12:09:26 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: SDGsに基づいて、多様なプレゼンターの壁を超えて「誰も残さない」(Leave No One Beh...
+2026-08-04 12:09:27 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: 音声とスライドがAIで繋がるため、音声認識技術「Real-time Intent Recogniti...
+2026-08-04 12:09:27 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: , "Diversity"  "Gendered Innovations" "Physical Ab...
+2026-08-04 12:09:28 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: 新しい社会に向けてアイデアを具現化するために、LLMとVLMを組み合わせたセマンティックスピーチアン...
+2026-08-04 12:09:29 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: 新しい価値創造に向けたキャリアゴールは、「Co-エージェンシー」を開発し、AIと社会的ニーズを橋渡す...
+2026-08-04 12:09:30 [INFO    ] autopointer: [ASR_PROMPT]  スライド 8 完了: 人工知能駆動型スライドナビゲーション研究は、Society 5.0における包括的で人間中心のコミュニ...
+2026-08-04 12:09:30 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (8/8)
+2026-08-04 12:09:49 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=日本は、**Society 5.0** のビジョンを実現するために、**狩猎 -...
+2026-08-04 12:09:50 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=SDGsに基づいて、多様なプレゼンターの壁を超えて「誰も残さない」(Leave ...
+2026-08-04 12:12:06 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=音声とスライドがAIで繋がるため、音声認識技術「Real-time Intent...
+2026-08-04 12:12:49 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=SDGsに基づいて、多様なプレゼンターの壁を超えて「誰も残さない」(Leave ...
+2026-08-04 12:13:05 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-08-04 12:13:09 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-08-04 12:13:29 [INFO    ] autopointer: [BROWSER_ASR] SDGs17  (logprob=-0.49, asr=20.68s)
+2026-08-04 12:13:31 [INFO    ] autopointer: [POINT] id=s2_e3, conf=high
+2026-08-04 12:13:31 [INFO    ] autopointer: [TIMING] ASR=20.68s | LLM=2.15s | Total=22.83s | slide=3
+2026-08-04 12:13:31 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e3 / image=あり
+2026-08-04 12:13:33 [INFO    ] autopointer: [BROWSER_ASR] これが、世界を変革する必要がある。  (logprob=-0.88, asr=16.06s)
+2026-08-04 12:13:35 [INFO    ] autopointer: [BROWSER_ASR] あえてカウンセルもそれもある。  (logprob=-0.93, asr=13.49s)
+2026-08-04 12:13:35 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: あえてカウンセルもそれもある。
+2026-08-04 12:13:35 [INFO    ] autopointer: [BROWSER_ASR] SDGs 17  (logprob=-0.53, asr=10.81s)
+2026-08-04 12:13:35 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: SDGs 17
+2026-08-04 12:13:36 [INFO    ] autopointer: [BROWSER_ASR] はい。  (logprob=-0.95, asr=8.15s)
+2026-08-04 12:13:36 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: はい。
+2026-08-04 12:13:37 [INFO    ] autopointer: [BROWSER_ASR] これは、世界を変革する17の広い目標である。  (logprob=-0.50, asr=6.65s)
+2026-08-04 12:13:37 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: これは、世界を変革する17の広い目標である。
+2026-08-04 12:13:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 10.92s / draw_type=none
+2026-08-04 12:13:50 [INFO    ] autopointer: [BROWSER_ASR] これは、世界を変革する17の広い目標である。  (logprob=-0.50, asr=1.44s)
+2026-08-04 12:13:50 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: これは、世界を変革する17の広い目標である。
+2026-08-04 12:13:50 [INFO    ] autopointer: [POINT] id=s2_e3, conf=high
+2026-08-04 12:13:50 [INFO    ] autopointer: [TIMING] ASR=16.06s | LLM=17.40s | Total=33.46s | slide=3
+2026-08-04 12:13:50 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e3 / image=あり
+2026-08-04 12:13:50 [DEBUG   ] autopointer: [THROTTLE] キュー処理: これは、世界を変革する17の広い目標である。
+2026-08-04 12:13:51 [INFO    ] autopointer: [POINT] id=s2_e3, conf=high
+2026-08-04 12:13:51 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.81s | Total=0.81s | slide=3
+2026-08-04 12:13:51 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e3 / image=あり
+2026-08-04 12:13:56 [INFO    ] autopointer: [BROWSER_ASR] これは、世界を変革する17の広い目標である。  (logprob=-0.59, asr=1.19s)
+2026-08-04 12:14:13 [INFO    ] autopointer: [CHART_POINTING] 完了: 21.68s / draw_type=arrow
+2026-08-04 12:14:22 [INFO    ] autopointer: [CHART_POINTING] 完了: 31.41s / draw_type=none
+2026-08-04 12:14:26 [INFO    ] autopointer: [POINT] id=s2_e3, conf=high
+2026-08-04 12:14:26 [INFO    ] autopointer: [TIMING] ASR=1.19s | LLM=29.79s | Total=30.98s | slide=3
+2026-08-04 12:14:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s2_e3 / image=あり
+2026-08-04 12:14:45 [INFO    ] autopointer: [CHART_POINTING] 完了: 19.10s / draw_type=none
+2026-08-04 12:15:05 [INFO    ] autopointer: [WS] クライアント切断: --cY-0OrcLtWdqErAAAB

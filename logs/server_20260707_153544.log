@@ -1,0 +1,102 @@
+2026-07-07 15:35:44 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260707_153544.log
+2026-07-07 15:35:44 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-07-07 15:35:44 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-07-07 15:35:44 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-07-07 15:35:44 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-07-07 15:35:47 [INFO    ] autopointer: [WS] クライアント接続: f7IX7bSwKHy5JNuFAAAB
+2026-07-07 15:35:54 [INFO    ] autopointer: [WS] クライアント接続: Des491Aq6-MdfmqsAAAD
+2026-07-07 15:36:04 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: 0525.pptx (10665KB)
+2026-07-07 15:36:04 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-07-07 15:36:24 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-07-07 15:36:24 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (7スライド)
+2026-07-07 15:36:24 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (7スライド / モデル: gemma3:12b)
+2026-07-07 15:36:24 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (7スライド)
+2026-07-07 15:36:24 [INFO    ] autopointer: [PPTX_SETUP] 完了: 7スライド
+2026-07-07 15:36:28 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティングのM1白木陽の仕様で、5月末時点での実現を目指しています。...
+2026-07-07 15:36:29 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: スライド表示では、クライアントPCとサーバーPCが通信し、音声認識と意味理解を実現しています。PPT...
+2026-07-07 15:36:30 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: PPTXをアップロードし、Whisper mediumで音声入力を認識する。テキスト描画では、VLM...
+2026-07-07 15:36:31 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: 発表者の音声に合った描画形態を選択し、黄色ハイライト+赤枠+赤ポインターで強調します。図表の場合、紫...
+2026-07-07 15:36:33 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 山岳の夕日が照らす谷間と並ぶ断崖絶壁に、海岸の夕日が滲む丘陵と海辺を背景にした壮大な自然景観は、雪原...
+2026-07-07 15:36:34 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: 和歌山県の人口推移を示す**棒グラフ**において、1925年から2015年の間の人口動向が描かれてい...
+2026-07-07 15:36:35 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: 横浜市の犯罪件数は、2012年から2021年の間に減少傾向を示しています。2012年に約34,000...
+2026-07-07 15:36:35 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (7/7)
+2026-07-07 15:36:52 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=スライド表示では、クライアントPCとサーバーPCが通信し、音声認識と意味理解を実...
+2026-07-07 15:36:52 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=PPTXをアップロードし、Whisper mediumで音声入力を認識する。テキ...
+2026-07-07 15:36:53 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=発表者の音声に合った描画形態を選択し、黄色ハイライト+赤枠+赤ポインターで強調し...
+2026-07-07 15:36:53 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=山岳の夕日が照らす谷間と並ぶ断崖絶壁に、海岸の夕日が滲む丘陵と海辺を背景にした壮...
+2026-07-07 15:36:53 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=和歌山県の人口推移を示す**棒グラフ**において、1925年から2015年の間の...
+2026-07-07 15:36:53 [INFO    ] autopointer: [WS] スライド切り替え: 7  prompt=横浜市の犯罪件数は、2012年から2021年の間に減少傾向を示しています。201...
+2026-07-07 15:37:00 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-07-07 15:37:02 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-07-07 15:37:04 [INFO    ] autopointer: [BROWSER_ASR] 引き方下がりになっています。  (logprob=-0.38, asr=0.74s)
+2026-07-07 15:37:04 [INFO    ] autopointer: [POINT] id=s6_e0, conf=high
+2026-07-07 15:37:04 [INFO    ] autopointer: [TIMING] ASR=0.74s | LLM=0.95s | Total=1.69s | slide=7
+2026-07-07 15:37:05 [INFO    ] autopointer: [CHART_POINTING] 開始: s6_e0 / image=あり
+2026-07-07 15:37:16 [INFO    ] autopointer: [CHART_POINTING] 完了: 11.91s / draw_type=None
+2026-07-07 15:37:28 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=和歌山県の人口推移を示す**棒グラフ**において、1925年から2015年の間の...
+2026-07-07 15:37:37 [INFO    ] autopointer: [BROWSER_ASR] 最も人口が多い。  (logprob=-0.27, asr=0.83s)
+2026-07-07 15:37:41 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:37:41 [INFO    ] autopointer: [TIMING] ASR=0.83s | LLM=4.34s | Total=5.17s | slide=6
+2026-07-07 15:37:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:37:50 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.41s / draw_type=none
+2026-07-07 15:38:36 [INFO    ] autopointer: [BROWSER_ASR] 1995年  (logprob=-0.22, asr=0.66s)
+2026-07-07 15:38:41 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:38:41 [INFO    ] autopointer: [TIMING] ASR=0.66s | LLM=4.37s | Total=5.03s | slide=6
+2026-07-07 15:38:41 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:38:52 [INFO    ] autopointer: [BROWSER_ASR] **歌山県の人口動向を示す**  (logprob=-0.68, asr=0.90s)
+2026-07-07 15:39:04 [INFO    ] autopointer: [CHART_POINTING] 完了: 23.05s / draw_type=circle
+2026-07-07 15:39:08 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:39:08 [INFO    ] autopointer: [TIMING] ASR=0.90s | LLM=16.27s | Total=17.18s | slide=6
+2026-07-07 15:39:08 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:39:19 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.48, asr=1.07s)
+2026-07-07 15:39:20 [INFO    ] autopointer: [CHART_POINTING] 完了: 12.29s / draw_type=None
+2026-07-07 15:39:21 [INFO    ] autopointer: [BROWSER_ASR] **ご視聴ありがとうございました**  (logprob=-0.69, asr=0.67s)
+2026-07-07 15:39:21 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: **ご視聴ありがとうございました**
+2026-07-07 15:39:26 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:39:26 [INFO    ] autopointer: [TIMING] ASR=1.07s | LLM=6.71s | Total=7.78s | slide=6
+2026-07-07 15:39:26 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:39:26 [DEBUG   ] autopointer: [THROTTLE] キュー処理: **ご視聴ありがとうございました**
+2026-07-07 15:39:26 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.54, asr=2.24s)
+2026-07-07 15:39:26 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 和歌山県の人口動向が描かれています。
+2026-07-07 15:39:27 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:39:27 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.97s | Total=0.97s | slide=6
+2026-07-07 15:39:27 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:39:27 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 和歌山県の人口動向が描かれています。
+2026-07-07 15:39:28 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.45, asr=0.97s)
+2026-07-07 15:39:28 [DEBUG   ] autopointer: [THROTTLE] クールダウン中のためスキップ: 和歌山県の人口動向が描かれています。
+2026-07-07 15:39:31 [INFO    ] autopointer: [BROWSER_ASR] **歌山県の人口動向が描かれています**  (logprob=-0.56, asr=1.59s)
+2026-07-07 15:39:31 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: **歌山県の人口動向が描かれています**
+2026-07-07 15:39:43 [INFO    ] autopointer: [BROWSER_ASR] **歌山県の人口動向を示す**  (logprob=-0.68, asr=0.89s)
+2026-07-07 15:39:43 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: **歌山県の人口動向を示す**
+2026-07-07 15:39:52 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.58, asr=1.04s)
+2026-07-07 15:39:52 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 和歌山県の人口動向が描かれています。
+2026-07-07 15:40:11 [INFO    ] autopointer: [CHART_POINTING] 完了: 45.24s / draw_type=None
+2026-07-07 15:40:15 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:40:15 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=48.80s | Total=48.80s | slide=6
+2026-07-07 15:40:16 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:40:16 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 和歌山県の人口動向が描かれています。
+2026-07-07 15:40:33 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.49, asr=3.32s)
+2026-07-07 15:40:33 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 和歌山県の人口動向が描かれています。
+2026-07-07 15:40:48 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向が描かれています。  (logprob=-0.54, asr=2.79s)
+2026-07-07 15:40:48 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 和歌山県の人口動向が描かれています。
+2026-07-07 15:41:00 [INFO    ] autopointer: [CHART_POINTING] 完了: 93.60s / draw_type=None
+2026-07-07 15:41:04 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:41:04 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=48.91s | Total=48.91s | slide=6
+2026-07-07 15:41:04 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:41:04 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 和歌山県の人口動向が描かれています。
+2026-07-07 15:41:14 [INFO    ] autopointer: [CHART_POINTING] 完了: 58.08s / draw_type=none
+2026-07-07 15:41:18 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:41:18 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=13.25s | Total=13.25s | slide=6
+2026-07-07 15:41:18 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:41:27 [INFO    ] autopointer: [WS] クライアント切断: f7IX7bSwKHy5JNuFAAAB
+2026-07-07 15:41:28 [INFO    ] autopointer: [CHART_POINTING] 完了: 23.30s / draw_type=None
+2026-07-07 15:41:28 [INFO    ] autopointer: [WS] クライアント接続: pr3qCOyYvyoL554wAAAF
+2026-07-07 15:41:38 [INFO    ] autopointer: [CHART_POINTING] 完了: 20.25s / draw_type=None
+2026-07-07 15:44:40 [INFO    ] autopointer: [BROWSER_ASR] 和歌山県の人口動向を示しています。  (logprob=-0.61, asr=1.05s)
+2026-07-07 15:44:43 [INFO    ] autopointer: [WS] クライアント切断: pr3qCOyYvyoL554wAAAF
+2026-07-07 15:44:44 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-07 15:44:44 [INFO    ] autopointer: [TIMING] ASR=1.05s | LLM=4.40s | Total=5.45s | slide=6
+2026-07-07 15:44:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-07 15:44:52 [INFO    ] autopointer: [WS] クライアント切断: Des491Aq6-MdfmqsAAAD

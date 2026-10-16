@@ -1,0 +1,37 @@
+2026-05-13 20:50:05 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260513_205005.log
+2026-05-13 20:50:05 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-05-13 20:50:05 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-05-13 20:50:05 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-05-13 20:50:05 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-05-13 20:50:24 [INFO    ] autopointer: [WS] クライアント接続: Y51xnvLIIgtciP9TAAAB
+2026-05-13 20:50:30 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: oresen.pptx (60KB)
+2026-05-13 20:50:30 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-05-13 20:51:10 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-05-13 20:51:10 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (1スライド)
+2026-05-13 20:51:10 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (1スライド / モデル: gemma3:12b)
+2026-05-13 20:51:10 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (1スライド)
+2026-05-13 20:51:10 [INFO    ] autopointer: [PPTX_SETUP] 完了: 1スライド
+2026-05-13 20:51:14 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: 時刻7時から19時に温度が変化することを示す線グラフは、°Cで表した温度の推移を追跡しています。7時...
+2026-05-13 20:51:14 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (1/1)
+2026-05-13 20:51:23 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-05-13 20:51:26 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-05-13 20:51:26 [INFO    ] autopointer: [WS] クライアント切断: Y51xnvLIIgtciP9TAAAB
+2026-05-13 20:51:27 [INFO    ] autopointer: [WS] クライアント接続: aJGmXFlw_sHllLssAAAD
+2026-05-13 20:51:52 [INFO    ] autopointer: [BROWSER_ASR] 気温が上昇している。  (logprob=-0.32, asr=8.52s)
+2026-05-13 20:51:53 [INFO    ] autopointer: [POINT] id=s0_e0, conf=high
+2026-05-13 20:51:53 [INFO    ] autopointer: [TIMING] ASR=8.52s | LLM=0.91s | Total=9.42s | slide=1
+2026-05-13 20:51:53 [INFO    ] autopointer: [CHART_POINTING] 開始: s0_e0 / image=あり
+2026-05-13 20:52:02 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.65s / draw_type=arrow
+2026-05-13 20:53:23 [INFO    ] autopointer: [BROWSER_ASR] 加工している  (logprob=-0.48, asr=0.56s)
+2026-05-13 20:53:27 [INFO    ] autopointer: [POINT] id=s0_e0, conf=high
+2026-05-13 20:53:27 [INFO    ] autopointer: [TIMING] ASR=0.56s | LLM=3.95s | Total=4.51s | slide=1
+2026-05-13 20:53:27 [INFO    ] autopointer: [CHART_POINTING] 開始: s0_e0 / image=あり
+2026-05-13 20:53:36 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.30s / draw_type=none
+2026-05-13 20:53:57 [INFO    ] autopointer: [BROWSER_ASR] 最高気温  (logprob=-0.40, asr=0.73s)
+2026-05-13 20:54:01 [INFO    ] autopointer: [POINT] id=s0_e0, conf=high
+2026-05-13 20:54:01 [INFO    ] autopointer: [TIMING] ASR=0.73s | LLM=4.08s | Total=4.81s | slide=1
+2026-05-13 20:54:01 [INFO    ] autopointer: [CHART_POINTING] 開始: s0_e0 / image=あり
+2026-05-13 20:54:10 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.99s / draw_type=circle
+2026-05-13 20:54:21 [INFO    ] autopointer: [WS] クライアント切断: aJGmXFlw_sHllLssAAAD

@@ -1,0 +1,737 @@
+{
+  "file": "0629.pptx",
+  "slide_width_pt": 960.0,
+  "slide_height_pt": 540.0,
+  "slides": [
+    {
+      "slide_index": 0,
+      "slide_number": 1,
+      "elements": [
+        {
+          "id": "s0_e0",
+          "type": "text",
+          "content": "A Dynamic LOD Point Clouds Visualization System using Octree-based Voxels",
+          "bbox_pt": [
+            74.88,
+            106.51,
+            677.06,
+            233.04
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.1972,
+            0.7053,
+            0.4316
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s0_e1",
+          "type": "text",
+          "content": "Togo Okubo, Masahiko Itoh\n(Department of Information Media Hokkaido Information University)",
+          "bbox_pt": [
+            74.88,
+            348.13,
+            677.06,
+            120.37
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.6447,
+            0.7053,
+            0.2229
+          ],
+          "shape_name": "字幕 2"
+        },
+        {
+          "id": "s0_e2",
+          "type": "text",
+          "content": "NICOGRAPH International 2026",
+          "bbox_pt": [
+            98.2,
+            492.85,
+            246.16,
+            24.23
+          ],
+          "bbox_ratio": [
+            0.1023,
+            0.9127,
+            0.2564,
+            0.0449
+          ],
+          "shape_name": "テキスト ボックス 3"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_001.png"
+    },
+    {
+      "slide_index": 1,
+      "slide_number": 2,
+      "elements": [
+        {
+          "id": "s1_e0",
+          "type": "text",
+          "content": "背景と課題",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s1_e1",
+          "type": "smartart",
+          "content": [
+            "背景",
+            "3D",
+            "スキャン技術の発展による点群データ利用の増加",
+            "課題",
+            "点群データは",
+            "データ量が非常に大きい",
+            "描画コストが高く",
+            "リアルタイム処理が困難",
+            "視点距離による問題",
+            "遠距離：重なって細部が潰れる",
+            "近距離：スカスカで見づらい"
+          ],
+          "bbox_pt": [
+            31.83,
+            90.25,
+            861.97,
+            438.08
+          ],
+          "bbox_ratio": [
+            0.0332,
+            0.1671,
+            0.8979,
+            0.8113
+          ],
+          "shape_name": "図表 4",
+          "smartart_node_count": 11,
+          "vlm_description": null
+        },
+        {
+          "id": "s1_e2",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            558.59,
+            342.25,
+            77.04,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.5819,
+            0.6338,
+            0.0803,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 5"
+        },
+        {
+          "id": "s1_e3",
+          "type": "text",
+          "content": "軽量化と\n視認性の\n両立が必要",
+          "bbox_pt": [
+            657.13,
+            286.48,
+            210.93,
+            163.27
+          ],
+          "bbox_ratio": [
+            0.6845,
+            0.5305,
+            0.2197,
+            0.3023
+          ],
+          "shape_name": "四角形: 角を丸くする 6"
+        },
+        {
+          "id": "s1_e4",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            664.99,
+            81.24,
+            263.18,
+            182.03
+          ],
+          "bbox_ratio": [
+            0.6927,
+            0.1504,
+            0.2741,
+            0.3371
+          ],
+          "shape_name": "図 3",
+          "vlm_description": "[photo: The image depicts a traditional Japanese pagoda silhouette against a dark background., position=top-right]"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_002.png"
+    },
+    {
+      "slide_index": 2,
+      "slide_number": 3,
+      "elements": [
+        {
+          "id": "s2_e0",
+          "type": "text",
+          "content": "研究目的",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s2_e1",
+          "type": "text",
+          "content": "点群を効率よく可視化する手法の提案",
+          "bbox_pt": [
+            74.88,
+            127.77,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2366,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "字幕 2"
+        },
+        {
+          "id": "s2_e2",
+          "type": "text",
+          "content": "距離に応じて解像度を変える（LOD制御）",
+          "bbox_pt": [
+            282.0,
+            209.92,
+            396.0,
+            72.0
+          ],
+          "bbox_ratio": [
+            0.2937,
+            0.3887,
+            0.4125,
+            0.1333
+          ],
+          "shape_name": "四角形: 角を丸くする 3"
+        },
+        {
+          "id": "s2_e3",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            460.92,
+            300.68,
+            38.16,
+            77.04
+          ],
+          "bbox_ratio": [
+            0.4801,
+            0.5568,
+            0.0397,
+            0.1427
+          ],
+          "shape_name": "矢印: 下 4"
+        },
+        {
+          "id": "s2_e4",
+          "type": "text",
+          "content": "見やすさ維持つつデータ削減",
+          "bbox_pt": [
+            255.67,
+            412.23,
+            448.65,
+            72.0
+          ],
+          "bbox_ratio": [
+            0.2663,
+            0.7634,
+            0.4673,
+            0.1333
+          ],
+          "shape_name": "四角形: 角を丸くする 7"
+        },
+        {
+          "id": "s2_e5",
+          "type": "text",
+          "content": "Level Of Detail（詳細さのレベル）",
+          "bbox_pt": [
+            39.55,
+            239.32,
+            201.8,
+            72.0
+          ],
+          "bbox_ratio": [
+            0.0412,
+            0.4432,
+            0.2102,
+            0.1333
+          ],
+          "shape_name": "吹き出し: 四角形 8"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_003.png"
+    },
+    {
+      "slide_index": 3,
+      "slide_number": 4,
+      "elements": [
+        {
+          "id": "s3_e0",
+          "type": "text",
+          "content": "点群 → ボクセル化\n視点距離に応じて解像度を動的変更\n近い：細かいボクセル（高精細）\n遠い：粗いボクセル（軽量）",
+          "bbox_pt": [
+            74.88,
+            116.34,
+            810.24,
+            196.5
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2154,
+            0.844,
+            0.3639
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s3_e1",
+          "type": "text",
+          "content": "提案手法の概要",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s3_e2",
+          "type": "text",
+          "content": "3D版のピクセル",
+          "bbox_pt": [
+            658.33,
+            99.89,
+            214.48,
+            66.93
+          ],
+          "bbox_ratio": [
+            0.6858,
+            0.185,
+            0.2234,
+            0.1239
+          ],
+          "shape_name": "吹き出し: 四角形 3"
+        },
+        {
+          "id": "s3_e3",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            115.68,
+            322.04,
+            745.46,
+            160.74
+          ],
+          "bbox_ratio": [
+            0.1205,
+            0.5964,
+            0.7765,
+            0.2977
+          ],
+          "shape_name": "図 10",
+          "vlm_description": "[photo: The image depicts a 3D-rendered castle scene with textured, voxel-based terrain., position=bottom]"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_004.png"
+    },
+    {
+      "slide_index": 4,
+      "slide_number": 5,
+      "elements": [
+        {
+          "id": "s4_e0",
+          "type": "text",
+          "content": "技術要素①（Octree）",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s4_e1",
+          "type": "text",
+          "content": "空間を8分割する階層構造",
+          "bbox_pt": [
+            74.88,
+            127.77,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2366,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "字幕 2"
+        },
+        {
+          "id": "s4_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            450.4,
+            216.42,
+            479.72,
+            253.86
+          ],
+          "bbox_ratio": [
+            0.4692,
+            0.4008,
+            0.4997,
+            0.4701
+          ],
+          "shape_name": "図 4",
+          "vlm_description": "This image depicts a hierarchical, multi-level spatial data visualization, likely representing a **quadtree structure** or a similar hierarchical partitioning scheme. Here’s a detailed breakdown:\n\n1. **Levels**:\n   - **Level 1 (Coarsest)**: The top row shows the coarsest level of detail, with a single large square subdivided into smaller sections.\n   - **Level 6 (Finest)**: The bottom row shows the finest level of detail, with the most subdivisions.\n\n2. **Subdivision Process**:\n   - The image shows a progression from a coarse grid (top row) to a finer grid (bottom row).\n   - Each level is progressively subdivided into smaller squares, indicating a recursive partitioning process.\n\n3. **Data Points**:\n   - Blue dots are scattered across each grid level, representing data points.\n   - The distribution of these points remains consistent across the levels, but the grid resolution increases, providing more granularity.\n\n4. **Arrows**:\n   - Arrows indicate the direction of progression from one level to the next.\n   - Horizontal arrows move from left to right across the same level, while vertical arrows move from the coarser level (top) to the finer level (bottom).\n\n5. **Grid Structure**:\n   - Each level is divided into smaller squares, with the number of subdivisions increasing as you move from Level 1 to Level 6.\n   - The finest level (Level 6) has the most subdivisions, showing the highest level of detail.\n\nIn summary, the image illustrates how a spatial area is recursively subdivided into smaller sections, with data points consistently distributed across these subdivisions at various levels of detail. This type of visualization is often used in geographic information systems (GIS) or computational geometry to manage and analyze spatial data efficiently."
+        },
+        {
+          "id": "s4_e3",
+          "type": "text",
+          "content": "特徴：\n単純部分 → 大きいボクセル\n複雑部分 → 小さいボクセル\n👉 効率的なデータ管理が可能",
+          "bbox_pt": [
+            29.88,
+            196.48,
+            487.42,
+            178.23
+          ],
+          "bbox_ratio": [
+            0.0311,
+            0.3638,
+            0.5077,
+            0.33
+          ],
+          "shape_name": "字幕 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_005.png"
+    },
+    {
+      "slide_index": 5,
+      "slide_number": 6,
+      "elements": [
+        {
+          "id": "s5_e0",
+          "type": "text",
+          "content": "技術要素②（LOD制御）",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            51.49
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.0954
+          ],
+          "shape_name": "タイトル 1"
+        },
+        {
+          "id": "s5_e1",
+          "type": "text",
+          "content": "視点距離を基準に解像度を切替\n各オブジェクトごとに独立制御\n👉 近くは詳細・遠くは簡略化",
+          "bbox_pt": [
+            74.88,
+            127.77,
+            487.42,
+            147.04
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2366,
+            0.5077,
+            0.2723
+          ],
+          "shape_name": "字幕 2"
+        },
+        {
+          "id": "s5_e2",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            70.16,
+            317.75,
+            810.24,
+            219.33
+          ],
+          "bbox_ratio": [
+            0.0731,
+            0.5884,
+            0.844,
+            0.4062
+          ],
+          "shape_name": "図 4",
+          "vlm_description": "This image depicts a sequence of four 3D visualizations labeled (a) through (d), showing a process of progressive simplification or reconstruction of a complex structure, likely a castle or fortress.\n\n1. **(a)**: The structure appears highly detailed with intricate textures and a rough, uneven surface. It shows a complex, multi-tiered design with various protruding elements.\n\n2. **(a) to (b)**: As you move from (a) to (b), the structure starts to lose some of its fine details, becoming smoother and more blocky. The overall shape remains recognizable, but the texture is less detailed.\n\n3. **(b) to (c)**: In (c), the structure is further simplified. The details are more block-like and angular, with fewer intricate features. The general shape is still identifiable, but the complexity has significantly reduced.\n\n4. **(c) to (d)**: In (d), the structure is at its most simplified form. It is composed of large, uniform blocks, resembling a basic, blocky 3D model. The overall shape is still recognizable, but it is highly abstracted.\n\nThe arrows below the images indicate a transition from \"approach\" to \"move away,\" suggesting a process of zooming out or increasing abstraction from a detailed view to a more generalized one. This sequence likely illustrates a method of simplifying complex 3D models, possibly for computational efficiency or visualization purposes."
+        },
+        {
+          "id": "s5_e3",
+          "type": "image",
+          "content": null,
+          "bbox_pt": [
+            665.7,
+            112.05,
+            263.18,
+            182.03
+          ],
+          "bbox_ratio": [
+            0.6934,
+            0.2075,
+            0.2741,
+            0.3371
+          ],
+          "shape_name": "図 6",
+          "vlm_description": "[photo: This image depicts a traditional Japanese pagoda silhouette against a dark sky., position=top-right]"
+        },
+        {
+          "id": "s5_e4",
+          "type": "text",
+          "content": "",
+          "bbox_pt": [
+            566.21,
+            264.21,
+            77.04,
+            38.16
+          ],
+          "bbox_ratio": [
+            0.5898,
+            0.4893,
+            0.0803,
+            0.0707
+          ],
+          "shape_name": "矢印: 右 8"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_006.png"
+    },
+    {
+      "slide_index": 6,
+      "slide_number": 7,
+      "elements": [
+        {
+          "id": "s6_e0",
+          "type": "text",
+          "content": "データサイズ\n約19MB → 約9MB（約50%削減）\n描画性能\n60FPS以上を維持（快適動作）\n👉 軽量化＋リアルタイム性を実現",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s6_e1",
+          "type": "text",
+          "content": "実験と結果",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_007.png"
+    },
+    {
+      "slide_index": 7,
+      "slide_number": 8,
+      "elements": [
+        {
+          "id": "s7_e0",
+          "type": "text",
+          "content": "✅ 良い点\n単純な形状は粗くても認識可能\n描画負荷を大幅に削減\n⚠️ 問題点\n複雑形状では形が崩れる\n距離のみでLOD制御している",
+          "bbox_pt": [
+            35.84,
+            153.63,
+            460.05,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.0373,
+            0.2845,
+            0.4792,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s7_e1",
+          "type": "text",
+          "content": "考察と今後の課題",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        },
+        {
+          "id": "s7_e2",
+          "type": "text",
+          "content": "形状の複雑さを考慮したLOD制御\n最適な距離閾値の決定 点群データの品質向上",
+          "bbox_pt": [
+            480.0,
+            153.63,
+            460.05,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.5,
+            0.2845,
+            0.4792,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s7_e3",
+          "type": "text",
+          "content": "考察",
+          "bbox_pt": [
+            51.56,
+            98.87,
+            99.04,
+            48.17
+          ],
+          "bbox_ratio": [
+            0.0537,
+            0.1831,
+            0.1032,
+            0.0892
+          ],
+          "shape_name": "正方形/長方形 4"
+        },
+        {
+          "id": "s7_e4",
+          "type": "text",
+          "content": "今後の課題",
+          "bbox_pt": [
+            501.13,
+            98.87,
+            180.84,
+            48.17
+          ],
+          "bbox_ratio": [
+            0.522,
+            0.1831,
+            0.1884,
+            0.0892
+          ],
+          "shape_name": "正方形/長方形 6"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_008.png"
+    },
+    {
+      "slide_index": 8,
+      "slide_number": 9,
+      "elements": [
+        {
+          "id": "s8_e0",
+          "type": "text",
+          "content": "Octree＋ボクセルで点群を表現\n距離に応じたLOD制御を提案\n軽量化と視認性を両立\n今後は「距離＋形状」で改良",
+          "bbox_pt": [
+            74.88,
+            153.63,
+            810.24,
+            336.95
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.2845,
+            0.844,
+            0.624
+          ],
+          "shape_name": "テキスト プレースホルダー 1"
+        },
+        {
+          "id": "s8_e1",
+          "type": "text",
+          "content": "まとめ",
+          "bbox_pt": [
+            74.88,
+            49.41,
+            810.24,
+            57.73
+          ],
+          "bbox_ratio": [
+            0.078,
+            0.0915,
+            0.844,
+            0.1069
+          ],
+          "shape_name": "タイトル 2"
+        }
+      ],
+      "image_path": "C:\\Users\\admin\\GitHub\\Auto-Pointer\\server_output\\0629_images\\slide_009.png"
+    }
+  ]
+}

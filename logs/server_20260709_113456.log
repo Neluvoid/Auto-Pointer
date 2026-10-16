@@ -1,0 +1,64 @@
+2026-07-09 11:34:56 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260709_113456.log
+2026-07-09 11:34:56 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-07-09 11:34:56 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-07-09 11:34:56 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-07-09 11:34:56 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-07-09 11:35:01 [INFO    ] autopointer: [WS] クライアント接続: op6rQ-rLSBwJLqMFAAAB
+2026-07-09 11:35:10 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: 0525.pptx (10665KB)
+2026-07-09 11:35:10 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-07-09 11:35:32 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-07-09 11:35:32 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (7スライド)
+2026-07-09 11:35:32 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (7スライド / モデル: gemma3:12b)
+2026-07-09 11:35:32 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (7スライド)
+2026-07-09 11:35:32 [INFO    ] autopointer: [PPTX_SETUP] 完了: 7スライド
+2026-07-09 11:35:36 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティングの仕様は、M1白木陽が5月末にまとめたものです。AI自動ポインティングが実現す...
+2026-07-09 11:35:37 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 音声認識システムにおいて、クライアントPCとサーバーPCとの通信を通じて、PPTX解析を行い、マイク...
+2026-07-09 11:35:38 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: PPTXを分析し、Whisper mediumで音声を認識した後、テキストを描画します。Gemma4...
+2026-07-09 11:35:39 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: 発表者が音声を発声すると、スライド上で黄色のハイライトと赤枠に囲まれた赤ポインターが現れ、図表では紫...
+2026-07-09 11:35:40 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 山岳の夕日が照らすアルプスの断崖と並ぶ、 Majestic mountain peaks の美しい景...
+2026-07-09 11:35:42 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: 和歌山県の人口は、1925年から2015年の間に78.8万人から100.7万人と増加したことがわかり...
+2026-07-09 11:35:43 [INFO    ] autopointer: [ASR_PROMPT]  スライド 7 完了: 横浜市の犯罪件数が2012年から2021年の間に34,000を超えるピークを示し、その後徐々に減少し...
+2026-07-09 11:35:43 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (7/7)
+2026-07-09 11:35:50 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=音声認識システムにおいて、クライアントPCとサーバーPCとの通信を通じて、PPT...
+2026-07-09 11:35:51 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=PPTXを分析し、Whisper mediumで音声を認識した後、テキストを描画...
+2026-07-09 11:35:51 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=発表者が音声を発声すると、スライド上で黄色のハイライトと赤枠に囲まれた赤ポインタ...
+2026-07-09 11:35:52 [INFO    ] autopointer: [WS] スライド切り替え: 5  prompt=山岳の夕日が照らすアルプスの断崖と並ぶ、 Majestic mountain p...
+2026-07-09 11:35:54 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=和歌山県の人口は、1925年から2015年の間に78.8万人から100.7万人と...
+2026-07-09 11:35:57 [INFO    ] autopointer: [WS] スライド切り替え: 7  prompt=横浜市の犯罪件数が2012年から2021年の間に34,000を超えるピークを示し...
+2026-07-09 11:36:01 [INFO    ] autopointer: [WS] スライド切り替え: 6  prompt=和歌山県の人口は、1925年から2015年の間に78.8万人から100.7万人と...
+2026-07-09 11:36:06 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-07-09 11:36:08 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-07-09 11:36:08 [INFO    ] autopointer: [BROWSER_ASR] 1985年  (logprob=-0.20, asr=0.61s)
+2026-07-09 11:36:09 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-09 11:36:09 [INFO    ] autopointer: [TIMING] ASR=0.61s | LLM=0.95s | Total=1.56s | slide=6
+2026-07-09 11:36:09 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-09 11:36:19 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.56s / draw_type=circle
+2026-07-09 11:36:34 [INFO    ] autopointer: [BROWSER_ASR] 1975年  (logprob=-0.20, asr=0.95s)
+2026-07-09 11:36:38 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-09 11:36:38 [INFO    ] autopointer: [TIMING] ASR=0.95s | LLM=4.09s | Total=5.04s | slide=6
+2026-07-09 11:36:38 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-09 11:36:47 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.29s / draw_type=circle
+2026-07-09 11:36:58 [INFO    ] autopointer: [BROWSER_ASR] そうです。  (logprob=-0.61, asr=0.75s)
+2026-07-09 11:37:01 [INFO    ] autopointer: [BROWSER_ASR] 1925年の値  (logprob=-0.33, asr=0.62s)
+2026-07-09 11:37:01 [DEBUG   ] autopointer: [THROTTLE] LLM処理中のためキューに保持: 1925年の値
+2026-07-09 11:37:02 [INFO    ] autopointer: [POINT] id=None, conf=none
+2026-07-09 11:37:02 [INFO    ] autopointer: [TIMING] ASR=0.75s | LLM=4.07s | Total=4.81s | slide=6
+2026-07-09 11:37:02 [DEBUG   ] autopointer: [THROTTLE] キュー処理: 1925年の値
+2026-07-09 11:37:03 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-09 11:37:03 [INFO    ] autopointer: [TIMING] ASR=0.00s | LLM=0.85s | Total=0.85s | slide=6
+2026-07-09 11:37:03 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-09 11:37:12 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.28s / draw_type=none
+2026-07-09 11:37:34 [INFO    ] autopointer: [BROWSER_ASR] 最も人口が多い。  (logprob=-0.21, asr=0.94s)
+2026-07-09 11:37:38 [INFO    ] autopointer: [POINT] id=s5_e0, conf=high
+2026-07-09 11:37:38 [INFO    ] autopointer: [TIMING] ASR=0.94s | LLM=4.04s | Total=4.98s | slide=6
+2026-07-09 11:37:38 [INFO    ] autopointer: [CHART_POINTING] 開始: s5_e0 / image=あり
+2026-07-09 11:37:48 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.52s / draw_type=none
+2026-07-09 11:38:23 [INFO    ] autopointer: [WS] スライド切り替え: 7  prompt=横浜市の犯罪件数が2012年から2021年の間に34,000を超えるピークを示し...
+2026-07-09 11:38:28 [INFO    ] autopointer: [BROWSER_ASR] 右肩下がり  (logprob=-0.55, asr=0.91s)
+2026-07-09 11:38:32 [INFO    ] autopointer: [POINT] id=s6_e0, conf=high
+2026-07-09 11:38:32 [INFO    ] autopointer: [TIMING] ASR=0.91s | LLM=4.04s | Total=4.96s | slide=7
+2026-07-09 11:38:32 [INFO    ] autopointer: [CHART_POINTING] 開始: s6_e0 / image=あり
+2026-07-09 11:38:42 [INFO    ] autopointer: [CHART_POINTING] 完了: 9.74s / draw_type=None
+2026-07-09 11:45:05 [INFO    ] autopointer: [WS] クライアント切断: op6rQ-rLSBwJLqMFAAAB

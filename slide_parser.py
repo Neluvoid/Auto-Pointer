@@ -81,8 +81,8 @@ except ImportError:
 # ============================================================
 # 設定
 # ============================================================
-VLM_MODEL_CLASSIFY = "gemma4:e2b"    # Phase1: 図表か否かの分類
-VLM_MODEL_DESCRIBE = "gemma4:e2b"    # Phase2: 図表の詳細説明
+VLM_MODEL_CLASSIFY = "ministral-3:8b"    # Phase1: 図表か否かの分類
+VLM_MODEL_DESCRIBE = "ministral-3:8b"    # Phase2: 図表の詳細説明
 VLM_MODEL = VLM_MODEL_DESCRIBE         # 後方互換
 
 VLM_PROMPT_CLASSIFY = (
@@ -167,10 +167,25 @@ def analyze_image_with_vlm(img: "Image.Image", model: str = VLM_MODEL_DESCRIBE) 
         else:
             is_chart = "yes" in answer or "chart" in answer or "graph" in answer or "diagram" in answer
             print(f"    [VLM Phase1] classify={answer!r} → {'図表→詳細解析' if is_chart else 'スキップ'}")
-        if not is_chart:  
-            # 写真はスキップするが位置情報を簡易ラベルとして保持
-            # bbox_ratioからx位置を判断してleft/right/centerを付与
-            return "[photo: non-chart image]"  
+        if not is_chart:
+            # Phase1.5: 写真の主題を簡易説明（1〜2秒）
+            # 「自転車」「海」「山」など発話との照合に使う
+            try:
+                photo_resp = _ollama.chat(
+                    model=VLM_MODEL_CLASSIFY,
+                    messages=[{
+                        "role": "user",
+                        "content": "Describe the main subject of this photo in one short English sentence (max 15 words).",
+                        "images": [img_b64]
+                    }]
+                )
+                photo_desc = photo_resp["message"]["content"].strip()
+                if not photo_desc or len(photo_desc) > 120:
+                    photo_desc = ""
+                print(f"    [VLM Phase1.5] {photo_desc!r}")
+            except Exception:
+                photo_desc = ""
+            return f"[photo: {photo_desc}]" if photo_desc else "[photo: non-chart image]"
         # --- Phase 2: 詳細説明 ---
         detail_response = _ollama.chat(
             model=model,
@@ -496,18 +511,37 @@ def parse_pptx(pptx_path: str, use_vlm: bool = True) -> dict:
                 pil_img = extract_image_from_shape(shape)
                 if pil_img and use_vlm:
                     print(f"    [VLM] Analyzing image in element {elem_id}...")
-                    # x位置から左右を判定
+                    # x・y位置から上下左右の5分類で位置を判定
                     x_center = left_pt / slide_width_pt + width_pt / slide_width_pt / 2
+                    y_center = top_pt / slide_height_pt + height_pt / slide_height_pt / 2
                     if x_center < 0.4:
-                        position = "left"
+                        h_pos = "left"
                     elif x_center > 0.6:
-                        position = "right"
+                        h_pos = "right"
                     else:
+                        h_pos = "center"
+                    if y_center < 0.4:
+                        v_pos = "top"
+                    elif y_center > 0.6:
+                        v_pos = "bottom"
+                    else:
+                        v_pos = "middle"
+                    # 上下左右を組み合わせた詳細位置（例: top-left, bottom-right）
+                    if v_pos == "middle" and h_pos == "center":
                         position = "center"
-                    
+                    elif v_pos == "middle":
+                        position = h_pos
+                    elif h_pos == "center":
+                        position = v_pos
+                    else:
+                        position = f"{v_pos}-{h_pos}"
+
                     vlm_result = analyze_image_with_vlm(pil_img)
-                    if vlm_result == "[photo: non-chart image]":
-                        elem["vlm_description"] = f"[photo: non-chart image, position={position}]"
+                    if vlm_result.startswith("[photo:"):
+                        # 写真: 内容説明にposition情報を付加
+                        # "[photo: A bicycle on a bridge.]" → "[photo: A bicycle on a bridge., position=top-left]"
+                        bare = vlm_result[:-1] if vlm_result.endswith("]") else vlm_result
+                        elem["vlm_description"] = f"{bare}, position={position}]"
                     else:
                         elem["vlm_description"] = vlm_result
                 else:

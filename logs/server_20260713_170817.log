@@ -1,0 +1,11 @@
+2026-07-13 17:08:17 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260713_170817.log
+2026-07-13 17:08:17 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-07-13 17:08:17 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-07-13 17:08:17 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-07-13 17:08:17 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-07-13 17:08:37 [INFO    ] autopointer: [WS] クライアント接続: aaygDJB_73_Fb9N4AAAB
+2026-07-13 17:08:45 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: 0629.pptx (1005KB)
+2026-07-13 17:08:45 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-07-13 17:09:19 [INFO    ] autopointer: [WS] クライアント切断: aaygDJB_73_Fb9N4AAAB

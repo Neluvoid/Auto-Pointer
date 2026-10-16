@@ -1,0 +1,50 @@
+2026-06-01 12:58:32 [INFO    ] autopointer: ログ出力先: C:\Users\admin\GitHub\Auto-Pointer\logs\server_20260601_125832.log
+2026-06-01 12:58:32 [INFO    ] autopointer: [INFO] PPTXファイル未指定 → ブラウザからアップロードしてください
+2026-06-01 12:58:32 [INFO    ] autopointer: 
+🚀 サーバー起動: http://0.0.0.0:8000
+2026-06-01 12:58:32 [INFO    ] autopointer:    ブラウザで上記URLにアクセスしてください
+
+2026-06-01 12:58:32 [INFO    ] autopointer: [INFO] asyncioループ取得完了
+2026-06-01 12:58:37 [INFO    ] autopointer: [WS] クライアント接続: qfLIcD0MFMfpqhrBAAAB
+2026-06-01 12:59:28 [INFO    ] autopointer: [UPLOAD] PPTXアップロード受信: 0525.pptx (10173KB)
+2026-06-01 12:59:28 [INFO    ] autopointer: [PPTX_SETUP] processing (10%): PPTXを解析中...
+2026-06-01 13:00:49 [INFO    ] autopointer: [PPTX_SETUP] processing (80%): スライドデータを読み込み中...
+2026-06-01 13:00:49 [INFO    ] autopointer: [PPTX_SETUP] processing (90%): ASRプロンプトを生成中... (6スライド)
+2026-06-01 13:00:49 [INFO    ] autopointer: [ASR_PROMPT] バックグラウンドでprompt生成開始 (6スライド / モデル: gemma3:12b)
+2026-06-01 13:00:49 [INFO    ] autopointer: [PPTX_SETUP] done (100%): セットアップ完了 (6スライド)
+2026-06-01 13:00:49 [INFO    ] autopointer: [PPTX_SETUP] 完了: 6スライド
+2026-06-01 13:00:54 [INFO    ] autopointer: [ASR_PROMPT] ★現在スライド(1)のprompt完成: AI自動ポインティングの M1 白木陽の仕様で、5月時点での開発が進行中です。M1は白木陽の指導下で...
+2026-06-01 13:00:55 [INFO    ] autopointer: [ASR_PROMPT]  スライド 2 完了: 音声認識システムにおいて、クライアントPCとサーバーPCが通信し、PPTX解析を行うことで、マイク入...
+2026-06-01 13:00:56 [INFO    ] autopointer: [ASR_PROMPT]  スライド 3 完了: PPTXをアップロードし、Whisper mediumで音声を認識すると、LLM＆VLMがテキストと...
+2026-06-01 13:00:56 [INFO    ] autopointer: [ASR_PROMPT]  スライド 4 完了: 写真画像が並び立つこのスライドにおいて、技術的な専門用語として「画像」という概念が浮かびあう。...
+2026-06-01 13:00:57 [INFO    ] autopointer: [ASR_PROMPT]  スライド 5 完了: 日本の都道府県別人口TOP5は2021年度で、東京都が14,000,000人を超える最高値を示し、神...
+2026-06-01 13:00:58 [INFO    ] autopointer: [ASR_PROMPT]  スライド 6 完了: 横浜市の犯罪件数が明確に減少していることがわかります。1999年から2008年の9年間で、30,00...
+2026-06-01 13:00:58 [INFO    ] autopointer: [ASR_PROMPT] 全スライドのprompt生成完了 (6/6)
+2026-06-01 13:01:40 [INFO    ] autopointer: [WS] スライド切り替え: 2  prompt=音声認識システムにおいて、クライアントPCとサーバーPCが通信し、PPTX解析を...
+2026-06-01 13:01:40 [INFO    ] autopointer: [WS] スライド切り替え: 3  prompt=PPTXをアップロードし、Whisper mediumで音声を認識すると、LLM...
+2026-06-01 13:01:41 [INFO    ] autopointer: [WS] スライド切り替え: 4  prompt=写真画像が並び立つこのスライドにおいて、技術的な専門用語として「画像」という概念...
+2026-06-01 13:01:47 [INFO    ] autopointer: [BROWSER_ASR] Whisperモデルロード中: medium
+2026-06-01 13:01:50 [INFO    ] autopointer: [BROWSER_ASR] モデルロード完了
+2026-06-01 13:01:57 [INFO    ] autopointer: [BROWSER_ASR] 山の写真  (logprob=-0.31, asr=1.03s)
+2026-06-01 13:01:58 [INFO    ] autopointer: [POINT] id=s3_e0, conf=high
+2026-06-01 13:01:58 [INFO    ] autopointer: [TIMING] ASR=1.03s | LLM=0.90s | Total=1.92s | slide=4
+2026-06-01 13:01:58 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e0 / image=あり
+2026-06-01 13:02:06 [INFO    ] autopointer: [BROWSER_ASR] 海の写真  (logprob=-0.37, asr=0.72s)
+2026-06-01 13:02:09 [INFO    ] autopointer: [CHART_POINTING] 完了: 10.64s / draw_type=none
+2026-06-01 13:02:13 [INFO    ] autopointer: [POINT] id=s3_e0, conf=high
+2026-06-01 13:02:13 [INFO    ] autopointer: [TIMING] ASR=0.72s | LLM=6.96s | Total=7.67s | slide=4
+2026-06-01 13:02:13 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e0 / image=あり
+2026-06-01 13:02:17 [INFO    ] autopointer: [WS] クライアント切断: qfLIcD0MFMfpqhrBAAAB
+2026-06-01 13:02:18 [INFO    ] autopointer: [WS] クライアント接続: bmjQWMQ2a2HHhEyFAAAD
+2026-06-01 13:02:22 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.98s / draw_type=none
+2026-06-01 13:02:39 [INFO    ] autopointer: [BROWSER_ASR] 品浜  (logprob=-0.78, asr=0.70s)
+2026-06-01 13:02:43 [INFO    ] autopointer: [POINT] id=s3_e0, conf=high
+2026-06-01 13:02:43 [INFO    ] autopointer: [TIMING] ASR=0.70s | LLM=4.25s | Total=4.95s | slide=4
+2026-06-01 13:02:44 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e0 / image=あり
+2026-06-01 13:02:52 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.88s / draw_type=none
+2026-06-01 13:02:54 [INFO    ] autopointer: [BROWSER_ASR] 自転車  (logprob=-0.41, asr=0.51s)
+2026-06-01 13:02:58 [INFO    ] autopointer: [POINT] id=s3_e0, conf=high
+2026-06-01 13:02:58 [INFO    ] autopointer: [TIMING] ASR=0.51s | LLM=4.29s | Total=4.81s | slide=4
+2026-06-01 13:02:58 [INFO    ] autopointer: [CHART_POINTING] 開始: s3_e0 / image=あり
+2026-06-01 13:03:07 [INFO    ] autopointer: [CHART_POINTING] 完了: 8.14s / draw_type=none
+2026-06-01 13:12:46 [INFO    ] autopointer: [WS] クライアント切断: bmjQWMQ2a2HHhEyFAAAD
